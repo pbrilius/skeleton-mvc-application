@@ -11,7 +11,6 @@ composer update
 ```shell
 cp -v .env.dist .env
 cp -v .env.dev.dist .env.dev
-cp -v .env.dev.local.dist .env.dev.local
 ```
 
 ## Serving

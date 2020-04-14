@@ -1,3 +1,8 @@
 #Vendor provision
 /vendor
 .vscode
+
+# Environment
+.env
+.env.dev
+.env.dev.local
