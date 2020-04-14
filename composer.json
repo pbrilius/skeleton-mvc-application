@@ -11,6 +11,8 @@
         "php-di/php-di": "^6.1",
         "symfony/dotenv": "^5.0",
         "twig/twig": "^3.0",
-        "league/route": "^4.3"
+        "league/route": "^4.3",
+        "laminas/laminas-diactoros": "^2.2",
+        "laminas/laminas-httphandlerrunner": "^1.1"
     }
 }

@@ -13,5 +13,10 @@
  */
 
 require_once __DIR__ . '/../bootstrap/container.php';
+require_once __DIR__ . '/../bootstrap/routes.php';
 
-echo 'init app 1';
+$response = $router->dispatch($request);
+
+foreach ($response->getHeaders() as $header) {
+    
+}

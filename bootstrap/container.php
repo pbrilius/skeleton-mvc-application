@@ -31,5 +31,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
 foreach ($containerPriority as $initConsumption) {
-
+    $prerequisites = glob(__DIR__ . '/' . $initConsumption . '/*.php');
+    foreach ($prerequisites as $prerequisite) {
+        include $prerequisite;
+    }
 }
