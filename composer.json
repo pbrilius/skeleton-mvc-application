@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "PBG\\": "src/PBGroup"
+        }
+    },
+    "require": {
+        "doctrine/orm": "^2.7",
+        "twig/twig": "^3.0",
+        "php-di/php-di": "^6.1",
+        "monolog/monolog": "^2.0"
+    }
+}
