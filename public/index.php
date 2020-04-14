@@ -17,6 +17,4 @@ require_once __DIR__ . '/../bootstrap/routes.php';
 
 $response = $router->dispatch($request);
 
-foreach ($response->getHeaders() as $header) {
-    
-}
+(new Laminas\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
