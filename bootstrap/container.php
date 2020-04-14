@@ -39,6 +39,6 @@ foreach ($containerPriority as $initConsumption) {
     foreach ($prerequisites as $prerequisite) {
         include $prerequisite;
     }
-
+}
 
 return $container;
