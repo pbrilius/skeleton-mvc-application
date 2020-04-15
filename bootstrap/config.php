@@ -15,13 +15,10 @@
 $definitions = [
     'app.root' => __DIR__ . '/..',
 ];
+$definitions['app.logs'] = $definitions['app.root'] . '/logs';
+$definitions['app.cache'] = $definitions['app.root'] . '/cache';
+$definitions['app.templates'] = $definitions['app.root'] . '/templates';
 
-array_push(
-    $definitions,
-    [
-        'app.logs' => $definitions['app.root'] . '/logs',
-        'app.cache' => $definitions['app.root'] . '/cache',
-        'app.templates' => $definitions['app.root'] . '/templates',
-    ]
-);
-
+$container->add('app.root', $definitions['app.root']);
+$container->add('app.cache', $definitions['app.cache']);
+$container->add('app.templates', $definitions['app.templates']);

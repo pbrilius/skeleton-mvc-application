@@ -17,7 +17,6 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
-use Psr\Container\ContainerInterface;
 use Ramsey\Uuid\Doctrine\UuidType;
 
 $container->add(
@@ -28,8 +27,8 @@ $container->add(
         $cache = null;
         $useSimpleAnnotationReader = false;
         $solid = [
-            __DIR__ . '/' . $_ENV['PB_SOLID'],
-            __DIR__ . '/' . $_ENV['PB_OAUTH'],
+            $container->get('app.root') . '/' . $_ENV['PB_SOLID'],
+            $container->get('app.root') . '/' . $_ENV['PB_OAUTH'],
         ];
 
         if (!$isDevMode) {
