@@ -52,4 +52,4 @@ $container->add(
 
         return $entityManager;
     }
-);
+)->addTag('doctrine.em');
