@@ -13,6 +13,7 @@
  */
 
 use League\Container\Container;
+use League\Container\Definition\DefinitionAggregate;
 
 /**
   * Vector of priority
@@ -32,7 +33,11 @@ $containerPriority = [
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
-$container = new Container();
+
+require __DIR__ . '/config.php';
+$aggregate = new DefinitionAggregate($definitions);
+
+$container = new Container($aggregate);
 
 foreach ($containerPriority as $initConsumption) {
     $prerequisites = glob(__DIR__ . '/' . $initConsumption . '/*.php');
