@@ -13,7 +13,6 @@
  */
 
 use League\Container\Container;
-use League\Container\Definition\DefinitionAggregate;
 
 /**
   * Vector of priority
