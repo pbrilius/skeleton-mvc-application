@@ -11,7 +11,6 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
-
 $definitions = [
     'app.root' => __DIR__ . '/..',
 ];

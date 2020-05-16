@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM boot loader
  * 
@@ -10,9 +11,7 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroupeu.wordpress.com
  */
-
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Persistence\ObjectManager as PersistenceObjectManager;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
@@ -21,7 +20,7 @@ use Doctrine\ORM\Tools\Setup;
 use Ramsey\Uuid\Doctrine\UuidType;
 
 $container->add(
-    PersistenceObjectManager::class,
+    EntityManagerInterface::class,
     function () use ($container) {
         $isDevMode = $_ENV['APPLICATION_MODE'] === 'development';
         $proxyDir = __DIR__ . '/' . $_ENV['DT_PROXY'];
