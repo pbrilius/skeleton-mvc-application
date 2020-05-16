@@ -14,3 +14,9 @@
 
 require_once __DIR__ . '/bootstrap/container.php';
 require_once __DIR__ . '/bootstrap/routes.php';
+
+/**
+ * Implementation of app binary
+ * 
+ * @todo Symfony or PHP ENV (formerly somewhere used in my projects) type implementation of CLI ingerface, so called Console app
+ */
