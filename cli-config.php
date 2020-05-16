@@ -12,7 +12,6 @@
  * @link     pbgroup.wordpress.com
  */
 
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Psr\Container\ContainerInterface;
 
@@ -23,4 +22,4 @@ use Psr\Container\ContainerInterface;
  */
 $container = include __DIR__ . '/bootstrap/container.php';
 
-return ConsoleRunner::createHelperSet($container->get(EntityManagerInterface::class));
+return ConsoleRunner::createHelperSet($container->get('doctrine.em')[0]);
