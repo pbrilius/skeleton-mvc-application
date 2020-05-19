@@ -56,7 +56,7 @@ class VoiceMemo
      * 
      * @var Note
      *
-     * @ORM\ManyToOne(targetEntity="App\Domain\SOLID\Note")
+     * @ORM\ManyToOne(targetEntity="PBG\Entity\Note")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="note", referencedColumnName="id")
      * })
