@@ -20,7 +20,7 @@ use Ramsey\Uuid\UuidInterface;
  * VoiceMemo
  *
  * @ORM\Table(name="voice_memo", indexes={@ORM\Index(name="note", columns={"note"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PBG\Repository\VoiceMemo")
  * 
  * @category SOLID_Entity
  * @package  ORM
@@ -104,7 +104,7 @@ class VoiceMemo
      * 
      * @return self
      */
-    public function setNote(SOLIDNote $note)
+    public function setNote(Note $note)
     {
         $this->_note = $note;
 

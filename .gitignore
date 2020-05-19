@@ -6,3 +6,6 @@
 .env
 .env.dev
 .env.dev.local
+
+# Cache - proxies
+cache/

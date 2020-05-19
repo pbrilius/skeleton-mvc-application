@@ -125,7 +125,7 @@ class Note
     private $gmap;
 
     /**
-     * @var \App\SOLID\User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="PBG\Entity\User")
      * @ORM\JoinColumns({
