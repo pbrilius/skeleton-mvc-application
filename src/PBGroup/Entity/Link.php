@@ -38,21 +38,79 @@ class Link
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
+
+    /**
+     * ID getter
+     *
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getId(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->_id;
+    }
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="label", type="string", length=48, nullable=true)
      */
-    private $label;
+    private $_label;
+
+    /**
+     * Label getter
+     *
+     * @return string|null
+     */
+    public function getLabel(): string
+    {
+        return $this->_label;
+    }
+
+    /**
+     * Label setter
+     *
+     * @param string $_label Label
+     * 
+     * @return self
+     */
+    public function setLabel(string $_label): self
+    {
+        $this->_label = $_label;
+
+        return $this;
+    }
 
     /**
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=512, nullable=false)
      */
-    private $reference;
+    private $_reference;
+
+    /**
+     * Reference getter
+     *
+     * @return string
+     */
+    public function getReference(): string
+    {
+        return $this->_reference;
+    }
+
+    /**
+     * Reference setter
+     *
+     * @param string $_reference Reference
+     * 
+     * @return self
+     */
+    public function setReference(string $_reference): self
+    {
+        $this->_reference = $_reference;
+
+        return $this;
+    }
 
 
 }

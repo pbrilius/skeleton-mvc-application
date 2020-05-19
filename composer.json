@@ -15,5 +15,8 @@
         "laminas/laminas-httphandlerrunner": "^1.1",
         "league/container": "^3.3",
         "ramsey/uuid-doctrine": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
     }
 }

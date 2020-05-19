@@ -38,21 +38,79 @@ class Attribute
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
+
+    /**
+     * ID getter
+     *
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getId(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->_id;
+    }
 
     /**
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=48, nullable=false)
      */
-    private $label;
+    private $_label;
+
+    /**
+     * Label getter
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->_label;
+    }
+
+    /**
+     * Label setter
+     *
+     * @param string $_label Label
+     * 
+     * @return self
+     */
+    public function setLabel(string $_label): self
+    {
+        $this->_label = $_label;
+
+        return $this;
+    }
 
     /**
      * @var int
      *
      * @ORM\Column(name="priority", type="smallint", nullable=false, options={"unsigned"=true})
      */
-    private $priority;
+    private $_priority;
+
+    /**
+     * Priority getter
+     *
+     * @return int
+     */
+    public function getPriority(): int
+    {
+        return $this->_priority;
+    }
+
+    /**
+     * Priority setter
+     *
+     * @param integer $priority Priority
+     * 
+     * @return self
+     */
+    public function setPriority(int $priority): self
+    {
+        $this->_priority = $priority;
+
+        return $this;
+    }
 
 
 }

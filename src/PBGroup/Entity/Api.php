@@ -14,6 +14,7 @@
 namespace PBG\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Api
@@ -42,6 +43,16 @@ class Api
     private $_id;
 
     /**
+     * ID getter
+     *
+     * @return UuidInterface
+     */
+    public function getId(): UuidInterface
+    {
+        return $this->_id;
+    }
+
+    /**
      * Version
      * 
      * @var string
@@ -51,6 +62,30 @@ class Api
     private $_version;
 
     /**
+     * Version getter
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->_version;
+    }
+
+    /**
+     * Version setter
+     *
+     * @param string $_version version
+     * 
+     * @return self
+     */
+    public function setVersion(string $_version): self
+    {
+        $this->_version = $_version;
+
+        return $this;
+    }
+
+    /**
      * Release date
      * 
      * @var \DateTime
@@ -58,5 +93,29 @@ class Api
      * @ORM\Column(name="release", type="datetime", nullable=false)
      */
     private $_release;
+
+    /**
+     * Release getter
+     *
+     * @return \DateTime
+     */
+    public function getRelease(): \DateTime
+    {
+        return $this->_release;
+    }
+
+    /**
+     * Release setter
+     *
+     * @param \DateTime $release Release date
+     * 
+     * @return self
+     */
+    public function setRelease(\DateTime $release): self
+    {
+        $this->_release = $release;
+
+        return $this;
+    }
 
 }

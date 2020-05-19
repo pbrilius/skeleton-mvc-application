@@ -38,14 +38,47 @@ class Hashtag
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
+
+    /**
+     * ID getter
+     *
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
 
     /**
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=32, nullable=false)
      */
-    private $label;
+    private $_label;
 
+    /**
+     * Label getter
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->_label;
+    }
+    
+    /**
+     * Label setter
+     *
+     * @param string $_label Label
+     * 
+     * @return self
+     */
+    public function setLabel(string $_label): self
+    {
+        $this->_label = $_label;
+
+        return $this;
+    }
 
 }
