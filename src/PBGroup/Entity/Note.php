@@ -1,16 +1,33 @@
 <?php
-
-namespace App\Domain\SOLID;
+/**
+ * SOLID silos area
+ * 
+ * PHP version 7
+ * 
+ * @category HTTP_SOLID
+ * @package  HTTP_HTML_Entity
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @version  GIT: be4380e61536a8299fb82cdf2af0f9094fc52048
+ * @link     pbgroup.wordpress.com
+ */
+namespace PBG\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use PBG\SOLID\VoiceMemo;
 
 /**
  * Note
  *
  * @ORM\Table(name="note", indexes={@ORM\Index(name="user", columns={"user"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PBG\Repository\NoteRepository")
+ * 
+ * @category HTML_Note_Provision
+ * @package  HTTP_Note
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @version  Release: 1.0.0
+ * @link     pbgroup.wordpress.com
  */
 class Note
 {
@@ -110,7 +127,7 @@ class Note
     /**
      * @var \App\SOLID\User
      *
-     * @ORM\ManyToOne(targetEntity="App\Domain\SOLID\User")
+     * @ORM\ManyToOne(targetEntity="PBG\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })

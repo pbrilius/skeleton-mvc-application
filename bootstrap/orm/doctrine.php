@@ -23,7 +23,7 @@ $container->add(
     EntityManagerInterface::class,
     function () use ($container) {
         $isDevMode = $_ENV['APPLICATION_MODE'] === 'development';
-        $proxyDir = __DIR__ . '/' . $_ENV['DT_PROXY'];
+        $proxyDir = $container->get('app.cache') . '/' . $_ENV['DT_PROXY'];
         $cache = null;
         $useSimpleAnnotationReader = false;
         $solid = [

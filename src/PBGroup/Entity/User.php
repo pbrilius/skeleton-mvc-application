@@ -12,7 +12,7 @@
  * @version  GIT: be4380e61536a8299fb82cdf2af0f9094fc52048
  * @link     pbgroup.wordpress.com
  */
-namespace App\Domain\SOLID;
+namespace PBG\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -53,6 +53,11 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
         return $this;
     }    
 
+    /**
+     * Array copy return
+     *
+     * @return array
+     */
     public function getArrayCopy()
     {
         return [
