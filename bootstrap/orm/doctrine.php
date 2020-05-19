@@ -27,8 +27,8 @@ $container->add(
         $cache = null;
         $useSimpleAnnotationReader = false;
         $solid = [
-            $container->get('app.root') . '/' . $_ENV['PB_SOLID'],
-            $container->get('app.root') . '/' . $_ENV['PB_OAUTH'],
+            $container->get('app.src') . '/' . $_ENV['PB_SOLID'],
+            $container->get('app.src') . '/' . $_ENV['PB_OAUTH'],
         ];
 
         if (!$isDevMode) {

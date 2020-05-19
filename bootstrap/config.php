@@ -19,5 +19,6 @@ $definitions['app.cache'] = $definitions['app.root'] . '/cache';
 $definitions['app.templates'] = $definitions['app.root'] . '/templates';
 
 $container->add('app.root', $definitions['app.root']);
+$container->add('app.src', $definitions['app.root'] . '/src');
 $container->add('app.cache', $definitions['app.cache']);
 $container->add('app.templates', $definitions['app.templates']);
