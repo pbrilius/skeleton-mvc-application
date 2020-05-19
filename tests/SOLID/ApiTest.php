@@ -30,7 +30,7 @@ class ApiTest extends TestCase
      *
      * @return void
      */
-    public function testIdProperty()
+    public function testIdProperty(): void
     {
         $api = new Api();
 
@@ -42,7 +42,7 @@ class ApiTest extends TestCase
      *
      * @return void
      */
-    public function testVersionProperty()
+    public function testVersionProperty(): void
     {
         $api = new Api();
 
@@ -54,7 +54,7 @@ class ApiTest extends TestCase
      *
      * @return void
      */
-    public function testReleaseProperty()
+    public function testReleaseProperty(): void
     {
         $api = new Api();
 

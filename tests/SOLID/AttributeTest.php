@@ -29,7 +29,7 @@ class AttributeTest extends TestCase
      *
      * @return void
      */
-    public function testIdProperty()
+    public function testIdProperty(): void
     {
         $attribute = new Attribute();
 
@@ -41,7 +41,7 @@ class AttributeTest extends TestCase
      *
      * @return void
      */
-    public function testLabelProperty()
+    public function testLabelProperty(): void
     {
         $attribute = new Attribute();
 
@@ -53,7 +53,7 @@ class AttributeTest extends TestCase
      *
      * @return void
      */
-    public function testPriorityProperty()
+    public function testPriorityProperty(): void
     {
         $attribute = new Attribute();
 
