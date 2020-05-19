@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PHP version 7
  * 
@@ -11,7 +10,7 @@
  */
 namespace Tests;
 
-use PBG\Entity\Api;
+use PBG\Entity\Attribute;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,41 +22,41 @@ use PHPUnit\Framework\TestCase;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class ApiTest extends TestCase
+class AttributeTest extends TestCase
 {
     /**
-     * ID property test
+     * Attribute contains ID
      *
      * @return void
      */
     public function testIdProperty()
     {
-        $api = new Api();
+        $attribute = new Attribute();
 
-        $this->assertObjectHasAttribute('_id', $api);
+        $this->assertObjectHasAttribute('_id', $attribute);
     }
 
     /**
-     * Version property test
+     * Label proeprty test
      *
      * @return void
      */
-    public function testVersionProperty()
+    public function testLabelProperty()
     {
-        $api = new Api();
+        $attribute = new Attribute();
 
-        $this->assertObjectHasAttribute('_version', $api);
+        $this->assertObjectHasAttribute('_label', $attribute);
     }
 
     /**
-     * Release proeprty test
+     * Priority property of entity
      *
      * @return void
      */
-    public function testReleaseProperty()
+    public function testPriorityProperty()
     {
-        $api = new Api();
+        $attribute = new Attribute();
 
-        $this->assertObjectHasAttribute('_release', $api);
+        $this->assertObjectHasAttribute('_priority', $attribute);
     }
 }
