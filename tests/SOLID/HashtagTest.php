@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP version 7
  * 
@@ -10,11 +11,11 @@
  */
 namespace Tests;
 
-use PBG\Entity\Attribute;
+use PBG\Entity\Hashtag;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SOLID Attribute test case
+ * SOLID Hashtag test case
  * 
  * @category Unit_Cases
  * @package  SOLID
@@ -22,41 +23,31 @@ use PHPUnit\Framework\TestCase;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class AttributeTest extends TestCase
+class HashtagTest extends TestCase
 {
     /**
-     * Attribute contains ID
+     * ID property test
      *
      * @return void
      */
-    public function testIdProperty()
+    public function testIdProperty(): void
     {
-        $attribute = new Attribute();
+        $hashtag = new Hashtag();
 
-        $this->assertObjectHasAttribute('_id', $attribute);
+        $this->assertObjectHasAttribute('_id', $hashtag);
     }
 
     /**
-     * Label proeprty test
+     * Label property test
      *
      * @return void
      */
-    public function testLabelProperty()
+    public function testLabelProperty(): void
     {
-        $attribute = new Attribute();
+        $hashtag = new Hashtag();
 
-        $this->assertObjectHasAttribute('_label', $attribute);
+        $this->assertObjectHasAttribute('_label', $hashtag);
     }
 
-    /**
-     * Priority property of entity
-     *
-     * @return void
-     */
-    public function testPriorityProperty()
-    {
-        $attribute = new Attribute();
-
-        $this->assertObjectHasAttribute('_priority', $attribute);
-    }
+    
 }
