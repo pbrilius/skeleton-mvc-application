@@ -38,6 +38,13 @@ use Doctrine\ORM\Mapping\PrePersist;
 class User extends \ArrayObject implements UserEntityInterface, ClientEntityInterface
 {
     /**
+     * Default ORM constructor
+     */
+    public function __construct()
+    {
+        $this->_notes = new ArrayCollection();
+    }
+    /**
      * Take a note
      *
      * @param string $text Note text
@@ -48,7 +55,7 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
     {
         $note = new Note;
         $note->setText($text);
-        $this->notes->add($note);
+        $this->_notes->add($note);
 
         return $this;
     }    
@@ -355,5 +362,14 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
         return $this;
     }
 
+    /**
+     * OAuth 2.0 interface requirement
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->_email;
+    }
 
 }
