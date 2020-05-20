@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "PBG\\": "src/PBGroup"
+            "PBG\\": "src/PBGroup",
+            "App\\": "src/App"
         }
     },
     "require": {

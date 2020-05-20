@@ -24,7 +24,6 @@ $containerPriority = [
     'orm',
     'logger',
     'models',
-    'controllers',
 ];
 
 
@@ -39,6 +38,17 @@ foreach ($containerPriority as $initConsumption) {
     $prerequisites = glob(__DIR__ . '/' . $initConsumption . '/*.php');
     foreach ($prerequisites as $prerequisite) {
         include $prerequisite;
+    }
+}
+
+$postLoad = [
+    'controllers',
+];
+
+foreach ($postLoad as $postLoader) {
+    $postRequisites = glob(__DIR__ . '/' . $postLoader . '/*.php');
+    foreach ($postRequisites as $postRequisite) {
+        include $postRequisite;
     }
 }
 

@@ -11,9 +11,11 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
+
+use League\Route\RouteGroup;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
-use Psr\Http\Message\ServerRequestInterface;
+use PBG\Controller\API\API\ApiList;
 
 $responseFactory = new \Laminas\Diactoros\ResponseFactory();
 
@@ -26,14 +28,9 @@ $strategy = new JsonStrategy($responseFactory);
  */
 $router->setStrategy($strategy);
 
-// map a route
-$router->map(
-    'GET',
+$router->group(
     '/api',
-    function (ServerRequestInterface $request): array {
-        return [
-            'title'   => 'My New Simple API',
-            'version' => 1,
-        ];
+    function (RouteGroup $routeGroup) use ($container) {
+        $routeGroup->map('GET', '/api', $container->get(ApiList::class));
     }
 );

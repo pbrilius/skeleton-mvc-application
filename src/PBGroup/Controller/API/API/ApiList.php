@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * PHP version 7
+ * 
+ * @category Controller
+ * @package  Invokables
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @link     pbgroupeu.wordpress.com
+ */
+
+namespace PBG\Controller\API\API;
+
+use App\Repository\ApiRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use PBG\Controller\BaseController;
+use PBG\Entity\Api as EntityApi;
+use Psr\Http\Message\ServerRequestInterface;
+
+/**
+ * API return call
+ * 
+ * @category API
+ * @package  API
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @link     pbgroupeu.wordpress.com
+ */
+class ApiList extends BaseController
+{
+    /**
+     * API listing
+     *
+     * @param ServerRequestInterface $request Request
+     * 
+     * @return ResponseInterface
+     */
+    public function __invoke(ServerRequestInterface $request): array
+    {
+        /**
+         * ORM EM
+         * 
+         * @var EntityManagerInterface $em Entity manager
+         */
+        $em = $this->getEntityManager();
+
+        /**
+         * ORM API repository
+         * 
+         * @var ApiRepository $apiRepository API repository
+         */
+        $apiRepository = $em->getRepository(EntityApi::class);
+        $apis = $apiRepository->findAll();
+
+        return $apis;
+    }
+}
