@@ -14,6 +14,7 @@
 namespace PBG\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Role
@@ -31,6 +32,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Role
 {
     /**
+     * Entity ID
+     * 
      * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Column(name="id", type="uuid", unique=true)
@@ -38,21 +41,83 @@ class Role
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
 
     /**
+     * ID getter
+     *
+     * @return UuidInterface
+     */
+    public function getId(): UuidInterface
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Label
+     * 
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=48, nullable=false)
      */
-    private $label;
+    private $_label;
 
     /**
+     * Label getter
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->_label;
+    }
+
+    /**
+     * Label setter
+     *
+     * @param string $_label Label
+     * 
+     * @return self
+     */
+    public function setLabel(string $_label): self
+    {
+        $this->_label = $_label;
+        
+        return $this;
+    }
+
+    /**
+     * Priority
+     * 
      * @var int
      *
      * @ORM\Column(name="priority", type="smallint", nullable=false, options={"unsigned"=true})
      */
-    private $priority;
+    private $_priority;
+    
+    /**
+     * Priority setter
+     *
+     * @param integer $_priority Priority
+     * 
+     * @return self
+     */
+    public function setPriority(int $_priority): self
+    {
+        $this->_priority = $_priority;
+        
+        return $this;
+    }
+
+    /**
+     * Priority getter
+     *
+     * @return integer
+     */
+    public function getPriority(): int
+    {
+        return $this->_priority;
+    }
 
 
 }
