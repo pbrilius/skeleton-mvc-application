@@ -29,7 +29,7 @@ use Ramsey\Uuid\UuidInterface;
  * @version  Release: 1.0.0
  * @link     pbgroup.wordpress.com
  */
-class Role
+class Role extends \ArrayObject
 {
     /**
      * Entity ID
@@ -117,6 +117,20 @@ class Role
     public function getPriority(): int
     {
         return $this->_priority;
+    }
+
+    /**
+     * Array copy
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->_id,
+            'label' => $this->_label,
+            'priority' => $this->_priority,
+        ];
     }
 
 

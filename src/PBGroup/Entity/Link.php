@@ -13,6 +13,7 @@
  */
 namespace PBG\Entity;
 
+use ArrayObject;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,7 +29,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @version  Release: 1.0.0
  * @link     pbgroup.wordpress.com
  */
-class Link
+class Link extends ArrayObject
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -39,6 +40,20 @@ class Link
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $_id;
+
+    /**
+     * Array copy return
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->id,
+            'label' => $this->_label,
+            'reference' => $this->_reference,
+        ];
+    }
 
     /**
      * ID getter

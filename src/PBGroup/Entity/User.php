@@ -61,15 +61,17 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
     public function getArrayCopy()
     {
         return [
-            'id' => $this->id,
-            'email' => $this->email,
-            'hash' => $this->hash,
+            'id' => $this->_id,
+            'email' => $this->_email,
+            'hash' => $this->_hash,
             'notes' => $this->getNotes(),
         ];
     }
     
     
     /**
+     * Entity ID
+     * 
      * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Column(name="id", type="uuid", unique=true)
@@ -77,7 +79,7 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
 
     /**
      * ID getter
@@ -86,73 +88,134 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      */
     public function getId()
     {
-        return $this->id;
+        return $this->_id;
     }
     
     /**
+     * OAuth 2.0 indentifier
+     * 
      * @var UuidInterface|null
      *
      * @ORM\Column(name="identifier", type="string", length=128, nullable=true)
      */
-    private $identifier;
+    private $_identifier;
 
     /**
      * Identifier getter
      *
      * @inheritDoc
+     * 
+     * @return UuidInterface|null
      */
-    public function getIdentifier()
+    public function getIdentifier(): UuidInterface
     {
-        return $this->identifier;
+        return $this->_identifier;
     }
 
     /**
      * Identifier setter
      *
-     * @param UuidInterface $uuidInterface
+     * @param UuidInterface $_identifier UUID
+     * 
      * @return self
      */
-    public function setIdentifier(UuidInterface $uuidInterface)
+    public function setIdentifier(UuidInterface $_identifier): self
     {
-        $this->identifier = $uuidInterface;
+        $this->_identifier = $_identifier;
 
         return $this;
     }
 
     /**
+     * Email
+     * 
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=128, nullable=false)
      */
-    private $email;
+    private $_email;
 
     /**
+     * Hash
+     * 
      * @var string
      *
      * @ORM\Column(name="hash", type="string", length=512, nullable=false)
      */
-    private $hash;
+    private $_hash;
 
     /**
-     * @var json|null
+     * Roles
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
-    private $roles;
+    private $_roles;
 
     /**
-     * @var json|null
+     * Roles getter
+     *
+     * @return string
+     */
+    public function getRoles(): string
+    {
+        return $this->_roles;
+    }
+
+    /**
+     * Roles case
+     *
+     * @param string $_roles Roles
+     * 
+     * @return self
+     */
+    public function setRoles(string $_roles): self
+    {
+        $this->_roles = $_roles;
+        
+        return $this;
+    }
+
+    /**
+     * Attributes
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="attributes", type="json", nullable=true)
      */
-    private $attributes;
+    private $_attributes;
+
+    /**
+     * Attributes setter
+     *
+     * @param string $_attributes Attributes
+     * 
+     * @return self
+     */
+    public function setAttributes(string $_attributes): self
+    {
+        $this->_attributes = $_attributes;
+        
+        return $this;
+    }
+
+    /**
+     * Attributes getter
+     *
+     * @return string
+     */
+    public function getAttributes(): string
+    {
+        return $this->_attributes;
+    }
 
     /**
      * Notes
      *
      * @var ArrayCollection
      */
-    private $notes;
+    private $_notes;
 
     /**
      * Notes getter
@@ -161,7 +224,7 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      */
     public function getNotes()
     {
-        return $this->notes;
+        return $this->_notes;
     }
 
     /**
@@ -171,20 +234,21 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      *
      * @return void
      */
-    public function whirlpoolHash()
+    public function whirlpoolHash(): void
     {
-        $this->hash = hash('whirlpool', $this->hash);
+        $this->_hash = hash('whirlpool', $this->_hash);
     }
 
     /**
      * Email setter
      *
-     * @param string $email
+     * @param string $_email Email
+     * 
      * @return self
      */
-    public function setEmail(string $email)
+    public function setEmail(string $_email): self
     {
-        $this->email = $email;
+        $this->_email = $_email;
 
         return $this;
     }
@@ -194,20 +258,21 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
-        return $this->email;
+        return $this->_email;
     }
 
     /**
      * Hash setter
      *
-     * @param string $hash
+     * @param string $_hash Hash
+     * 
      * @return self
      */
-    public function setHash(string $hash)
+    public function setHash(string $_hash): self
     {
-        $this->hash = $hash;
+        $this->_hash = $_hash;
 
         return $this;
     }
@@ -217,42 +282,53 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      *
      * @return string
      */
-    public function getHash()
+    public function getHash(): string
     {
-        return $this->hash;
+        return $this->_hash;
     }
 
     /**
-     * League name getter
-     *
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return $this->email;
-    }
-
-    /**
+     * OAuth property - prerequisite
+     * 
      * @var bool|null
      *
      * @ORM\Column(name="confidential", type="boolean", nullable=true)
      */
-    private $confidential;
+    private $_confidential;
 
     /**
+     * OAuth prerequisite
+     * 
      * @var string|null
      *
      * @ORM\Column(name="redirectUri", type="string", length=256, nullable=true)
      */
-    private $redirecturi;
+    private $_redirecturi;
+
     /**
      * League redirect URI getter
      *
      * @inheritdoc
+     * 
+     * @return string
      */
     public function getRedirectUri()
     {
-        return $this->redirecturi;
+        return $this->_redirecturi;
+    }
+
+    /**
+     * Redirect URI setter
+     *
+     * @param string $_redirecturi Redirect URI
+     * 
+     * @return self
+     */
+    public function setRedirectUri(string $_redirecturi): self
+    {
+        $this->_redirecturi = $_redirecturi;
+        
+        return $this; 
     }
 
     /**
@@ -262,18 +338,19 @@ class User extends \ArrayObject implements UserEntityInterface, ClientEntityInte
      */
     public function isConfidential()
     {
-        return $this->confidential;
+        return $this->_confidential;
     }
 
     /**
      * Confidential status setter
      *
-     * @param boolean $confidential
+     * @param boolean $confidential Confidential state
+     * 
      * @return self
      */
-    public function setConfidential(bool $confidential)
+    public function setConfidential(bool $confidential): self
     {
-        $this->confidential = $confidential;
+        $this->_confidential = $confidential;
 
         return $this;
     }

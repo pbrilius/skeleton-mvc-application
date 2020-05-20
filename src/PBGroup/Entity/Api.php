@@ -13,6 +13,7 @@
  */
 namespace PBG\Entity;
 
+use ArrayObject;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
@@ -28,7 +29,7 @@ use Ramsey\Uuid\UuidInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroup.wordpress.com
  */
-class Api
+class Api extends ArrayObject
 {
     /**
      * UUID identifier
@@ -41,6 +42,20 @@ class Api
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $_id;
+
+    /**
+     * Array copy return
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->_id,
+            'version' => $this->_version,
+            'release' => $this->_release,
+        ];
+    }
 
     /**
      * ID getter

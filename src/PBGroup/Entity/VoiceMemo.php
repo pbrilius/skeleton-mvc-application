@@ -121,5 +121,18 @@ class VoiceMemo
         return $this->_note;
     }
 
+    /**
+     * Array copy return
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->_id,
+            'record' => $this->_record,
+            'note' => $this->_note,
+        ];
+    }
 
 }

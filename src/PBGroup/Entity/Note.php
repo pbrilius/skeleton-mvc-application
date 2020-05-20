@@ -13,6 +13,7 @@
  */
 namespace PBG\Entity;
 
+use ArrayObject;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
@@ -30,7 +31,7 @@ use Ramsey\Uuid\UuidInterface;
  * @version  Release: 1.0.0
  * @link     pbgroup.wordpress.com
  */
-class Note
+class Note extends ArrayObject
 {
 
     /**
@@ -311,6 +312,25 @@ class Note
     public function getVoiceMemos(): ArrayCollection
     {
         return $this->voiceMemos;
+    }
+
+    /**
+     * Array copy
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->_id,
+            'text' => $this->_text,
+            'links' => $this->_links,
+            'hashtags' => $this->_hashtags,
+            'images' => $this->_images,
+            'gmap' => $this->_gmap,
+            'user' => $this->_user,
+            'voiceMemos' => $this->_voiceMemos,
+        ];
     }
 
 
