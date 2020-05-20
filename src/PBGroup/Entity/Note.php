@@ -15,6 +15,7 @@ namespace PBG\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Note
@@ -43,10 +44,11 @@ class Note
     /**
      * Voice memo collection add up
      *
-     * @param string $record
+     * @param string $record Record
+     * 
      * @return self
      */
-    public function memoVoice(string $record)
+    public function memoVoice(string $record): self
     {
         $memo = new VoiceMemo;
         $memo->setRecord($record);
@@ -58,6 +60,8 @@ class Note
     }
 
     /**
+     * Entity ID
+     * 
      * @var \Ramsey\Uuid\UuidInterface
      *
      * @ORM\Column(name="id", type="uuid", unique=true)
@@ -65,23 +69,37 @@ class Note
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private $_id;
 
     /**
+     * ID getter
+     *
+     * @return UuidInterface
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Note text
+     * 
      * @var string|null
      *
      * @ORM\Column(name="text", type="text", length=16777215, nullable=true)
      */
-    private $text;
+    private $_text;
 
     /**
      * Text setter
      *
-     * @return self
+     * @param string $text Text
+     * 
+     * @return void
      */
     public function setText(string $text)
     {
-        $this->text = $text;
+        $this->_text = $text;
 
         return $this;
     }
@@ -89,42 +107,148 @@ class Note
     /**
      * Text getter
      *
-     * @return string
+     * @return string|null
      */
-    public function getText()
+    public function getText(): string
     {
-        return $this->text;
+        return $this->_text;
     }
 
     /**
-     * @var json|null
+     * Links JSON
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="links", type="json", nullable=true)
      */
-    private $links;
+    private $_links;
 
     /**
-     * @var json|null
+     * Links serializable getter
+     *
+     * @return string
+     */
+    public function getLinks(): string
+    {
+        return $this->_links;
+    }
+
+    /**
+     * Links setter
+     *
+     * @param string $links Links
+     * 
+     * @return self
+     */
+    public function setLinks(string $links): self
+    {
+        $this->_links = $links;
+
+        return $this;
+    }
+
+    /**
+     * Hashtags JSON
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="hashtags", type="json", nullable=true)
      */
-    private $hashtags;
+    private $_hashtags;
 
     /**
-     * @var json|null
+     * Hahstags setter
+     *
+     * @param string $_hashtags Hahstags
+     * 
+     * @return self
+     */
+    public function setHashtags(string $_hashtags): self
+    {
+        $this->_hashtags = $_hashtags;
+
+        return $this;
+    }
+
+    /**
+     * Hashtags getter
+     *
+     * @return string
+     */
+    public function getHashtags(): string
+    {
+        return $this->_hashtags;
+    }
+
+    /**
+     * Images JSON
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="images", type="json", nullable=true)
      */
-    private $images;
+    private $_images;
 
     /**
-     * @var json|null
+     * Images getter
+     *
+     * @return string
+     */
+    public function getImages(): string
+    {
+        return $this->_images;
+    }
+
+    /**
+     * Images setter
+     *
+     * @param string $_images Images
+     * 
+     * @return self
+     */
+    public function setImages(string $_images): self
+    {
+        $this->_images = $_images;
+        
+        return $this;
+    }
+
+    /**
+     * G-map 
+     * 
+     * @var string|null
      *
      * @ORM\Column(name="gmap", type="json", nullable=true)
      */
-    private $gmap;
+    private $_gmap;
 
     /**
+     * G-map getter
+     *
+     * @return string
+     */
+    public function getGmap(): string
+    {
+        return $this->_gmap;
+    }
+
+    /**
+     * G-map setter
+     *
+     * @param string $_gmap G-map
+     * 
+     * @return self
+     */
+    public function setGmap(string $_gmap): self
+    {
+        $this->_gmap = $_gmap;
+
+        return $this;
+    }
+
+    /**
+     * Note user
+     * 
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="PBG\Entity\User")
@@ -132,21 +256,59 @@ class Note
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $_user;
+
+    /**
+     * User getter
+     *
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->_user;
+    }
+
+    /**
+     * User setter
+     *
+     * @param User $_user User
+     * 
+     * @return self
+     */
+    public function setUser(User $_user): self
+    {
+        $this->_user = $_user;
+
+        return $this;
+    }
 
     /**
      * Voice memos
      *
      * @var ArrayCollection
      */
-    private $voiceMemos;
+    private $_voiceMemos;
+
+    /**
+     * Voice memos setter
+     *
+     * @param ArrayCollection $_voiceMemos Voice memos
+     * 
+     * @return self
+     */
+    public function setVoiceMemos(ArrayCollection $_voiceMemos): self
+    {
+        $this->_voiceMemos = $_voiceMemos;
+
+        return $this;
+    }
 
     /**
      * Voice memos getter
      *
      * @return ArrayCollection
      */
-    public function getVoiceMemos()
+    public function getVoiceMemos(): ArrayCollection
     {
         return $this->voiceMemos;
     }
