@@ -14,6 +14,7 @@
 
 require_once __DIR__ . '/../bootstrap/container.php';
 require_once __DIR__ . '/../bootstrap/routes.php';
+require_once __DIR__ . '/../bootstrap/api.php';
 
 $response = $router->dispatch($request);
 
