@@ -21,6 +21,7 @@ use League\Container\Container;
 global $containerPriority;
 
 $containerPriority = [
+    'pdo',
     'logger',
     'models',
 ];

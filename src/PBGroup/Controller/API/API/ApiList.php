@@ -34,25 +34,20 @@ class ApiList extends BaseController
      *
      * @param ServerRequestInterface $request Request
      * 
-     * @return ResponseInterface
+     * @return array
      */
     public function __invoke(ServerRequestInterface $request): array
     {
         /**
-         * ORM EM
+         * PDO
          * 
-         * @var EntityManagerInterface $em Entity manager
+         * @var \PDO $pdo
          */
-        $em = $this->getEntityManager();
+        $pdo = $this->getPdo();
 
-        /**
-         * ORM API repository
-         * 
-         * @var ApiRepository $apiRepository API repository
-         */
-        $apiRepository = $em->getRepository(EntityApi::class);
-        $apis = $apiRepository->findAll();
-
+        $apis = $pdo->exec('SELECT * FROM `api` ORDER BY `release` DESC LIMIT 1');
+        var_export($apis);
+        exit;
         return $apis;
     }
 }

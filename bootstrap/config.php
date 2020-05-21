@@ -22,3 +22,14 @@ $container->add('app.root', $definitions['app.root']);
 $container->add('app.src', $definitions['app.root'] . '/src');
 $container->add('app.cache', $definitions['app.cache']);
 $container->add('app.templates', $definitions['app.templates']);
+
+$container->add(
+    'db.config',
+    [
+        'host' => 'localhost',
+        'port' => 3306,
+        'database' => $_ENV['DB_DATABASE'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD'],
+    ]
+);

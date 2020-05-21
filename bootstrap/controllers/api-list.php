@@ -21,7 +21,7 @@ use PBG\Controller\API\API\ApiList;
 $container->add(
     ApiList::class,
     function () use ($container) {
-        $apiList = new ApiList($container->get('doctrine.em')[0]);
+        $apiList = new ApiList($container->get('mysql.pdo')[0]);
 
         return $apiList;
     }

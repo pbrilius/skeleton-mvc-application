@@ -12,6 +12,7 @@
 namespace PBG\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use PDO;
 
 /**
  * Base controller, requiring - fetching - prerequisites, such as ORM entity manager
@@ -25,29 +26,29 @@ use Doctrine\ORM\EntityManagerInterface;
 class BaseController
 {
     /**
-     * Entity manager
+     * Database PDO
      *
-     * @var EntityManagerInterface
+     * @var PDO
      */
-    private $_entityManager;
-    
+    private $_pdo;
+
     /**
-     * Default Base constructor
+     * Default base constructor
      *
-     * @param EntityManagerInterface $entityManager Entity manager
+     * @param PDO $pdo PDO
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(PDO $pdo)
     {
-        $this->_entityManager = $entityManager;
+        $this->_pdo = $pdo;
     }
 
     /**
-     * EM getter
+     * PDO getter
      *
-     * @return EntityManagerInterface
+     * @return PDO
      */
-    public function getEntityManager(): EntityManagerInterface
+    public function getPdo(): PDO
     {
-        return $this->_entityManager;
+        return $this->_pdo;
     }
 }
