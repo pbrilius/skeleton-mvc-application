@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PHP version 7
  * 
@@ -9,14 +8,13 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-
 namespace PBG\Controller\API\API;
 
 use PBG\Controller\BaseController;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * API return call
+ * API - single - return call
  * 
  * @category API
  * @package  API
@@ -24,10 +22,10 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class ApiList extends BaseController
+class Api extends BaseController
 {
     /**
-     * API listing
+     * API singular retrieval
      *
      * @param ServerRequestInterface $request Request
      * 
@@ -35,6 +33,8 @@ class ApiList extends BaseController
      */
     public function __invoke(ServerRequestInterface $request): array
     {
+        var_dump($request->getServerParams());
+        exit;
         /**
          * PDO
          * 
@@ -42,7 +42,8 @@ class ApiList extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `api` ORDER BY `release` DESC');
+        $stmt = $pdo->prepare('SELECT * FROM `api` WHERE `id` = :id');
+        // $stmt->bindParam(':id', $request->getServerParams())
 
         $apis = [];
 
