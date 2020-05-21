@@ -14,6 +14,8 @@
         </testsuite>
         <testsuite name="API">
             <directory suffix="Test.php">tests/Controller/API</directory>
+        </testsuite><testsuite name="Middleware">
+            <directory suffix="Test.php">tests/Middleware</directory>
         </testsuite>
     </testsuites>
 
