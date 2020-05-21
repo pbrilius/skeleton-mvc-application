@@ -33,6 +33,6 @@ $router->group(
     '/api',
     function (RouteGroup $routeGroup) use ($container) {
         $routeGroup->map('GET', '/api', $container->get(ApiList::class));
-        $routeGroup->get('/api/:id', $container->get(Api::class));
+        $routeGroup->get('/api/{id:alphanum_dash}', $container->get(Api::class));
     }
 );

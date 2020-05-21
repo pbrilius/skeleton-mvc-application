@@ -28,13 +28,12 @@ class Api extends BaseController
      * API singular retrieval
      *
      * @param ServerRequestInterface $request Request
+     * @param array $args Arguments
      * 
      * @return array
      */
-    public function __invoke(ServerRequestInterface $request): array
+    public function __invoke(ServerRequestInterface $request, array $args): array
     {
-        var_dump($request->getServerParams());
-        exit;
         /**
          * PDO
          * 
@@ -43,11 +42,11 @@ class Api extends BaseController
         $pdo = $this->getPdo();
 
         $stmt = $pdo->prepare('SELECT * FROM `api` WHERE `id` = :id');
-        // $stmt->bindParam(':id', $request->getServerParams())
-
+        
         $apis = [];
-
+        
         if ($stmt) {
+            $stmt->bindParam(':id', $args['id']);
             $stmt->execute();
             $stmt->setFetchMode(\PDO::FETCH_ASSOC);
             

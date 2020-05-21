@@ -11,12 +11,12 @@
  */
 namespace Tests\API\API;
 
-use PBG\Controller\API\API\ApiList;
+use PBG\Controller\API\API\Api;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Controller API - API List test case
+ * Controller API - API singular test case
  * 
  * @category Unit_Cases
  * @package  Controller
@@ -24,7 +24,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class APIListTest extends TestCase
+class APITest extends TestCase
 {
     /**
      * Correct return type test
@@ -34,10 +34,10 @@ class APIListTest extends TestCase
     public function testArrayReturn(): void
     {
         $pdo = $this->prophesize(\PDO::class);
-        $apiList = new ApiList($pdo->reveal());
+        $api = new Api($pdo->reveal());
 
         $serverRequest = $this->prophesize(ServerRequestInterface::class);
-        $result = call_user_func($apiList, $serverRequest->reveal());
+        $result = call_user_func($api, $serverRequest->reveal(), ['id' => hash('sha512', random_bytes(2))]);
 
         $this->assertIsArray($result);
     }
