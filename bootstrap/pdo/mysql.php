@@ -24,11 +24,13 @@ $container->add(
     function () use ($container) {
         $dbConfig = $container->get('db.config');
         $pdo = new \PDO(
-            'mysql://' . $dbConfig['host'] . ':' . $dbConfig['port'] . '/' . $dbConfig['database'],
+            'mysql:host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['database'],
             $dbConfig['user'],
-            $dbConfig['password']
+            $dbConfig['password'],
+            [
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
+            ]
         );
-        var_export('mysql://' . $dbConfig['host'] . ':' . $dbConfig['port'] . '/' . $dbConfig['database']);
 
         return $pdo;
     }
