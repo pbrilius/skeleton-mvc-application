@@ -19,6 +19,7 @@ use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
 use PBG\Controller\API\API\Api;
 use PBG\Controller\API\API\ApiList;
+use PBG\Controller\API\API\ApiPost;
 
 $responseFactory = new \Laminas\Diactoros\ResponseFactory();
 
@@ -36,5 +37,6 @@ $router->group(
     function (RouteGroup $routeGroup) use ($container) {
         $routeGroup->map('GET', '/api', $container->get(ApiList::class));
         $routeGroup->get('/api/{id:alphanum_dash}', $container->get(Api::class));
+        $routeGroup->post('/api', $container->get(ApiPost::class));
     }
 );
