@@ -21,7 +21,6 @@ use League\Container\Container;
 global $containerPriority;
 
 $containerPriority = [
-    'orm',
     'logger',
     'models',
 ];

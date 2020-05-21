@@ -20,9 +20,6 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * Api
  *
- * @ORM\Table(name="api")
- * @ORM\Entity(repositoryClass="App\Repository\ApiRepository")
- * 
  * @category SOLID_Entity
  * @package  ORM
  * @author   Povilas Brilius <pbrilius@gmail.com>
@@ -35,11 +32,6 @@ class Api extends ArrayObject
      * UUID identifier
      * 
      * @var \Ramsey\Uuid\UuidInterface
-     *
-     * @ORM\Column(name="id", type="uuid", unique=true)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $_id;
 
@@ -71,8 +63,6 @@ class Api extends ArrayObject
      * Version
      * 
      * @var string
-     *
-     * @ORM\Column(name="version", type="string", length=8, nullable=false, options={"fixed"=true})
      */
     private $_version;
 
