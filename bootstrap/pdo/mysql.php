@@ -12,6 +12,8 @@
  * @link     pbgroupeu.wordpress.com
  */
 
+declare(strict_types=1);
+
 use League\Container\Container;
 
 /**

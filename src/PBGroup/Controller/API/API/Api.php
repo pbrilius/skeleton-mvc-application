@@ -28,7 +28,7 @@ class Api extends BaseController
      * API singular retrieval
      *
      * @param ServerRequestInterface $request Request
-     * @param array $args Arguments
+     * @param array                  $args    Arguments
      * 
      * @return array
      */

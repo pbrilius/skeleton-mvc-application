@@ -12,6 +12,8 @@
  * @link     pbgroup.wordpress.com
  */
 
+declare(strict_types=1);
+
 use League\Route\RouteGroup;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
