@@ -9,45 +9,37 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests\SOLID;
+namespace Tests\API\API;
 
-use PBG\Entity\Hashtag;
+use PBG\Controller\API\API\ApiList;
+use PDO;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * SOLID Hashtag test case
+ * Controller API - API List test case
  * 
  * @category Unit_Cases
- * @package  SOLID
+ * @package  Controller
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class HashtagTest extends TestCase
+class APIListTest extends TestCase
 {
     /**
-     * ID property test
+     * Correct return type test
      *
      * @return void
      */
-    public function testIdProperty(): void
+    public function testArrayReturn(): void
     {
-        $hashtag = new Hashtag();
+        $pdo = $this->prophesize(\PDO::class);
+        $apiList = new ApiList($pdo->reveal());
 
-        $this->assertObjectHasAttribute('_id', $hashtag);
+        $serverRequest = $this->prophesize(ServerRequestInterface::class);
+        $result = call_user_func($apiList, $serverRequest->reveal());
+
+        $this->assertIsArray($result);
     }
-
-    /**
-     * Label property test
-     *
-     * @return void
-     */
-    public function testLabelProperty(): void
-    {
-        $hashtag = new Hashtag();
-
-        $this->assertObjectHasAttribute('_label', $hashtag);
-    }
-
-    
 }

@@ -46,10 +46,15 @@ class ApiList extends BaseController
         $pdo = $this->getPdo();
 
         $stmt = $pdo->prepare('SELECT * FROM `api` ORDER BY `release` DESC LIMIT 1');
-        $stmt->execute();
-        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
 
-        $apis = $stmt->fetchAll();
+        $apis = [];
+
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+            
+            $apis = $stmt->fetchAll();
+        }
 
         return $apis;
     }

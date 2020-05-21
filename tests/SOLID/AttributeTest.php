@@ -8,7 +8,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests;
+namespace Tests\SOLID;
 
 use PBG\Entity\Attribute;
 use PHPUnit\Framework\TestCase;
