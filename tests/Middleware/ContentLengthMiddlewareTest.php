@@ -13,7 +13,6 @@ namespace Tests\Middleware;
 
 use App\Middleware\ContentLengthMiddleware;
 use PHPUnit\Framework\MockObject\MockBuilder;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
