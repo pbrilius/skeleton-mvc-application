@@ -21,6 +21,7 @@ use PBG\Controller\API\API\Api;
 use PBG\Controller\API\API\APIDelete;
 use PBG\Controller\API\API\ApiList;
 use PBG\Controller\API\API\ApiPost;
+use PBG\Controller\API\API\APIUpdate;
 
 $responseFactory = new \Laminas\Diactoros\ResponseFactory();
 
@@ -40,5 +41,6 @@ $router->group(
         $routeGroup->get('/api/{id:alphanum_dash}', $container->get(Api::class));
         $routeGroup->post('/api', $container->get(ApiPost::class));
         $routeGroup->delete('/api/{id:alphanum_dash}', $container->get(APIDelete::class));
+        $routeGroup->put('/api/{id:alphanum_dash}', $container->get(APIUpdate::class));
     }
 );

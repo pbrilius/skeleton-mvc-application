@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP version 7
  * 
@@ -10,12 +11,12 @@
  */
 namespace Tests\API\API;
 
-use PBG\Controller\API\API\APIDelete;
+use PBG\Controller\API\API\APIUpdate;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Controller API - API Delete test case
+ * Controller API - API Update test case
  * 
  * @category Unit_Cases
  * @package  Controller
@@ -23,7 +24,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class APIDeleteTest extends TestCase
+class APIUpdateTest extends TestCase
 {
     /**
      * Actual return type
@@ -35,7 +36,7 @@ class APIDeleteTest extends TestCase
         $serverRequest = $this->prophesize(ServerRequestInterface::class);
 
         $apiDelete = $this
-            ->getMockBuilder(APIDelete::class)
+            ->getMockBuilder(APIUpdate::class)
             ->disableOriginalConstructor()
             ->setMethods(['__invoke'])
             ->getMock();
