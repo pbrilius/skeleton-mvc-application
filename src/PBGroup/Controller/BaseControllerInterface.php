@@ -11,44 +11,26 @@
  */
 namespace PBG\Controller;
 
-use PDO;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Base controller, requiring - fetching - prerequisites, such as ORM entity manager
  * 
  * @category ORM
- * @package  PDO
+ * @package  Invocation
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-abstract class BaseController implements BaseControllerInterface
+interface BaseControllerInterface
 {
     /**
-     * Database PDO
+     * Invocation call
      *
-     * @var PDO
+     * @param ServerRequestInterface $request Request
+     * @param array                  $args    Argument
+     * 
+     * @return array
      */
-    private $_pdo;
-
-    /**
-     * Default base constructor
-     *
-     * @param PDO $pdo PDO
-     */
-    public function __construct(PDO $pdo)
-    {
-        $this->_pdo = $pdo;
-    }
-
-    /**
-     * PDO getter
-     *
-     * @return PDO
-     */
-    public function getPdo(): PDO
-    {
-        return $this->_pdo;
-    }
-
+    public function __invoke(ServerRequestInterface $request, array $args): array;
 }
