@@ -10,3 +10,6 @@
 # Cache - proxies
 cache/
 .phpunit.result.cache
+
+# SQL Tools
+*.sql

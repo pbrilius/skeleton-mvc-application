@@ -43,11 +43,11 @@ class Video extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `video` WHERE `user` = :userId');
+        $stmt = $pdo->prepare('SELECT * FROM `video` WHERE `note` = :noteId');
         $stmt->setFetchMode(\PDO::FETCH_ASSOC);
         $stmt->execute(
             [
-                ':userId' => $args['userId'],
+                ':noteId' => $args['noteId'],
             ]
         );
 
