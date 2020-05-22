@@ -16,7 +16,7 @@ use PBG\Controller\BaseController;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Video singular call
+ * Video list call
  * 
  * @category API
  * @package  Video
@@ -24,10 +24,10 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class Video extends BaseController
+class VideoList extends BaseController
 {
     /**
-     * Single video call
+     * Video list, base on user filter
      *
      * @param ServerRequestInterface $request Request
      * @param array                  $args    Arguments
@@ -43,16 +43,16 @@ class Video extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `video_memo` WHERE `id` = :id');
+        $stmt = $pdo->prepare('SELECT * FROM `video_memo` WHERE `note` = :noteId');
+        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
         $stmt->execute(
             [
-                ':id' => $args['id'],
+                ':noteId' => $args['noteId'],
             ]
         );
 
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll();
 
-        return $result;
-        
+        return $results;
     }
 }

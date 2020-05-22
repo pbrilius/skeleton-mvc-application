@@ -12,7 +12,7 @@
 
 namespace Tests\API\Video;
 
-use PBG\Controller\API\Video\Video;
+use PBG\Controller\API\Video\VideoList;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -25,19 +25,24 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class VideoTest extends TestCase
+class VideoListTest extends TestCase
 {
+    /**
+     * Array return case
+     *
+     * @return void
+     */
     public function testArrayReturn(): void
     {
-        $video = $this
-            ->getMockBuilder(Video::class)
+        $videoList = $this
+            ->getMockBuilder(VideoList::class)
             ->disableOriginalConstructor()
             ->setMethods(['__invoke'])
             ->getMock();
 
         $request = $this->prophesize(ServerRequestInterface::class);
 
-        $response = call_user_func($video, $request->reveal(), ['id' => hash('whirlpool', random_bytes(4))]);
+        $response = call_user_func($videoList, $request->reveal(), ['id' => hash('whirlpool', random_bytes(4))]);
 
         $this->assertIsArray($response);
     }
