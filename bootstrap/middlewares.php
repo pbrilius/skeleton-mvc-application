@@ -15,6 +15,7 @@
 declare(strict_types=1);
 
 use App\Middleware\ContentLengthMiddleware;
+use App\Middleware\ErrorExposeMiddleware;
 use League\Container\Container;
 use League\Route\Router;
 
@@ -24,4 +25,5 @@ use League\Route\Router;
  * @var Router $router
  * @var Container $container
  */
+$router->middleware(new ErrorExposeMiddleware());
 $router->middleware(new ContentLengthMiddleware());
