@@ -30,10 +30,11 @@ class ApiPost extends BaseController
      * API listing
      *
      * @param ServerRequestInterface $request Request
+     * @param array                  $args    Arguments
      * 
      * @return array
      */
-    public function __invoke(ServerRequestInterface $request): array
+    public function __invoke(ServerRequestInterface $request, array $args): array
     {
         /**
          * PDO

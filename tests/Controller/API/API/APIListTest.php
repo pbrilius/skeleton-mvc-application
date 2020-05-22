@@ -37,7 +37,7 @@ class APIListTest extends TestCase
         $apiList = new ApiList($pdo->reveal());
 
         $serverRequest = $this->prophesize(ServerRequestInterface::class);
-        $result = call_user_func($apiList, $serverRequest->reveal());
+        $result = call_user_func($apiList, $serverRequest->reveal(), []);
 
         $this->assertIsArray($result);
     }

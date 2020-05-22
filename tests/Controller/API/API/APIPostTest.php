@@ -37,7 +37,7 @@ class APIPostTest extends TestCase
         $api = new ApiPost($pdo->reveal());
 
         $serverRequest = $this->prophesize(ServerRequestInterface::class);
-        $result = call_user_func($api, $serverRequest->reveal());
+        $result = call_user_func($api, $serverRequest->reveal(), []);
 
         $this->assertIsArray($result);
     }
