@@ -1,15 +1,5 @@
 <?php
 
-/**
- * PHP version 7
- * 
- * @category Controller
- * @package  Invokables
- * @author   Povilas Brilius <pbrilius@gmail.com>
- * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
- * @link     pbgroupeu.wordpress.com
- */
-
 namespace PBG\Controller\API\User;
 
 use PBG\Controller\BaseController;
@@ -18,12 +8,12 @@ use PBG\Controller\BaseController;
  * User stack
  * 
  * @category API
- * @package  User
+ * @package  Video
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class User extends BaseController
+class UserList extends BaseController
 {
     /**
      * Inherited
@@ -44,12 +34,8 @@ class User extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `user` WHERE `id` = :id');
-        $stmt->execute(
-            [
-                ':id' => $args['id'],
-            ]
-        );
+        $stmt = $pdo->prepare('SELECT * FROM `user`');
+        $stmt->execute();
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
