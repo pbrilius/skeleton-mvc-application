@@ -11,7 +11,9 @@
  */
 namespace Tests\API\Note;
 
+use PBG\Controller\API\Note\NotePost;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Note stack API
@@ -31,6 +33,16 @@ class NotePostTest extends TestCase
      */
     public function testArrayReturn(): void
     {
-        
+        $notePost = $this
+            ->getMockBuilder(NotePost::class)
+            ->disableOriginalConstructor()
+            ->disableProxyingToOriginalMethods()
+            ->setMethods(['__invoke'])
+            ->getMock();
+
+        $request = $this->prophesize(ServerRequestInterface::class);
+        $response = call_user_func($notePost, $request->reveal(), []);
+
+        $this->assertIsArray($response);
     }
 }

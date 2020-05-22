@@ -17,7 +17,7 @@ use PBG\Controller\BaseController;
  * Note stack API
  * 
  * @category API
- * @package  Video
+ * @package  Note
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
