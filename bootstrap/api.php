@@ -32,6 +32,11 @@ use PBG\Controller\API\Image\ImageDelete;
 use PBG\Controller\API\Image\ImageList;
 use PBG\Controller\API\Image\ImagePost;
 use PBG\Controller\API\Image\ImageUpdate;
+use PBG\Controller\API\Link\Link;
+use PBG\Controller\API\Link\LinkDelete;
+use PBG\Controller\API\Link\LinkList;
+use PBG\Controller\API\Link\LinkPost;
+use PBG\Controller\API\Link\LinkUpdate;
 use PBG\Controller\API\Note\Note;
 use PBG\Controller\API\Note\NoteDelete;
 use PBG\Controller\API\Note\NoteList;
@@ -97,5 +102,11 @@ $router->group(
         $routeGroup->post('/hashtag', $container->get(HashtagPost::class));
         $routeGroup->delete('/hashtag/{id:alphanum_dash}', $container->get(HashtagDelete::class));
         $routeGroup->put('/hashtag/{id:alphanum_dash}', $container->get(HashtagUpdate::class));
+        
+        $routeGroup->map('GET', '/link', $container->get(LinkList::class));
+        $routeGroup->get('/link/{id:alphanum_dash}', $container->get(Link::class));
+        $routeGroup->post('/link', $container->get(LinkPost::class));
+        $routeGroup->delete('/link/{id:alphanum_dash}', $container->get(LinkDelete::class));
+        $routeGroup->put('/link/{id:alphanum_dash}', $container->get(LinkUpdate::class));
     }
 );
