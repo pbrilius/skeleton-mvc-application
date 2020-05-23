@@ -22,10 +22,10 @@ use PBG\Controller\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class Link extends BaseController
+class LinkList extends BaseController
 {
     /**
-     * Invocation
+     * Link list
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request Request
      * @param array                                    $args    Arguments
@@ -42,14 +42,11 @@ class Link extends BaseController
          * @var \PDO $pdo PDO
          */
         $pdo = $this->getPdo();
-        $stmt = $pdo->prepare(
-            'SELECT * FROM `link` '
-            . 'WHERE `id` = :id'
-        );
+        $stmt = $pdo->prepare('SELECT * FROM `link`');
+
         $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        $link = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $link;
+        return $results;
     }
 }
