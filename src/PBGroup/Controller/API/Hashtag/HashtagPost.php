@@ -12,6 +12,7 @@
 namespace PBG\Controller\API\Hashtag;
 
 use PBG\Controller\BaseController;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Hashtag stack
@@ -22,18 +23,8 @@ use PBG\Controller\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class HashtagList extends BaseController
+class HashtagPost extends BaseController
 {
-    /**
-     * Invocation
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request Request
-     * @param array                                    $args    Arguments
-     * 
-     * @inheritDoc
-     * 
-     * @return array
-     */
     public function __invoke(\Psr\Http\Message\ServerRequestInterface $request, array $args): array
     {
         /**
@@ -43,10 +34,25 @@ class HashtagList extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `hashtag`');
-        $stmt->execute();
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare(
+            'INSERT INTO `hashtag` ('
+            . '`id`, '
+            . '`label`'
+            . ') '
+            . 'VALUES ('
+            . ':id, '
+            . ':label'
+            . ')'
+        );
+        $uuid = Uuid::uuid1();
+        $stmt->bindParam(':id', $uuid);
+        $stmt->bindParam(':label', $request->getParsedBody()['label']);
 
-        return $result;
+        $stmt->execute();
+
+        return [
+            'id' => $uuid,
+            'label' => $request->getParsedBody()['label'],
+        ];
     }
 }

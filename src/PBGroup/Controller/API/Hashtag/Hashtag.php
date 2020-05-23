@@ -18,7 +18,7 @@ use PBG\Controller\BaseController;
  * Hashtag stack
  * 
  * @category API
- * @package  Image
+ * @package  Hashtag
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
