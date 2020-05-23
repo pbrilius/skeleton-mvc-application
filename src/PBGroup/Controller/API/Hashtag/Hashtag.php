@@ -15,7 +15,7 @@ namespace PBG\Controller\API\Hashtag;
 use PBG\Controller\BaseController;
 
 /**
- * Image stack
+ * Hashtag stack
  * 
  * @category API
  * @package  Image
