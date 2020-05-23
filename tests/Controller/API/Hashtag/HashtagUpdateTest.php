@@ -12,7 +12,7 @@
 
 namespace Tests\API\Hashtag;
 
-use PBG\Controller\API\Hashtag\HashtagPost;
+use PBG\Controller\API\Hashtag\HashtagUpdate;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -25,7 +25,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class HashtagPostTest extends TestCase
+class HashtagUpdateTest extends TestCase
 {
     /**
      * Array return case
@@ -34,16 +34,21 @@ class HashtagPostTest extends TestCase
      */
     public function testArrayReturn(): void
     {
-        $hashtagPost = $this
-            ->getMockBuilder(HashtagPost::class)
-            ->disableProxyingToOriginalMethods()
+        $hashtagUpdate = $this
+            ->getMockBuilder(HashtagUpdate::class)
             ->disableOriginalConstructor()
+            ->disableProxyingToOriginalMethods()
             ->setMethods(['__invoke'])
             ->getMock();
-        
         $request = $this->prophesize(ServerRequestInterface::class);
-        $response = call_user_func($hashtagPost, $request->reveal(), []);
-        
+        $response = call_user_func(
+            $hashtagUpdate,
+            $request->reveal(),
+            [
+                'id' => hash('snefru256', random_bytes(3)),
+            ]
+        );
+
         $this->assertIsArray($response);
     }
 }
