@@ -22,7 +22,7 @@ use PBG\Controller\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class Image extends BaseController
+class ImageList extends BaseController
 {
     /**
      * Invocation
@@ -41,14 +41,10 @@ class Image extends BaseController
          */
         $pdo = $this->getPdo();
 
-        $stmt = $pdo->prepare('SELECT * FROM `image` WHERE `id` = :id');
-        $stmt->execute(
-            [
-                ':id' => $args['id'],
-            ]
-        );
-        $image = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare('SELECT * FROM `image`');
+        $stmt->execute();
+        $images = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $image;
+        return $images;
     }
 }

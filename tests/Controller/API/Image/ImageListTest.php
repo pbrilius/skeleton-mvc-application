@@ -9,10 +9,9 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-
 namespace Tests\API\Image;
 
-use PBG\Controller\API\Image\Image;
+use PBG\Controller\API\Image\ImageList;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -25,30 +24,24 @@ use Psr\Http\Message\ServerRequestInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class ImageTest extends TestCase
+class ImageListTest extends TestCase
 {
     /**
-     * A{O endpoint}
+     * Array case
      *
      * @return void
      */
     public function testArrayReturn(): void
     {
-        $image = $this
-            ->getMockBuilder(Image::class)
+        $imageList = $this
+            ->getMockBuilder(ImageList::class)
             ->disableOriginalConstructor()
             ->disableProxyingToOriginalMethods()
             ->setMethods(['__invoke'])
             ->getMock();
 
         $request = $this->prophesize(ServerRequestInterface::class);
-        $response = call_user_func(
-            $image,
-            $request->reveal(),
-            [
-                'id' => hash('haval128,3', random_bytes(3)),
-            ]
-        );
+        $response = call_user_func($imageList, $request->reveal(), []);
 
         $this->assertIsArray($response);
     }
