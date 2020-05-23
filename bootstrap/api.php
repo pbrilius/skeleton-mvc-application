@@ -22,6 +22,11 @@ use PBG\Controller\API\API\APIDelete;
 use PBG\Controller\API\API\ApiList;
 use PBG\Controller\API\API\ApiPost;
 use PBG\Controller\API\API\APIUpdate;
+use PBG\Controller\API\Note\Note;
+use PBG\Controller\API\Note\NoteDelete;
+use PBG\Controller\API\Note\NoteList;
+use PBG\Controller\API\Note\NotePost;
+use PBG\Controller\API\Note\NoteUpdate;
 
 $responseFactory = new \Laminas\Diactoros\ResponseFactory();
 
@@ -42,5 +47,11 @@ $router->group(
         $routeGroup->post('/api', $container->get(ApiPost::class));
         $routeGroup->delete('/api/{id:alphanum_dash}', $container->get(APIDelete::class));
         $routeGroup->put('/api/{id:alphanum_dash}', $container->get(APIUpdate::class));
+        
+        $routeGroup->map('GET', '/note', $container->get(NoteList::class));
+        $routeGroup->get('/note/{id:alphanum_dash}', $container->get(Note::class));
+        $routeGroup->post('/note', $container->get(NotePost::class));
+        $routeGroup->delete('/note/{id:alphanum_dash}', $container->get(NoteDelete::class));
+        $routeGroup->put('/note/{id:alphanum_dash}', $container->get(NoteUpdate::class));
     }
 );
