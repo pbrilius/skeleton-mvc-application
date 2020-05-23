@@ -22,6 +22,16 @@ use PBG\Controller\API\API\APIDelete;
 use PBG\Controller\API\API\ApiList;
 use PBG\Controller\API\API\ApiPost;
 use PBG\Controller\API\API\APIUpdate;
+use PBG\Controller\API\Hashtag\Hashtag;
+use PBG\Controller\API\Hashtag\HashtagDelete;
+use PBG\Controller\API\Hashtag\HashtagList;
+use PBG\Controller\API\Hashtag\HashtagPost;
+use PBG\Controller\API\Hashtag\HashtagUpdate;
+use PBG\Controller\API\Image\Image;
+use PBG\Controller\API\Image\ImageDelete;
+use PBG\Controller\API\Image\ImageList;
+use PBG\Controller\API\Image\ImagePost;
+use PBG\Controller\API\Image\ImageUpdate;
 use PBG\Controller\API\Note\Note;
 use PBG\Controller\API\Note\NoteDelete;
 use PBG\Controller\API\Note\NoteList;
@@ -75,5 +85,17 @@ $router->group(
         $routeGroup->post('/video', $container->get(VideoPost::class));
         $routeGroup->delete('/video/{id:alphanum_dash}', $container->get(VideoDelete::class));
         $routeGroup->put('/video/{id:alphanum_dash}', $container->get(VideoUpdate::class));
+        
+        $routeGroup->map('GET', '/image', $container->get(ImageList::class));
+        $routeGroup->get('/image/{id:alphanum_dash}', $container->get(Image::class));
+        $routeGroup->post('/image', $container->get(ImagePost::class));
+        $routeGroup->delete('/image/{id:alphanum_dash}', $container->get(ImageDelete::class));
+        $routeGroup->put('/image/{id:alphanum_dash}', $container->get(ImageUpdate::class));
+        
+        $routeGroup->map('GET', '/hashtag', $container->get(HashtagList::class));
+        $routeGroup->get('/hashtag/{id:alphanum_dash}', $container->get(Hashtag::class));
+        $routeGroup->post('/hashtag', $container->get(HashtagPost::class));
+        $routeGroup->delete('/hashtag/{id:alphanum_dash}', $container->get(HashtagDelete::class));
+        $routeGroup->put('/hashtag/{id:alphanum_dash}', $container->get(HashtagUpdate::class));
     }
 );
