@@ -32,6 +32,11 @@ use PBG\Controller\API\User\UserDelete;
 use PBG\Controller\API\User\UserList;
 use PBG\Controller\API\User\UserPost;
 use PBG\Controller\API\User\UserUpdate;
+use PBG\Controller\API\Video\Video;
+use PBG\Controller\API\Video\VideoDelete;
+use PBG\Controller\API\Video\VideoList;
+use PBG\Controller\API\Video\VideoPost;
+use PBG\Controller\API\Video\VideoUpdate;
 
 $responseFactory = new \Laminas\Diactoros\ResponseFactory();
 
@@ -64,5 +69,11 @@ $router->group(
         $routeGroup->post('/user', $container->get(UserPost::class));
         $routeGroup->delete('/user/{id:alphanum_dash}', $container->get(UserDelete::class));
         $routeGroup->put('/user/{id:alphanum_dash}', $container->get(UserUpdate::class));
+        
+        $routeGroup->map('GET', '/video', $container->get(VideoList::class));
+        $routeGroup->get('/video/{id:alphanum_dash}', $container->get(Video::class));
+        $routeGroup->post('/video', $container->get(VideoPost::class));
+        $routeGroup->delete('/video/{id:alphanum_dash}', $container->get(VideoDelete::class));
+        $routeGroup->put('/video/{id:alphanum_dash}', $container->get(VideoUpdate::class));
     }
 );
