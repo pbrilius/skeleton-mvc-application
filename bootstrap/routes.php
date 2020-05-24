@@ -13,6 +13,10 @@
  */
 declare(strict_types=1);
 
+use Laminas\Diactoros\ResponseFactory;
+use League\Container\Container;
+use League\Route\Router;
+use League\Route\Strategy\ApplicationStrategy;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -24,7 +28,15 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$router = new League\Route\Router;
+/**
+ * Container
+ * 
+ * @var Container $container
+ */
+$router = $container->get(Router::class);
+
+$strategy = new ApplicationStrategy(new ResponseFactory);
+$router->setStrategy($strategy);
 
 // map a route
 $router->map(
@@ -36,5 +48,3 @@ $router->map(
         return $response;
     }
 );
-
-require __DIR__ . '/api.php';

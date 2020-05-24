@@ -13,7 +13,17 @@
  */
 
 require_once __DIR__ . '/../bootstrap/container.php';
+
+/**
+ * Application router sites
+ */
 require_once __DIR__ . '/../bootstrap/routes.php';
+require_once __DIR__ . '/../bootstrap/api.php';
+require_once __DIR__ . '/../bootstrap/etl.php';
+
+/**
+ * Application middlewares
+ */
 require_once __DIR__ . '/../bootstrap/middlewares.php';
 
 $response = $router->dispatch($request);

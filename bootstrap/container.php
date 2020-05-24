@@ -43,6 +43,7 @@ foreach ($containerPriority as $initConsumption) {
 
 $postLoad = [
     'controllers',
+    'router',
 ];
 
 foreach ($postLoad as $postLoader) {
