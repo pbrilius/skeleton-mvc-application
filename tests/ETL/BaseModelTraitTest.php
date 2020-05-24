@@ -3,50 +3,40 @@
 /**
  * PHP version 7
  * 
- * @category Base
- * @package  Model
+ * @category TDD
+ * @package  BDD
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
 
-namespace ETL;
+namespace Tests\ETL;
+
+use ETL\BaseModelTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Base model for ETL
+ * Base ETL stack
  * 
- * @category ETL
- * @package  Media
+ * @category Unit_Cases
+ * @package  Base_Model
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-trait BaseModelTrait
+class BaseModelTraitTest extends TestCase
 {
     /**
-     * PDO
+     * Prerequisites case
      *
-     * @var \PDO
+     * @return void
      */
-    private $_pdo;
-
-    /**
-     * PDO getter
-     *
-     * @return \PDO|null
-     */
-    public function getPdo(): ?\PDO
+    public function testPrerequisites(): void
     {
-        return $this->_pdo;
-    }
+        $baseModelTrait = $this
+            ->getMockBuilder(BaseModelTrait::class)
+            ->getMockForTrait();
 
-    /**
-     * ETL model getter
-     *
-     * @return BaseModelInterface
-     */
-    public function getEtlModel(): BaseModelInterface
-    {
-        return $this->_etlModel;
+        $this->assertNull($baseModelTrait->getPdo());
     }
 }

@@ -9,21 +9,22 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
+
 namespace Tests\ETL;
 
-use ETL\BaseControllerTrait;
-use PHPUnit\Framework\TestCase as FrameworkTestCase;
+use ETL\BaseModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Base ETL stack
  * 
  * @category Unit_Cases
- * @package  Base_Controller
+ * @package  Base_Model
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class BaseControllerTraitTest extends FrameworkTestCase
+class BaseModelTest extends TestCase
 {
     /**
      * Prerequisites case
@@ -32,10 +33,18 @@ class BaseControllerTraitTest extends FrameworkTestCase
      */
     public function testPrerequisites(): void
     {
-        $baseControllerTrait = $this
-            ->getMockBuilder(BaseControllerTrait::class)
-            ->getMockForTrait();
+        $baseModel = $this
+            ->getMockBuilder(BaseModel::class)
+            ->disableOriginalConstructor()
+            ->disableProxyingToOriginalMethods()
+            ->setMethods(['getPdo'])
+            ->getMockForAbstractClass();
 
-        $this->assertNull($baseControllerTrait->getEtlModel());
+        $baseModel
+            ->expects($this->once())
+            ->method('getPdo')
+            ->willReturn($this->prophesize(\PDO::class)->reveal());
+
+        $this->assertInstanceOf(\PDO::class, $baseModel->getPdo());
     }
 }
