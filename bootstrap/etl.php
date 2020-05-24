@@ -11,6 +11,11 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
+declare(strict_types=1);
+
+use ETL\Controller\MediaImageController;
+use ETL\Controller\MediaVideoController;
+use ETL\Controller\MediaVoiceController;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Router;
@@ -28,8 +33,8 @@ $router->setStrategy($strategy);
 $router->group(
     '/etl',
     function (RouteGroup $routeGroup) use ($container) {
-        $routeGroup->get('/media_image', null);
-        $routeGroup->get('/media_voice', null);
-        $routeGroup->get('/media_video', null);
+        $routeGroup->get('/media-image', $container->get(MediaImageController::class));
+        $routeGroup->get('/media-voice', $container->get(MediaVoiceController::class));
+        $routeGroup->get('/media-video', $container->get(MediaVideoController::class));
     }
-);
+)->setName('etl');

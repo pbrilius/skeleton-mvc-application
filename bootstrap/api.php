@@ -109,4 +109,4 @@ $router->group(
         $routeGroup->delete('/link/{id:alphanum_dash}', $container->get(LinkDelete::class));
         $routeGroup->put('/link/{id:alphanum_dash}', $container->get(LinkUpdate::class));
     }
-);
+)->setName('api');
