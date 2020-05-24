@@ -3,7 +3,8 @@
         "psr-4": {
             "PBG\\": "src/PBGroup",
             "App\\": "src/App",
-            "ETL\\": "src/ETL"
+            "ETL\\": "src/ETL",
+            "CMS\\": "src/CMS"
         }
     },
     "require": {
