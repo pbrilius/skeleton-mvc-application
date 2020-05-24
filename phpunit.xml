@@ -22,7 +22,10 @@
             <directory suffix="Test.php">tests/Middleware</directory>
         </testsuite>
         <testsuite name="ETL Base">
-            <directory suffix="Test.php">tests/ETL</directory>
+            <directory suffix="Test.php">tests/ETL/Base</directory>
+        </testsuite>
+        <testsuite name="ETL Model">
+            <directory suffix="Test.php">tests/ETL/Model</directory>
         </testsuite>
     </testsuites>
 
