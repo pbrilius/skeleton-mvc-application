@@ -11,7 +11,7 @@
  */
 declare(strict_types=1);
 
-namespace CMS;
+namespace ETL;
 
 /**
  * Base trait for ETL
