@@ -12,4 +12,4 @@ cache/
 .phpunit.result.cache
 
 # SQL Tools
-*.sql
+/*.sql
