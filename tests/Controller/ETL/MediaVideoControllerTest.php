@@ -9,14 +9,11 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
+namespace Tests\Controller\ETL;
 
-namespace Tests\API\Video;
-
-use PBG\Controller\API\Video\VideoDelete;
+use ETL\Controller\MediaVideoController;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
-
-use function Sodium\randombytes_buf;
 
 /**
  * Video delete
@@ -27,7 +24,7 @@ use function Sodium\randombytes_buf;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class VideoDeleteTest extends TestCase
+class MediaVideoControllerTest extends TestCase
 {
     /**
      * Array return type
@@ -36,15 +33,29 @@ class VideoDeleteTest extends TestCase
      */
     public function testArrayReturn(): void
     {
-        $videoDelete = $this
-            ->getMockBuilder(VideoDelete::class)
+        $mediaVideoController = $this
+            ->getMockBuilder(MediaVideoController::class)
             ->disableOriginalConstructor()
+            ->disableProxyingToOriginalMethods()
             ->setMethods(['__invoke'])
             ->getMock();
 
-        $request = $this->prophesize(ServerRequestInterface::class);
+        $mediaVideoController
+            ->expects($this->once())
+            ->method('__invoke')
+            ->willReturn([]);
 
-        $response = call_user_func($videoDelete, $request->reveal(), ['id' => hash('whirlpool', random_bytes(3))]);
+        $request = $this
+            ->prophesize(ServerRequestInterface::class)
+            ->reveal();
+
+        $response = call_user_func(
+            $mediaVideoController,
+            $request,
+            []
+        );
+
         $this->assertIsArray($response);
+        $this->assertEquals(0, sizeof($response));
     }
 }
