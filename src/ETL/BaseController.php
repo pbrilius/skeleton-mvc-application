@@ -27,12 +27,12 @@ abstract class BaseController implements BaseControllerInterface
     use BaseControllerTrait;
     
     /**
-     * ETL model getter
+     * Default constructor
      *
-     * @return BaseModelInterface
+     * @param BaseModel $etlModel Base model
      */
-    public function getEtlModel(): BaseModelInterface
+    public function __construct(BaseModelInterface $etlModel)
     {
-        return $this->_etlModel;
+        $this->_etlModel = $etlModel;
     }
 }

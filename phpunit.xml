@@ -14,8 +14,15 @@
         </testsuite>
         <testsuite name="API">
             <directory suffix="Test.php">tests/Controller/API</directory>
-        </testsuite><testsuite name="Middleware">
+        </testsuite>
+        <testsuite name="Controller ETL">
+            <directory suffix="Test.php">tests/Controller/ETL</directory>
+        </testsuite>
+        <testsuite name="Middleware">
             <directory suffix="Test.php">tests/Middleware</directory>
+        </testsuite>
+        <testsuite name="ETL Base">
+            <directory suffix="Test.php">tests/ETL</directory>
         </testsuite>
     </testsuites>
 

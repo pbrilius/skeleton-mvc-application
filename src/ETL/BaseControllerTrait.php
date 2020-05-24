@@ -30,4 +30,14 @@ trait BaseControllerTrait
      * @var BaseModelInterface
      */
     private $_etlModel;
+
+    /**
+     * ETL model getter
+     *
+     * @return BaseModelInterface|null
+     */
+    public function getEtlModel(): ?BaseModelInterface
+    {
+        return $this->_etlModel;
+    }
 }

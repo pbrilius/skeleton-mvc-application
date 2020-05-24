@@ -39,4 +39,14 @@ trait BaseModelTrait
     {
         return $this->_pdo;
     }
+
+    /**
+     * ETL model getter
+     *
+     * @return BaseModelInterface
+     */
+    public function getEtlModel(): BaseModelInterface
+    {
+        return $this->_etlModel;
+    }
 }
