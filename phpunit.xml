@@ -30,6 +30,9 @@
         <testsuite name="CMS Base">
             <directory suffix="Test.php">tests/CMS</directory>
         </testsuite>
+        <testsuite name="CMS Models">
+            <directory suffix="Test.php">tests/CMS/Model</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
