@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-namespace Tests\API\Hashtag;
+namespace Tests\CMS\Controller\API\Hashtag;
 
 use PBG\Controller\API\Hashtag\Hashtag;
 use PHPUnit\Framework\TestCase;

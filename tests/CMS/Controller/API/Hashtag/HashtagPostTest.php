@@ -9,7 +9,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests\API\Hashtag;
+namespace Tests\CMS\Controller\API\Hashtag;
 
 use CMS\Controller\API\Hashtag\HashtagList;
 use PHPUnit\Framework\TestCase;
