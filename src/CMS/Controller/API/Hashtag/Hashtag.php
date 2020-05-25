@@ -35,7 +35,7 @@ class Hashtag extends BaseController
     public function __invoke(\Psr\Http\Message\ServerRequestInterface $request, array $args): array
     {
         $cmsModel = $this->getCmsModel();
-        $entity = $cmsModel->single();
+        $entity = $cmsModel->single($args['id']);
         
         return $entity;
     }
