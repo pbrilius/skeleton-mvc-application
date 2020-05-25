@@ -85,7 +85,7 @@ class Hashtag extends BaseModel
      * 
      * @return array
      */
-    public function update(array $data): array
+    public function update(array $data, string $id): array
     {
         return [];
     }
