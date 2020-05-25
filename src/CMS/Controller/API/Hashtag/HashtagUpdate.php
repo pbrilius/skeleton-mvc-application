@@ -12,7 +12,7 @@
 namespace CMS\Controller\API\Hashtag;
 
 use CMS\BaseController;
-use CMS\BaseModel;
+use CMS\BaseModelInterface;
 
 /**
  * CMS stack
@@ -38,7 +38,7 @@ class HashtagUpdate extends BaseController
         /**
          * CMS model
          * 
-         * @var BaseModel $cmsModel
+         * @var BaseModelInterface $cmsModel
          */
         $cmsModel = $this->getCmsModel();
         $entity = $cmsModel->update($request->getParsedBody(), $args['id']);
