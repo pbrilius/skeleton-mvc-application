@@ -12,7 +12,7 @@
 namespace CMS\Controller\API\Hashtag;
 
 use CMS\BaseController;
-use CMS\BaseModel;
+use CMS\BaseModelInterface;
 
 /**
  * CMS stack
@@ -38,7 +38,7 @@ class HashtagList extends BaseController
         /**
          * CMS Model
          * 
-         * @var BaseModel $cmsModel CMS
+         * @var BaseModelInterface $cmsModel CMS
          */
         $cmsModel = $this->getCmsModel();
         $list = $cmsModel->list();
