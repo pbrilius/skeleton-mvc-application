@@ -33,6 +33,9 @@
         <testsuite name="CMS Models">
             <directory suffix="Test.php">tests/CMS/Model</directory>
         </testsuite>
+        <testsuite name="CMS Controllers API">
+            <directory suffix="Test.php">tests/CMS/Controller/API</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
