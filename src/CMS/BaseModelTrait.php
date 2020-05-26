@@ -34,7 +34,7 @@ trait BaseModelTrait
      *
      * @var string
      */
-    private $_table;
+    protected $table;
 
     /**
      * PDO getter
@@ -44,15 +44,5 @@ trait BaseModelTrait
     public function getPdo(): \PDO
     {
         return $this->_pdo;
-    }
-
-    /**
-     * Table getter
-     *
-     * @return string
-     */
-    public function getTable(): string
-    {
-        return $this->_table;
     }
 }
