@@ -4,7 +4,8 @@
             "PBG\\": "src/PBGroup",
             "App\\": "src/App",
             "ETL\\": "src/ETL",
-            "CMS\\": "src/CMS"
+            "CMS\\": "src/CMS",
+            "ERP\\": "src/ERP"
         }
     },
     "require": {
