@@ -59,5 +59,6 @@ class HashtagTest extends TestCase
         );
 
         $this->assertIsArray($response);
+        $this->assertEquals(0, sizeof($response));
     }
 }
