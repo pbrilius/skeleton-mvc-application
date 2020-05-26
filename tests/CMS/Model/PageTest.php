@@ -11,7 +11,6 @@
  */
 namespace Tests\CMS\Model;
 
-use CMS\BaseModelInterface;
 use CMS\Model\Page;
 use PHPUnit\Framework\TestCase;
 
@@ -39,55 +38,6 @@ class PageTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $page
-            ->expects($this->once())
-            ->method('single')
-            ->willReturn([]);
-
-        $page
-            ->expects($this->once())
-            ->method('list')
-            ->willReturn([]);
-
-        $page
-            ->expects($this->once())
-            ->method('post')
-            ->willReturn([]);
-
-        $page
-            ->expects($this->once())
-            ->method('update')
-            ->willReturn([]);
-
-        $page
-            ->expects($this->once())
-            ->method('delete')
-            ->willReturn([]);
-
-        $this->assertInstanceOf(BaseModelInterface::class, $page);
-        $this->assertIsArray(
-            $page->single(
-                hash('sha3-224', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $page->list()
-        );
-        $this->assertIsArray(
-            $page->post(
-                []
-            )
-        );
-        $this->assertIsArray(
-            $page->update(
-                [],
-                hash('sha512/256', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $page->delete(
-                hash('sha384', random_bytes(2))
-            )
-        );
+        $this->assertObjectHasAttribute('table', $page);
     }
 }

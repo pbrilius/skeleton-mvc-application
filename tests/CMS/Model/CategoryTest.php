@@ -12,7 +12,6 @@
 
 namespace Tests\CMS\Model;
 
-use CMS\BaseModelInterface;
 use CMS\Model\Category;
 use PHPUnit\Framework\TestCase;
 
@@ -40,55 +39,6 @@ class CategoryTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $category
-            ->expects($this->once())
-            ->method('single')
-            ->willReturn([]);
-
-        $category
-            ->expects($this->once())
-            ->method('list')
-            ->willReturn([]);
-
-        $category
-            ->expects($this->once())
-            ->method('post')
-            ->willReturn([]);
-
-        $category
-            ->expects($this->once())
-            ->method('update')
-            ->willReturn([]);
-
-        $category
-            ->expects($this->once())
-            ->method('delete')
-            ->willReturn([]);
-
-        $this->assertInstanceOf(BaseModelInterface::class, $category);
-        $this->assertIsArray(
-            $category->single(
-                hash('sha3-224', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $category->list()
-        );
-        $this->assertIsArray(
-            $category->post(
-                []
-            )
-        );
-        $this->assertIsArray(
-            $category->update(
-                [],
-                hash('sha512/256', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $category->delete(
-                hash('sha384', random_bytes(2))
-            )
-        );
+        $this->assertObjectHasAttribute('table', $category);
     }
 }

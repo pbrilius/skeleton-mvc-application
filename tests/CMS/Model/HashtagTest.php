@@ -11,7 +11,6 @@
  */
 namespace Tests\CMS\Model;
 
-use CMS\BaseModelInterface;
 use CMS\Model\Hashtag;
 use PHPUnit\Framework\TestCase;
 
@@ -39,55 +38,6 @@ class HashtagTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $hashtag
-            ->expects($this->once())
-            ->method('single')
-            ->willReturn([]);
-
-        $hashtag
-            ->expects($this->once())
-            ->method('list')
-            ->willReturn([]);
-
-        $hashtag
-            ->expects($this->once())
-            ->method('post')
-            ->willReturn([]);
-
-        $hashtag
-            ->expects($this->once())
-            ->method('update')
-            ->willReturn([]);
-
-        $hashtag
-            ->expects($this->once())
-            ->method('delete')
-            ->willReturn([]);
-
-        $this->assertInstanceOf(BaseModelInterface::class, $hashtag);
-        $this->assertIsArray(
-            $hashtag->single(
-                hash('sha3-224', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $hashtag->list()
-        );
-        $this->assertIsArray(
-            $hashtag->post(
-                []
-            )
-        );
-        $this->assertIsArray(
-            $hashtag->update(
-                [],
-                hash('sha512/256', random_bytes(2))
-            )
-        );
-        $this->assertIsArray(
-            $hashtag->delete(
-                hash('sha384', random_bytes(2))
-            )
-        );
+        $this->assertObjectHasAttribute('table', $hashtag);
     }
 }
