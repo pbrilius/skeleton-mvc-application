@@ -19,7 +19,16 @@ require_once __DIR__ . '/../bootstrap/container.php';
  */
 require_once __DIR__ . '/../bootstrap/routes.php';
 require_once __DIR__ . '/../bootstrap/api.php';
+
+/**
+ * ETL Big Data consumption
+ */
 require_once __DIR__ . '/../bootstrap/etl.php';
+
+/**
+ * CMS sites
+ */
+require_once __DIR__ . '/../bootstrap/cms-api.php';
 
 /**
  * Application middlewares
