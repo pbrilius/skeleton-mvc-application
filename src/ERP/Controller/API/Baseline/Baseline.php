@@ -14,7 +14,7 @@ namespace ERP\Controller\API\Baseline;
 use CMS\BaseController;
 
 /**
- * CMS stack
+ * ERP stack
  * 
  * @category API
  * @package  Baseline
@@ -35,7 +35,7 @@ class Baseline extends BaseController
     public function __invoke(\Psr\Http\Message\ServerRequestInterface $request, array $args): array
     {
         $cmsModel = $this->getCmsModel();
-        
+
         return $cmsModel->single($args['id']);
     }
 }
