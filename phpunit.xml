@@ -39,6 +39,9 @@
         <testsuite name="ERP Controllers API">
             <directory suffix="Test.php">tests/ERP/Controller/API</directory>
         </testsuite>
+        <testsuite name="ERP Models">
+            <directory suffix="Test.php">tests/ERP/Model</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
