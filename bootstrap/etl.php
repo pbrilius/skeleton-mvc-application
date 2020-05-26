@@ -1,7 +1,7 @@
 <?php
 
 /**
- * API routing
+ * ETL routing
  * 
  * PHP version 7
  * 
