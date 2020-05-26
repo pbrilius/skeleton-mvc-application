@@ -13,7 +13,6 @@ namespace Tests\CMS\Controller\API\Page;
 
 use CMS\Controller\API\Page\PageList;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Prophecy\Revealer;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
