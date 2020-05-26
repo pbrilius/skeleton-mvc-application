@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Hashtag API stack
+ * Category API stack
  * 
  * @category Unit_Cases
  * @package  Controller
