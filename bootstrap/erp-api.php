@@ -28,6 +28,11 @@ use ERP\Controller\API\Resource\ResourceDelete;
 use ERP\Controller\API\Resource\ResourceList;
 use ERP\Controller\API\Resource\ResourcePost;
 use ERP\Controller\API\Resource\ResourceUpdate;
+use ERP\Controller\API\Upperline\Upperline;
+use ERP\Controller\API\Upperline\UpperlineDelete;
+use ERP\Controller\API\Upperline\UpperlineList;
+use ERP\Controller\API\Upperline\UpperlinePost;
+use ERP\Controller\API\Upperline\UpperlineUpdate;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Router;
@@ -62,6 +67,12 @@ $router->group(
         $routeGroup->post('/resource', $container->get(ResourcePost::class));
         $routeGroup->delete('/resource/{id:alphanum_dash}', $container->get(ResourceDelete::class));
         $routeGroup->put('/resource/{id:alphanum_dash}', $container->get(ResourceUpdate::class));
+        
+        $routeGroup->map('GET', '/upperline', $container->get(UpperlineList::class));
+        $routeGroup->get('/upperline/{id:alphanum_dash}', $container->get(Upperline::class));
+        $routeGroup->post('/upperline', $container->get(UpperlinePost::class));
+        $routeGroup->delete('/upperline/{id:alphanum_dash}', $container->get(UpperlineDelete::class));
+        $routeGroup->put('/upperline/{id:alphanum_dash}', $container->get(UpperlineUpdate::class));
     }
 )->setName('erp-api');
 
