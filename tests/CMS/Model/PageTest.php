@@ -38,6 +38,6 @@ class PageTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $this->assertObjectHasAttribute('table', $page);
+        $this->assertAttributeSame('page', 'table', $page);
     }
 }

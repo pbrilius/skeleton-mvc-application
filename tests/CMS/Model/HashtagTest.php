@@ -38,6 +38,6 @@ class HashtagTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $this->assertObjectHasAttribute('table', $hashtag);
+        $this->assertAttributeSame('hashtag', 'table', $hashtag);
     }
 }

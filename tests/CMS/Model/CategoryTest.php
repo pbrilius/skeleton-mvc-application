@@ -39,6 +39,6 @@ class CategoryTest extends TestCase
             ->disableProxyingToOriginalMethods()
             ->getMock();
 
-        $this->assertObjectHasAttribute('table', $category);
+        $this->assertAttributeSame('category', 'table', $category);
     }
 }
