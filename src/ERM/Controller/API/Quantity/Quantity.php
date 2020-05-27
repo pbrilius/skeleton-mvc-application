@@ -3,8 +3,8 @@
 /**
  * PHP version 7
  * 
- * @category TDD
- * @package  BDD
+ * @category Controller
+ * @package  Invokables
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
@@ -14,10 +14,10 @@ namespace ERM\Controller\API\Quantity;
 use CMS\BaseController;
 
 /**
- * Quantity API stack
+ * ERM stack
  * 
- * @category Unit_Cases
- * @package  Controller
+ * @category API
+ * @package  Quantity
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
