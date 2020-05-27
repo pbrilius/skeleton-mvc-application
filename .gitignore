@@ -13,3 +13,6 @@ cache/
 
 # SQL Tools
 /*.sql
+
+# PHP unit coverage
+/cov
