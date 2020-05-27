@@ -5,7 +5,9 @@
             "App\\": "src/App",
             "ETL\\": "src/ETL",
             "CMS\\": "src/CMS",
-            "ERP\\": "src/ERP"
+            "ERP\\": "src/ERP",
+            "ERM\\": "src/ERM",
+            "CRM\\": "src/CRM"
         }
     },
     "require": {
