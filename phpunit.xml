@@ -45,6 +45,9 @@
         <testsuite name="ERM Models">
             <directory suffix="Test.php">tests/ERM/Model</directory>
         </testsuite>
+        <testsuite name="ERM Controllers API">
+            <directory suffix="Test.php">tests/ERM/Controller/API</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

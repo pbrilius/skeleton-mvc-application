@@ -24,7 +24,7 @@ use ERM\Controller\Quality\QualityDelete;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class QualityDeleteTeste extends BaseApiUnit
+class QualityDeleteTest extends BaseApiUnit
 {
     /**
      * Callback case
