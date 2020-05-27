@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-namespace Tests\ERM\Controller\API;
+namespace Tests\ERM\Controller\API\Quality;
 
 use App\Facilitator\BaseApiUnit;
 use ERM\Controller\Quality\Quality;

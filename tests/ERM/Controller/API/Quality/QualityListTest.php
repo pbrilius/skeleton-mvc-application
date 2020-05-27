@@ -9,7 +9,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests\ERM\Controller\API;
+namespace Tests\ERM\Controller\API\Quality;
 
 use App\Facilitator\BaseApiUnit;
 use ERM\Controller\Quality\QualityList;
