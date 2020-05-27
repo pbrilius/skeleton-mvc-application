@@ -66,3 +66,14 @@ $container->add(
         'password' => $_ENV['DB_PASSWORD'],
     ]
 );
+
+$container->add(
+    'db.erm.config',
+    [
+        'host' => 'localhost',
+        'port' => 3306,
+        'database' => $_ENV['DB_ERM_DATABASE'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD'],
+    ]
+);
