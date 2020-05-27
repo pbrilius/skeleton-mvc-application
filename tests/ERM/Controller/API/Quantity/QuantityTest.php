@@ -13,7 +13,7 @@
 namespace Tests\ERM\Controller\API\Quantity;
 
 use App\Facilitator\BaseApiUnit;
-use ERM\Controller\Quantity\Quantity;
+use ERM\Controller\API\Quantity\Quantity;
 
 /**
  * Quantity API stack
