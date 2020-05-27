@@ -3,26 +3,26 @@
 /**
  * PHP version 7
  * 
- * @category TDD
- * @package  BDD
+ * @category Controller
+ * @package  Invokables
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace ERM\Controller\Quantity;
+namespace ERM\Controller\API\Quality;
 
 use CMS\BaseController;
 
 /**
- * Quantity API stack
+ * ERM stack
  * 
- * @category Unit_Cases
- * @package  Controller
+ * @category API
+ * @package  Quality
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class Quantity extends BaseController
+class QualityUpdate extends BaseController
 {
     /**
      * Invocation
@@ -36,6 +36,6 @@ class Quantity extends BaseController
     {
         $cmsModel = $this->getCmsModel();
 
-        return $cmsModel->single($args['id']);
+        return $cmsModel->update($request->getQueryParams(), $args['id']);
     }
 }

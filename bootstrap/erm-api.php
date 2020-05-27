@@ -13,11 +13,11 @@
  */
 declare(strict_types=1);
 
-use ERM\Controller\Quality\Quality;
-use ERM\Controller\Quality\QualityDelete;
-use ERM\Controller\Quality\QualityList;
-use ERM\Controller\Quality\QualityPost;
-use ERM\Controller\Quality\QualityUpdate;
+use ERM\Controller\API\Quality\Quality;
+use ERM\Controller\API\Quality\QualityDelete;
+use ERM\Controller\API\Quality\QualityList;
+use ERM\Controller\API\Quality\QualityPost;
+use ERM\Controller\API\Quality\QualityUpdate;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Router;

@@ -9,7 +9,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace ERM\Controller\Quantity;
+namespace ERM\Controller\API\Quantity;
 
 use CMS\BaseController;
 
@@ -22,10 +22,10 @@ use CMS\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class QuantityList extends BaseController
+class Quantity extends BaseController
 {
     /**
-     * Call invocation
+     * Invocation
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request Request
      * @param array                                    $args    Arguments
@@ -36,6 +36,6 @@ class QuantityList extends BaseController
     {
         $cmsModel = $this->getCmsModel();
 
-        return $cmsModel->list();
+        return $cmsModel->single($args['id']);
     }
 }

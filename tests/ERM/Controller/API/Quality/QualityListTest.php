@@ -12,7 +12,7 @@
 namespace Tests\ERM\Controller\API\Quality;
 
 use App\Facilitator\BaseApiUnit;
-use ERM\Controller\Quality\QualityList;
+use ERM\Controller\Quality\API\QualityList;
 
 /**
  * Quality API stack

@@ -9,7 +9,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace ERM\Controller\Quality;
+namespace ERM\Controller\API\Quality;
 
 use CMS\BaseController;
 
@@ -22,7 +22,7 @@ use CMS\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class QualityUpdate extends BaseController
+class QualityPost extends BaseController
 {
     /**
      * Invocation
@@ -36,6 +36,6 @@ class QualityUpdate extends BaseController
     {
         $cmsModel = $this->getCmsModel();
 
-        return $cmsModel->update($request->getQueryParams(), $args['id']);
+        return $cmsModel->post($request->getParsedBody());
     }
 }

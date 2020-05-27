@@ -9,7 +9,7 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace ERM\Controller\Quality;
+namespace ERM\Controller\API\Quality;
 
 use CMS\BaseController;
 
@@ -22,10 +22,10 @@ use CMS\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class QualityPost extends BaseController
+class QualityDelete extends BaseController
 {
     /**
-     * Invocation
+     * Quality delete invocation
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request Request
      * @param array                                    $args    Arguments
@@ -36,6 +36,6 @@ class QualityPost extends BaseController
     {
         $cmsModel = $this->getCmsModel();
 
-        return $cmsModel->post($request->getParsedBody());
+        return $cmsModel->delete($args['id']);
     }
 }

@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-use ERM\Controller\Quality\QualityPost;
+use ERM\Controller\API\Quality\QualityPost;
 use ERM\Model\Quality;
 use League\Container\Container;
 

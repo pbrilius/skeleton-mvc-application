@@ -13,7 +13,7 @@
 namespace Tests\ERM\Controller\API\Quality;
 
 use App\Facilitator\BaseApiUnit;
-use ERM\Controller\Quality\QualityDelete;
+use ERM\Controller\Quality\API\QualityDelete;
 
 /**
  * Quality API stack
