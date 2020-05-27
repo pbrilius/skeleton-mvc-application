@@ -77,3 +77,14 @@ $container->add(
         'password' => $_ENV['DB_PASSWORD'],
     ]
 );
+
+$container->add(
+    'db.crm.config',
+    [
+        'host' => 'localhost',
+        'port' => 3306,
+        'database' => $_ENV['DB_CRM_DATABASE'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD'],
+    ]
+);

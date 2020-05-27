@@ -105,3 +105,20 @@ $container->add(
         return $pdo;
     }
 )->addTag('mysql.pdo');
+
+$container->add(
+    PDO::class,
+    function () use ($container) {
+        $dbConfig = $container->get('db.crm.config');
+        $pdo = new \PDO(
+            'mysql:host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['database'],
+            $dbConfig['user'],
+            $dbConfig['password'],
+            [
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
+            ]
+        );
+
+        return $pdo;
+    }
+)->addTag('mysql.pdo');
