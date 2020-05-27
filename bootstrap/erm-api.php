@@ -18,6 +18,11 @@ use ERM\Controller\API\Quality\QualityDelete;
 use ERM\Controller\API\Quality\QualityList;
 use ERM\Controller\API\Quality\QualityPost;
 use ERM\Controller\API\Quality\QualityUpdate;
+use ERM\Controller\API\Quantity\QuantityDelete;
+use ERM\Controller\API\Quantity\QuantityList;
+use ERM\Controller\API\Quantity\QuantityPost;
+use ERM\Controller\API\Quantity\QuantityUpdate;
+use ERM\Controller\Quantity\Quantity;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Router;
@@ -40,5 +45,11 @@ $router->group(
         $routeGroup->post('/quality', $container->get(QualityPost::class));
         $routeGroup->delete('/quality/{id:alphanum_dash}', $container->get(QualityDelete::class));
         $routeGroup->put('/quality/{id:alphanum_dash}', $container->get(QualityUpdate::class));
+        
+        $routeGroup->map('GET', '/quantity', $container->get(QuantityList::class));
+        $routeGroup->get('/quantity/{id:alphanum_dash}', $container->get(Quantity::class));
+        $routeGroup->post('/quantity', $container->get(QuantityPost::class));
+        $routeGroup->delete('/quantity/{id:alphanum_dash}', $container->get(QuantityDelete::class));
+        $routeGroup->put('/quantity/{id:alphanum_dash}', $container->get(QuantityUpdate::class));
     }
 );
