@@ -36,9 +36,14 @@ require_once __DIR__ . '/../bootstrap/cms-api.php';
 require_once __DIR__ . '/../bootstrap/erp-api.php';
 
 /**
- * ERP sites
+ * ERM sites
  */
 require_once __DIR__ . '/../bootstrap/erm-api.php';
+
+/**
+ * CRM sites
+ */
+require_once __DIR__ . '/../bootstrap/crm-api.php';
 
 /**
  * Application middlewares
