@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
  * Model ERP stack
  * 
  * @category Unit_Cases
- * @package  Category
+ * @package  Baseline
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
