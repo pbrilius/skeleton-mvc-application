@@ -22,6 +22,7 @@ $container->add(
     VideoModel::class,
     function () use ($container) {
         $videoModel = new VideoModel(
+            $container->get('mysql.pdo')[0],
             $container->get('mysql.pdo')[1]
         );
 

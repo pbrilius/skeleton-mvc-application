@@ -22,6 +22,7 @@ $container->add(
     ImageModel::class,
     function () use ($container) {
         $imageModel = new ImageModel(
+            $container->get('mysql.pdo')[0],
             $container->get('mysql.pdo')[1]
         );
 

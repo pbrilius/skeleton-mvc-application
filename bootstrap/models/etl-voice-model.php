@@ -22,6 +22,7 @@ $container->add(
     VoiceModel::class,
     function () use ($container) {
         $voiceModel = new VoiceModel(
+            $container->get('mysql.pdo')[0],
             $container->get('mysql.pdo')[1]
         );
 

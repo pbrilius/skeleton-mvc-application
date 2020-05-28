@@ -27,11 +27,13 @@ abstract class BaseModel implements BaseModelInterface
     /**
      * Base constructor
      *
-     * @param \PDO $pdo PDO
+     * @param \PDO $pdoBase PDO
+     * @param \PDO $pdoEtl PDO
      */
-    public function __construct(\PDO $pdo)
+    public function __construct(\PDO $pdoBase, \PDO $pdoEtl)
     {
-        $this->_pdo = $pdo;
+        $this->_pdo = $pdoBase;
+        $this->_pdo = $pdoEtl;
     }
 
     
