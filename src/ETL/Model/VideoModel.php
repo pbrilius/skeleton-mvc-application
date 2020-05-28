@@ -74,7 +74,7 @@ class VideoModel extends BaseModel
         for ($i = 0; $i < $rounds; $i++) {
             $stmt = $pdoBase->prepare(
                 'SELECT '
-                    . '`id`, '
+                    . '`note`, '
                     . 'AVG(`record`) AS avg_record, '
                     . 'MIN(`record`) AS min_record, '
                     . 'MAX(`record`) AS max_record '
@@ -96,14 +96,14 @@ class VideoModel extends BaseModel
                     'INSERT INTO `:tableEtl` '
                         . '('
                         . '`id`, '
-                        . '`video_memo`, '
+                        . '`note`, '
                         . '`max`, '
                         . '`min`, '
                         . '`average`'
                         . ')'
                         . 'VALUES ('
                         . ':uuid, '
-                        . ':videoUuid, '
+                        . ':note, '
                         . ':max, '
                         . ':min, '
                         . ':average'
@@ -114,7 +114,7 @@ class VideoModel extends BaseModel
                     [
                         ':tableEtl' => $this->_tableEtl,
                         ':uuid' => Uuid::uuid4(),
-                        ':videoUuid' => $result['id'],
+                        ':note' => $result['note'],
                         ':max' => $result['max_record'],
                         ':min' => $result['min_record'],
                         ':average' => $result['avg_record'],

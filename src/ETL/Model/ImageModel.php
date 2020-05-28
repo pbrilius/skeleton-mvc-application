@@ -74,7 +74,7 @@ class ImageModel extends BaseModel
         for ($i = 0; $i < $rounds; $i++) {
             $stmt = $pdoBase->prepare(
                 'SELECT '
-                    . '`id`, '
+                    . '`label`, '
                     . 'AVG(`jpeg`) AS avg_jpeg, '
                     . 'MIN(`jpeg`) AS min_jpeg, '
                     . 'MAX(`jpeg`) AS max_jpeg '
@@ -96,14 +96,14 @@ class ImageModel extends BaseModel
                     'INSERT INTO `:tableEtl` '
                         . '('
                         . '`id`, '
-                        . '`image`, '
+                        . '`label`, '
                         . '`max`, '
                         . '`min`, '
                         . '`average`'
                         . ')'
                         . 'VALUES ('
                         . ':uuid, '
-                        . ':imageUuid, '
+                        . ':label, '
                         . ':max, '
                         . ':min, '
                         . ':average'
@@ -114,7 +114,7 @@ class ImageModel extends BaseModel
                     [
                         ':tableEtl' => $this->_tableEtl,
                         ':uuid' => Uuid::uuid4(),
-                        ':imageUuid' => $result['id'],
+                        ':label' => $result['label'],
                         ':max' => $result['max_jpeg'],
                         ':min' => $result['min_jpeg'],
                         ':average' => $result['avg_jpeg'],

@@ -78,7 +78,7 @@ class VoiceModel extends BaseModel
         for ($i = 0; $i < $rounds; $i++) {
             $stmt = $pdoBase->prepare(
                 'SELECT '
-                    . '`id`, '
+                    . '`note`, '
                     . 'AVG(`voice`) AS avg_voice, '
                     . 'MIN(`voice`) AS min_voice, '
                     . 'MAX(`voice`) AS max_voice '
@@ -100,14 +100,14 @@ class VoiceModel extends BaseModel
                     'INSERT INTO `:tableEtl` '
                         . '('
                         . '`id`, '
-                        . '`image`, '
+                        . '`note`, '
                         . '`max`, '
                         . '`min`, '
                         . '`average`'
                         . ')'
                         . 'VALUES ('
                         . ':uuid, '
-                        . ':voiceUuid, '
+                        . ':note, '
                         . ':max, '
                         . ':min, '
                         . ':average'
@@ -118,7 +118,7 @@ class VoiceModel extends BaseModel
                     [
                         ':tableEtl' => $this->_tableEtl,
                         ':uuid' => Uuid::uuid1(),
-                        ':voiceUuid' => $result['id'],
+                        ':note' => $result['note'],
                         ':max' => $result['max_voice'],
                         ':min' => $result['min_voice'],
                         ':average' => $result['avg_voice'],
