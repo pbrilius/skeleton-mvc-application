@@ -82,7 +82,7 @@ class VideoModel extends BaseModel
                     . 'LIMIT :limit '
                     . 'OFFSET :offset '
                     . 'ORDER BY `date_created` DESC '
-                    . 'GROUP BY `id`'
+                    . 'GROUP BY `note`'
             );
             $stmt->bindParam(':tableBase', $this->_tableBase);
             $stmt->bindParam(':limit', $this->limit);
