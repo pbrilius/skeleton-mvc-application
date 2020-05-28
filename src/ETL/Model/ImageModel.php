@@ -28,7 +28,7 @@ use Ramsey\Uuid\Uuid;
 class ImageModel extends BaseModel
 {
     /**
-     * Target moel constructor
+     * Target model constructor
      *
      * @param \PDO   $pdoBase   Base
      * @param \PDO   $pdoEtl    ETL
