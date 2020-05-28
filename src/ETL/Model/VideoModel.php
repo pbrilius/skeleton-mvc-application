@@ -122,7 +122,7 @@ class VideoModel extends BaseModel
                 );
             }
 
-            $offset *= $this->limit;
+            $offset += $this->limit;
         }
 
         return [

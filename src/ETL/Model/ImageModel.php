@@ -122,7 +122,7 @@ class ImageModel extends BaseModel
                 );
             }
 
-            $offset *= $this->limit;
+            $offset += $this->limit;
         }
 
         return [
