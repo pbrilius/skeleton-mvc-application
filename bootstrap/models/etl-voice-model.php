@@ -23,7 +23,9 @@ $container->add(
     function () use ($container) {
         $voiceModel = new VoiceModel(
             $container->get('mysql.pdo')[0],
-            $container->get('mysql.pdo')[1]
+            $container->get('mysql.pdo')[1],
+            'voice_memo',
+            'voice_etl'
         );
 
         return $voiceModel;
