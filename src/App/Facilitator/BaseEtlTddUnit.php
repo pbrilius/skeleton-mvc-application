@@ -31,17 +31,21 @@ class BaseEtlTddUnit extends TestCase
      * @var Container
      */
     private $_container;
+
+    protected $rate = 256;
     
     /**
      * Power up the boot device
      *
      * @return void
      */
-    private function _powerUp()
+    private function _up()
     {
         $container = include_once __DIR__
-            . '/../'
-            . '/../'
+            . '/..'
+            . '/..'
+            . '/..'
+            . '/bootstrap'
             . '/container.php';
 
         $this->_container = $container;
@@ -94,11 +98,31 @@ class BaseEtlTddUnit extends TestCase
     }
 
     /**
+     * Down, booting off
+     *
+     * @return void
+     */
+    private function _down()
+    {
+        unset($this->_container);
+    }
+
+    /**
      * Booting up constructor
      */
     public function __construct()
     {
-        $this->_powerUp();
+        parent::__construct();
+
+        $this->_up();
+    }
+
+    /**
+     * Power offing destructor
+     */
+    public function __destruct()
+    {
+        $this->_down();
     }
 
     /**
