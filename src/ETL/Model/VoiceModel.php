@@ -12,6 +12,8 @@
 namespace ETL\Model;
 
 use ETL\BaseModel;
+use ETL\BaseModelStatuses;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Media models stack
@@ -24,17 +26,68 @@ use ETL\BaseModel;
  */
 class VoiceModel extends BaseModel
 {
+    /**
+     * Process
+     *
+     * @return array
+     */
     public function process(): array
     {
         /**
-         * PDO
+         * PDO base
          * 
-         * @var \PDO $pdo PDO
+         * @var \PDO $pdoBase \PDO
          */
-        $pdo = $this->getPdo();
+        $pdoBase = $this->getPdoBase();
+        $pdoEtl = $this->getPdoEtl();
+
+        $stmt = $pdoBase->prepare(
+            'SELECT '
+                . '`id, '
+                . 'AVG(`jpeg`) AS avg_jpeg, '
+                . 'MIN(`jpeg`) AS min_jpeg, '
+                . 'MAX(`jpeg`) AS max_jpeg'
+                . 'FROM `image` '
+                . 'LIMIT :limit '
+                . 'ORDER BY `date_created` DESC'
+        );
+        $stmt->bindParam(':limit', $this->limit);
+
+        $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        foreach ($results as $result) {
+            $stmt = $pdoEtl->prepare(
+                'INSERT INTO `image_etl` '
+                    . '('
+                    . '`id`, '
+                    . '`image`, '
+                    . '`max`, '
+                    . '`min`, '
+                    . '`average`'
+                    . ')'
+                    . 'VALUES ('
+                    . ':uuid, '
+                    . ':imageUuid, '
+                    . ':max, '
+                    . ':min, '
+                    . ':average'
+                    . ')'
+            );
+
+            $stmt->execute(
+                [
+                    ':id' => Uuid::uuid4(),
+                    ':imageUuid' => $result['id'],
+                    ':max' => $result['max_jpeg'],
+                    ':min' => $result['min_jpeg'],
+                    ':average' => $result['avg_jpeg'],
+                ]
+            );
+        }
 
         return [
-            'job' => __CLASS__,
+            'Job' => __CLASS__,
             'status' => BaseModelStatuses::OK,
         ];
     }
