@@ -41,5 +41,8 @@ class BaseModelTraitTest extends TestCase
         $this->assertNull($baseModelTrait->getPdoEtl());
         
         $this->assertObjectHasAttribute('limit', $baseModelTrait);
+        $this->assertObjectHasAttribute('sumSprint', $baseModelTrait);
+        $this->assertObjectNotHasAttribute('_tableBase', $baseModelTrait);
+        $this->assertObjectNotHasAttribute('_tableEtl', $baseModelTrait);
     }
 }

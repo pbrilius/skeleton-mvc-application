@@ -30,7 +30,23 @@ trait BaseModelTrait
      */
     private $_pdoBase;
 
+    /**
+     * Table ETL
+     *
+     * @var string
+     */
+    private $_tableEtl;
+
+    /**
+     * Target table
+     *
+     * @var string
+     */
+    private $_tableBase;
+
     protected $limit = 32;
+
+    protected $sumSprint = 'SELECT COUNT(`id`) FROM `:table`';
     
     /**
      * PDO
@@ -57,6 +73,26 @@ trait BaseModelTrait
     public function getPdoEtl(): ?\PDO
     {
         return $this->_pdoEtl;
+    }
+
+    /**
+     * Table getter base
+     *
+     * @return string
+     */
+    public function getTableBase(): string
+    {
+        return $this->_tableBase;
+    }
+    
+    /**
+     * Table getter ETL
+     *
+     * @return string
+     */
+    public function getTableETL(): string
+    {
+        return $this->_tableEtl;
     }
 
 }
