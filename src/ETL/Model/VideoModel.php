@@ -66,9 +66,9 @@ class VideoModel extends BaseModel
                 ':tableBase' => $this->_tableBase,
             ]
         );
-        $sumImages = $stmt->fetchColumn();
+        $sumVideos = $stmt->fetchColumn();
         
-        $rounds = floor($sumImages / $this->limit) + 1;
+        $rounds = floor($sumVideos / $this->limit) + 1;
         $offset = 0;
 
         for ($i = 0; $i < $rounds; $i++) {
