@@ -53,7 +53,7 @@ class VideoModel extends BaseModel
         /**
          * PDO base
          * 
-         * @var \PDO $pdoBase \PDO
+         * @var \PDO $pdoBase PDO
          */
         $pdoBase = $this->getPdoBase();
         $pdoEtl = $this->getPdoEtl();
