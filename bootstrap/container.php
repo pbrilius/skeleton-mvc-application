@@ -34,6 +34,10 @@ $container = new Container();
 
 require __DIR__ . '/config.php';
 
+if ($_ENV['APPLICATION_MODE'] === 'development') {
+    include __DIR__ . '/config-tdd.php';
+}
+
 foreach ($containerPriority as $initConsumption) {
     $prerequisites = glob(__DIR__ . '/' . $initConsumption . '/*.php');
     foreach ($prerequisites as $prerequisite) {
