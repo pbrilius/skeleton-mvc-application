@@ -27,6 +27,9 @@
         <testsuite name="ETL Models">
             <directory suffix="Test.php">tests/ETL/Model</directory>
         </testsuite>
+        <testsuite name="ETL TDD">
+            <directory suffix="Test.php">tests/ETL/TDD</directory>
+        </testsuite>
         <testsuite name="CMS Base">
             <directory suffix="Test.php">tests/CMS/Base</directory>
         </testsuite>
