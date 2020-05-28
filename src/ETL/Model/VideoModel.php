@@ -88,7 +88,7 @@ class VideoModel extends BaseModel
         }
 
         return [
-            'Job' => __CLASS__,
+            'job' => __CLASS__,
             'status' => BaseModelStatuses::OK,
         ];
     }
