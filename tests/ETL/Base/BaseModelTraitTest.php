@@ -38,5 +38,6 @@ class BaseModelTraitTest extends TestCase
             ->getMockForTrait();
 
         $this->assertNull($baseModelTrait->getPdo());
+        $this->assertObjectHasAttribute('limit', $baseModelTrait);
     }
 }

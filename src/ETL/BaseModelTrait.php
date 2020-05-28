@@ -30,6 +30,8 @@ trait BaseModelTrait
      */
     private $_pdo;
 
+    protected $limit = 50;
+
     /**
      * PDO getter
      *
