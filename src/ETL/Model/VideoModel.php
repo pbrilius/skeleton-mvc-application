@@ -77,7 +77,7 @@ class VideoModel extends BaseModel
                     . '`id`, '
                     . 'AVG(`record`) AS avg_record, '
                     . 'MIN(`record`) AS min_record, '
-                    . 'MAX(`record`) AS max_record'
+                    . 'MAX(`record`) AS max_record '
                     . 'FROM `:tableBase` '
                     . 'LIMIT :limit '
                     . 'OFFSET :offset '
@@ -113,7 +113,7 @@ class VideoModel extends BaseModel
                 $stmt->execute(
                     [
                         ':tableEtl' => $this->_tableEtl,
-                        ':id' => Uuid::uuid4(),
+                        ':uuid' => Uuid::uuid4(),
                         ':videoUuid' => $result['id'],
                         ':max' => $result['max_record'],
                         ':min' => $result['min_record'],

@@ -77,7 +77,7 @@ class ImageModel extends BaseModel
                     . '`id`, '
                     . 'AVG(`jpeg`) AS avg_jpeg, '
                     . 'MIN(`jpeg`) AS min_jpeg, '
-                    . 'MAX(`jpeg`) AS max_jpeg'
+                    . 'MAX(`jpeg`) AS max_jpeg '
                     . 'FROM `:tableBase` '
                     . 'LIMIT :limit '
                     . 'OFFSET :offset '
@@ -113,7 +113,7 @@ class ImageModel extends BaseModel
                 $stmt->execute(
                     [
                         ':tableEtl' => $this->_tableEtl,
-                        ':id' => Uuid::uuid4(),
+                        ':uuid' => Uuid::uuid4(),
                         ':imageUuid' => $result['id'],
                         ':max' => $result['max_jpeg'],
                         ':min' => $result['min_jpeg'],
