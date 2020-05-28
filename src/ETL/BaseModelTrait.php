@@ -28,18 +28,35 @@ trait BaseModelTrait
      *
      * @var \PDO
      */
-    private $_pdo;
+    private $_pdoBase;
 
     protected $limit = 50;
+    
+    /**
+     * PDO
+     *
+     * @var \PDO
+     */
+    private $_pdoEtl;
 
     /**
-     * PDO getter
+     * PDO base getter
      *
      * @return \PDO|null
      */
-    public function getPdo(): ?\PDO
+    public function getPdoBase(): ?\PDO
     {
-        return $this->_pdo;
+        return $this->_pdoBase;
+    }
+    
+    /**
+     * PDO ETL getter
+     *
+     * @return \PDO|null
+     */
+    public function getPdoEtl(): ?\PDO
+    {
+        return $this->_pdoEtl;
     }
 
 }
