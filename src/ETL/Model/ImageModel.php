@@ -74,7 +74,7 @@ class ImageModel extends BaseModel
         for ($i = 0; $i < $rounds; $i++) {
             $stmt = $pdoBase->prepare(
                 'SELECT '
-                    . '`id, '
+                    . '`id`, '
                     . 'AVG(`jpeg`) AS avg_jpeg, '
                     . 'MIN(`jpeg`) AS min_jpeg, '
                     . 'MAX(`jpeg`) AS max_jpeg'

@@ -74,7 +74,7 @@ class VideoModel extends BaseModel
         for ($i = 0; $i < $rounds; $i++) {
             $stmt = $pdoBase->prepare(
                 'SELECT '
-                    . '`id, '
+                    . '`id`, '
                     . 'AVG(`record`) AS avg_record, '
                     . 'MIN(`record`) AS min_record, '
                     . 'MAX(`record`) AS max_record'
