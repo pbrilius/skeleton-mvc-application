@@ -23,7 +23,9 @@ $container->add(
     function () use ($container) {
         $videoModel = new VideoModel(
             $container->get('mysql.pdo')[0],
-            $container->get('mysql.pdo')[1]
+            $container->get('mysql.pdo')[1],
+            'video_memo',
+            'video_etl'
         );
 
         return $videoModel;
