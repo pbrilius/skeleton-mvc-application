@@ -115,9 +115,9 @@ class VideoModel extends BaseModel
                         ':tableEtl' => $this->_tableEtl,
                         ':id' => Uuid::uuid4(),
                         ':videoUuid' => $result['id'],
-                        ':max' => $result['max_jpeg'],
-                        ':min' => $result['min_jpeg'],
-                        ':average' => $result['avg_jpeg'],
+                        ':max' => $result['max_record'],
+                        ':min' => $result['min_record'],
+                        ':average' => $result['avg_record'],
                     ]
                 );
             }
