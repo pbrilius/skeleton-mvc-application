@@ -23,7 +23,9 @@ $container->add(
     function () use ($container) {
         $imageModel = new ImageModel(
             $container->get('mysql.pdo')[0],
-            $container->get('mysql.pdo')[1]
+            $container->get('mysql.pdo')[1],
+            'image',
+            'etl_image'
         );
 
         return $imageModel;

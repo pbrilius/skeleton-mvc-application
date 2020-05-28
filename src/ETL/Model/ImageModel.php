@@ -28,6 +28,22 @@ use Ramsey\Uuid\Uuid;
 class ImageModel extends BaseModel
 {
     /**
+     * Target moel constructor
+     *
+     * @param \PDO   $pdoBase   Base
+     * @param \PDO   $pdoEtl    ETL
+     * @param string $tableBase Target table
+     * @param string $tableEtl  ETL table
+     */
+    public function __construct(\PDO $pdoBase, \PDO $pdoEtl, string $tableBase, string $tableEtl)
+    {
+        parent::__construct($pdoBase, $pdoEtl);
+
+        $this->_tableBase = $tableBase;
+        $this->_tableEtl = $tableEtl;
+    }
+    
+    /**
      * Processing
      *
      * @return array
@@ -43,48 +59,70 @@ class ImageModel extends BaseModel
         $pdoEtl = $this->getPdoEtl();
 
         $stmt = $pdoBase->prepare(
-            'SELECT '
-                . '`id, '
-                . 'AVG(`jpeg`) AS avg_jpeg, '
-                . 'MIN(`jpeg`) AS min_jpeg, '
-                . 'MAX(`jpeg`) AS max_jpeg'
-                . 'FROM `image` '
-                . 'LIMIT :limit '
-                . 'ORDER BY `date_created` DESC'
+            $this->sumSprint
         );
-        $stmt->bindParam(':limit', $this->limit);
+        $stmt->execute(
+            [
+                ':tableBase' => $this->_tableBase,
+            ]
+        );
+        $sumImages = $stmt->fetchColumn();
+        
+        $rounds = floor($sumImages / $this->limit) + 1;
+        $offset = 0;
 
-        $stmt->execute();
-        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        foreach ($results as $result) {
-            $stmt = $pdoEtl->prepare(
-                'INSERT INTO `image_etl` '
-                    . '('
-                    . '`id`, '
-                    . '`image`, '
-                    . '`max`, '
-                    . '`min`, '
-                    . '`average`'
-                    . ')'
-                    . 'VALUES ('
-                    . ':uuid, '
-                    . ':imageUuid, '
-                    . ':max, '
-                    . ':min, '
-                    . ':average'
-                    . ')'
+        for ($i = 0; $i < $rounds; $i++) {
+            $stmt = $pdoBase->prepare(
+                'SELECT '
+                    . '`id, '
+                    . 'AVG(`jpeg`) AS avg_jpeg, '
+                    . 'MIN(`jpeg`) AS min_jpeg, '
+                    . 'MAX(`jpeg`) AS max_jpeg'
+                    . 'FROM `:tableBase` '
+                    . 'LIMIT :limit '
+                    . 'OFFSET :offset '
+                    . 'ORDER BY `date_created` DESC '
+                    . 'GROUP BY `id`'
             );
+            $stmt->bindParam(':tableBase', $this->_tableBase);
+            $stmt->bindParam(':limit', $this->limit);
+            $stmt->bindParam(':offset', $offset);
 
-            $stmt->execute(
-                [
-                    ':id' => Uuid::uuid4(),
-                    ':imageUuid' => $result['id'],
-                    ':max' => $result['max_jpeg'],
-                    ':min' => $result['min_jpeg'],
-                    ':average' => $result['avg_jpeg'],
-                ]
-            );
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            foreach ($results as $result) {
+                $stmt = $pdoEtl->prepare(
+                    'INSERT INTO `:tableEtl` '
+                        . '('
+                        . '`id`, '
+                        . '`image`, '
+                        . '`max`, '
+                        . '`min`, '
+                        . '`average`'
+                        . ')'
+                        . 'VALUES ('
+                        . ':uuid, '
+                        . ':imageUuid, '
+                        . ':max, '
+                        . ':min, '
+                        . ':average'
+                        . ')'
+                );
+
+                $stmt->execute(
+                    [
+                        ':tableEtl' => $this->_tableEtl,
+                        ':id' => Uuid::uuid4(),
+                        ':imageUuid' => $result['id'],
+                        ':max' => $result['max_jpeg'],
+                        ':min' => $result['min_jpeg'],
+                        ':average' => $result['avg_jpeg'],
+                    ]
+                );
+            }
+
+            $offset *= $this->limit;
         }
 
         return [
