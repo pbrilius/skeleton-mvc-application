@@ -46,7 +46,7 @@ trait BaseModelTrait
 
     protected $limit = 32;
 
-    protected $sumSprint = 'SELECT COUNT(`id`) FROM `:table`';
+    protected $sumSprint = 'SELECT COUNT(`id`) AS `sum_base` FROM %s';
     
     /**
      * PDO
