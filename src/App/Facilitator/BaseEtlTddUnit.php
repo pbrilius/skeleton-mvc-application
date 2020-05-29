@@ -45,7 +45,7 @@ class BaseEtlTddUnit extends TestCase
      */
     private function _up()
     {
-        $container = include_once __DIR__
+        $container = include __DIR__
             . '/..'
             . '/..'
             . '/..'
@@ -256,6 +256,16 @@ class BaseEtlTddUnit extends TestCase
     }
 
     /**
+     * Poweroff
+     *
+     * @return void
+     */
+    private function _down()
+    {
+        unset($this->_container);
+    }
+
+    /**
      * Booting up constructor
      */
     public function __construct()
@@ -263,6 +273,14 @@ class BaseEtlTddUnit extends TestCase
         parent::__construct();
 
         $this->_up();
+    }
+
+    /**
+     * Chain reaction destructor
+     */
+    public function __destruct()
+    {
+        $this->_down();
     }
 
     /**
