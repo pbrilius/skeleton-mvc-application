@@ -88,6 +88,9 @@ class BaseEtlTddUnit extends TestCase
         $stmt = $pdoAppTdd->prepare(
             'TRUNCATE `image`'
         );
+        $stmt = $pdoAppTdd->prepare(
+            'TRUNCATE `note`'
+        );
         $stmt->execute();
 
         $stmt = $pdoAppTdd->prepare(
@@ -130,9 +133,66 @@ class BaseEtlTddUnit extends TestCase
         } catch (\PDOException $e) {
             $pdoAppTdd->rollBack();
         }
-        
+
         $stmt = $pdoAppTdd->prepare(
-            'INSERT INTO image ('
+            'INSERT INTO user ('
+                . 'id, '
+                . 'email, '
+                . 'hash '
+                . ') '
+                . 'VALUES ('
+                . '?, '
+                . '?, '
+                . '?'
+                . ')'
+        );
+        $userBase = [];
+        try {
+            $pdoAppTdd->beginTransaction();
+            for ($i = 0; $i < $this->rate; $i++) {
+                $data = [
+                    Uuid::uuid6()->toString(),
+                    hash('crc32', random_bytes(16)),
+                    hash('whirlpool', random_bytes(24)),
+                ];
+
+                $userBase[] = $data;
+
+                $stmt->execute($data);
+            }
+            $pdoAppTdd->commit();
+        } catch (\PDOException $e) {
+            $pdoAppTdd->rollBack();
+        }
+
+        $stmt = $pdoAppTdd->prepare(
+            'INSERT INTO note ('
+                . 'id, '
+                . 'user '
+                . ') '
+                . 'VALUES ('
+                . '?, '
+                . '?'
+                . ')'
+        );
+        $noteBase = [];
+        try {
+            $pdoAppTdd->beginTransaction();
+            for ($i = 0; $i < $this->rate; $i++) {
+                $data = [
+                    Uuid::uuid6()->toString(),
+                    $userBase[$i][0],
+                ];
+                $noteBase []= $data;
+                $stmt->execute($data);
+            }
+            $pdoAppTdd->commit();
+        } catch (\PDOException $e) {
+            $pdoAppTdd->rollBack();
+        }
+
+        $stmt = $pdoAppTdd->prepare(
+            'INSERT INTO voice_memo ('
                 . '`id`, '
                 . '`note`, '
                 . '`record`, '
@@ -145,13 +205,14 @@ class BaseEtlTddUnit extends TestCase
                 . '?'
                 . ')'
         );
+
         try {
             $pdoAppTdd->beginTransaction();
             for ($i = 0; $i < $this->rate; $i++) {
                 $data = [
                     Uuid::uuid6()->toString(),
-                    hash('md5', random_bytes(4)),
-                    hash('md5', random_bytes(5)),
+                    $noteBase[$i][0],
+                    hash('whirlpool', random_bytes(4)),
                     (new \DateTime())->format('Y-m-d H:i:s'),
                 ];
 
@@ -161,9 +222,9 @@ class BaseEtlTddUnit extends TestCase
         } catch (\PDOException $e) {
             $pdoAppTdd->rollBack();
         }
-        
+
         $stmt = $pdoAppTdd->prepare(
-            'INSERT INTO image ('
+            'INSERT INTO video_memo ('
                 . 'id, '
                 . 'note, '
                 . 'record, '
@@ -181,7 +242,7 @@ class BaseEtlTddUnit extends TestCase
             for ($i = 0; $i < $this->rate; $i++) {
                 $data = [
                     Uuid::uuid6()->toString(),
-                    hash('md5', random_bytes(4)),
+                    $noteBase[$i][0],
                     hash('md5', random_bytes(5)),
                     (new \DateTime())->format('Y-m-d H:i:s'),
                 ];
@@ -192,7 +253,6 @@ class BaseEtlTddUnit extends TestCase
         } catch (\PDOException $e) {
             $pdoAppTdd->rollBack();
         }
-
     }
 
     /**
