@@ -77,6 +77,7 @@ class BaseEtlTddUnit extends TestCase
         );
         $stmt->execute();
 
+
         /**
          * PDO TDD
          * 
@@ -85,9 +86,55 @@ class BaseEtlTddUnit extends TestCase
         $pdoAppTdd = $container
             ->get('mysql.pdo.tdd')[0];
 
+        $baseEtl = [];
+
+        $stmt = $pdoAppTdd->prepare('SELECT COUNT(*) FROM user');
+        $stmt->execute();
+        $baseEtl[] = $stmt->fetchColumn();
+
+        $stmt = $pdoAppTdd->prepare('SELECT COUNT(*) FROM note');
+        $stmt->execute();
+        $baseEtl[] = $stmt->fetchColumn();
+
+        $stmt = $pdoAppTdd->prepare('SELECT COUNT(*) FROM image');
+        $stmt->execute();
+        $baseEtl[] = $stmt->fetchColumn();
+
+        $stmt = $pdoAppTdd->prepare('SELECT COUNT(*) FROM voice_memo');
+        $stmt->execute();
+        $baseEtl[] = $stmt->fetchColumn();
+
+        $stmt = $pdoAppTdd->prepare('SELECT COUNT(*) FROM video_memo');
+        $stmt->execute();
+        $baseEtl[] = $stmt->fetchColumn();
+
+        $baseZero = false;
+        foreach ($baseEtl as $etl) {
+            if ($etl >= $this->rate) {
+                continue;
+            }
+
+            $baseZero = true;
+            break;
+        }
+
+        if (!$baseZero) {
+            return;
+        }
+
+        $stmt = $pdoAppTdd->prepare('SET foreign_key_checks=0');
+        $stmt->execute();
+
+        $stmt = $pdoAppTdd->prepare(
+            'TRUNCATE `user`'
+        );
+        $stmt->execute();
+
         $stmt = $pdoAppTdd->prepare(
             'TRUNCATE `image`'
         );
+        $stmt->execute();
+
         $stmt = $pdoAppTdd->prepare(
             'TRUNCATE `note`'
         );
@@ -101,6 +148,9 @@ class BaseEtlTddUnit extends TestCase
         $stmt = $pdoAppTdd->prepare(
             'TRUNCATE `voice_memo`'
         );
+        $stmt->execute();
+
+        $stmt = $pdoAppTdd->prepare('SET foreign_key_checks=1');
         $stmt->execute();
 
         $stmt = $pdoAppTdd->prepare(
@@ -183,7 +233,7 @@ class BaseEtlTddUnit extends TestCase
                     Uuid::uuid6()->toString(),
                     $userBase[$i][0],
                 ];
-                $noteBase []= $data;
+                $noteBase[] = $data;
                 $stmt->execute($data);
             }
             $pdoAppTdd->commit();
