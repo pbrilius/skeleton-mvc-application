@@ -9,10 +9,12 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
+
 namespace App\Facilitator;
 
 use League\Container\Container;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Base TDD - BDD - PDO stack
@@ -33,7 +35,7 @@ class BaseEtlTddUnit extends TestCase
     private $_container;
 
     protected $rate = 256;
-    
+
     /**
      * Power up the boot device
      *
@@ -90,21 +92,105 @@ class BaseEtlTddUnit extends TestCase
             'TRUNCATE `video_memo`'
         );
         $stmt->execute();
-        
+
         $stmt = $pdoAppTdd->prepare(
             'TRUNCATE `voice_memo`'
         );
         $stmt->execute();
-    }
 
-    /**
-     * Down, booting off
-     *
-     * @return void
-     */
-    private function _down()
-    {
-        unset($this->_container);
+        $stmt = $pdoAppTdd->prepare(
+            'INSERT INTO image ('
+                . 'id, '
+                . 'label, '
+                . 'jpeg, '
+                . 'date_created '
+                . ') '
+                . 'VALUES ('
+                . '?, '
+                . '?, '
+                . '?, '
+                . '?'
+                . ')'
+        );
+        try {
+            $pdoAppTdd->beginTransaction();
+            for ($i = 0; $i < $this->rate; $i++) {
+                $data = [
+                    Uuid::uuid6()->toString(),
+                    hash('md5', random_bytes(4)),
+                    hash('md5', random_bytes(5)),
+                    (new \DateTime())->format('Y-m-d H:i:s'),
+                ];
+
+                $stmt->execute($data);
+            }
+            $pdoAppTdd->commit();
+        } catch (\PDOException $e) {
+            $pdoAppTdd->rollBack();
+        }
+        
+        $stmt = $pdoAppTdd->prepare(
+            'INSERT INTO image ('
+                . '`id`, '
+                . '`note`, '
+                . '`record`, '
+                . '`date_created` '
+                . ') '
+                . 'VALUES ('
+                . '?, '
+                . '?, '
+                . '?, '
+                . '?'
+                . ')'
+        );
+        try {
+            $pdoAppTdd->beginTransaction();
+            for ($i = 0; $i < $this->rate; $i++) {
+                $data = [
+                    Uuid::uuid6()->toString(),
+                    hash('md5', random_bytes(4)),
+                    hash('md5', random_bytes(5)),
+                    (new \DateTime())->format('Y-m-d H:i:s'),
+                ];
+
+                $stmt->execute($data);
+            }
+            $pdoAppTdd->commit();
+        } catch (\PDOException $e) {
+            $pdoAppTdd->rollBack();
+        }
+        
+        $stmt = $pdoAppTdd->prepare(
+            'INSERT INTO image ('
+                . 'id, '
+                . 'note, '
+                . 'record, '
+                . 'date_created '
+                . ') '
+                . 'VALUES ('
+                . '?, '
+                . '?, '
+                . '?, '
+                . '?'
+                . ')'
+        );
+        try {
+            $pdoAppTdd->beginTransaction();
+            for ($i = 0; $i < $this->rate; $i++) {
+                $data = [
+                    Uuid::uuid6()->toString(),
+                    hash('md5', random_bytes(4)),
+                    hash('md5', random_bytes(5)),
+                    (new \DateTime())->format('Y-m-d H:i:s'),
+                ];
+
+                $stmt->execute($data);
+            }
+            $pdoAppTdd->commit();
+        } catch (\PDOException $e) {
+            $pdoAppTdd->rollBack();
+        }
+
     }
 
     /**
@@ -115,14 +201,6 @@ class BaseEtlTddUnit extends TestCase
         parent::__construct();
 
         $this->_up();
-    }
-
-    /**
-     * Power offing destructor
-     */
-    public function __destruct()
-    {
-        $this->_down();
     }
 
     /**

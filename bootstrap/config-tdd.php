@@ -13,7 +13,7 @@
  */
 
 $container->add(
-    'db.tdd.config',
+    'db.tdd.app.config',
     [
         'host' => 'localhost',
         'port' => 3306,

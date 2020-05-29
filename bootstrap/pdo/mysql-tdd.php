@@ -16,7 +16,8 @@ if ($_ENV['APPLICATION_MODE'] === 'development') {
     $container->add(
         PDO::class,
         function () use ($container) {
-            $dbConfig = $container->get('db.tdd.config');
+            $dbConfig = $container->get('db.tdd.app.config');
+            var_dump($dbConfig);
             $pdo = new \PDO(
                 'mysql:host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['database'],
                 $dbConfig['user'],
