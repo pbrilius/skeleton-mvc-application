@@ -84,8 +84,12 @@ class ImageDrillTest extends BaseEtlTddUnit
 
         $this->assertStringNotMatchesFormat($this->uuidFormat, $etlContentCheck[0]['id']);
         $this->assertNotNull($etlContentCheck[0]['label']);
-        $this->assertNotEmpty($etlContentCheck[0]['min']);
-        $this->assertNotEmpty($etlContentCheck[0]['average']);
-        $this->assertNotEmpty($etlContentCheck[0]['max']);
+        $this->assertNotNull($etlContentCheck[0]['min']);
+        $this->assertNotNull($etlContentCheck[0]['average']);
+        $this->assertNotNull($etlContentCheck[0]['max']);
+
+        $this->assertGreaterThanOrEqual(0, $etlContentCheck[0]['min']);
+        $this->assertGreaterThanOrEqual(0, $etlContentCheck[0]['max']);
+        $this->assertGreaterThanOrEqual(0, $etlContentCheck[0]['average']);
     }
 }
