@@ -34,7 +34,7 @@ class BaseEtlTddUnit extends TestCase
      */
     private $_container;
 
-    protected $rate = 256;
+    protected $rate = 1024;
 
     protected $uuidFormat = '/\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/';
 
@@ -119,8 +119,8 @@ class BaseEtlTddUnit extends TestCase
             for ($i = 0; $i < $this->rate; $i++) {
                 $data = [
                     Uuid::uuid6()->toString(),
-                    hash('md5', random_bytes(4)),
-                    hash('md5', random_bytes(5)),
+                    hash('md5', random_bytes(16)),
+                    hash('md5', random_bytes(24)),
                     (new \DateTime())->format('Y-m-d H:i:s'),
                 ];
 
