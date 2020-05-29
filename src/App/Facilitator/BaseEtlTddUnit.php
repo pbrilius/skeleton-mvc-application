@@ -36,6 +36,8 @@ class BaseEtlTddUnit extends TestCase
 
     protected $rate = 256;
 
+    protected $uuidFormat = '/\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/';
+
     /**
      * Power up the boot device
      *
