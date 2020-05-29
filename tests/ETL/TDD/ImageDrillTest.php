@@ -14,7 +14,6 @@ namespace Tests\ETL\TDD;
 
 use App\Facilitator\BaseEtlTddUnit;
 use ETL\Model\ImageModel;
-use Ramsey\Uuid\Uuid;
 
 /**
  * High end ETL stack
@@ -39,38 +38,18 @@ class ImageDrillTest extends BaseEtlTddUnit
         /**
          * PDO
          * 
-         * @var \PDO $pdo PDO
+         * @var \PDO $pdoApp PDO
          */
-        $pdo = $container->get('mysql.pdo.tdd')[0];
-
-        for ($i = 0; $i < $this->rate; $i++) {
-            $stmt = $pdo->prepare(
-                'INSERT INTO `image` ('
-                    . '`id`, '
-                    . '`label`, '
-                    . '`jpeg`, '
-                    . '`date_created` '
-                    . 'VALUES('
-                    . ':id, '
-                    . ':label, '
-                    . ':jpeg, '
-                    . ':date_created'
-                    . ')'
-            );
-            $stmt->execute(
-                [
-                    ':id' => Uuid::uuid6(),
-                    ':label' => hash('whirlpool', random_bytes(4)),
-                    ':jpeg' => hash('whirlpool', random_bytes(5)),
-                    ':date_created' => (new \DateTime())->format('Y-m-d H:i:s'),
-                ]
-            );
-            echo 'test';
-            die;
-        }
+        $pdoApp = $container->get('mysql.pdo.tdd')[0];
+        /**
+         * PDO
+         * 
+         * @var \PDO $pdoEtl PDO
+         */
+        $pdoEtl = $container->get('mysql.pdo.tdd')[1];
 
         $imageModel = new ImageModel(
-            $pdo,
+            $pdoApp,
             $container->get('mysql.pdo.tdd')[1],
             'image',
             'image_etl'
@@ -87,5 +66,26 @@ class ImageDrillTest extends BaseEtlTddUnit
         $this->assertStringContainsString(ImageModel::class, $response['job']);
         $this->assertStringContainsString('OK', $response['status']);
 
+        $stmt = $pdoEtl->prepare(
+            'SELECT COUNT(id) FROM image_etl'
+        );
+        $stmt->execute();
+
+        $etlCheck = $stmt->fetchColumn();
+
+        $this->assertGreaterThan(0, $etlCheck);
+
+        $stmt = $pdoEtl->prepare(
+            'SELECT * FROM image_etl LIMIT 1'
+        );
+        $stmt->execute();
+
+        $etlContentCheck = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $this->assertStringNotMatchesFormat($this->uuidFormat, $etlContentCheck[0]['id']);
+        $this->assertNotNull($etlContentCheck[0]['label']);
+        $this->assertNotEmpty($etlContentCheck[0]['min']);
+        $this->assertNotEmpty($etlContentCheck[0]['average']);
+        $this->assertNotEmpty($etlContentCheck[0]['max']);
     }
 }

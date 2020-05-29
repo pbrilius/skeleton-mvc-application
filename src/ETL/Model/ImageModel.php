@@ -42,7 +42,7 @@ class ImageModel extends BaseModel
         $this->_tableBase = $tableBase;
         $this->_tableEtl = $tableEtl;
     }
-    
+
     /**
      * Processing
      *
@@ -59,67 +59,76 @@ class ImageModel extends BaseModel
         $pdoEtl = $this->getPdoEtl();
 
         $stmt = $pdoBase->prepare(
-            $this->sumSprint
+            sprintf($this->sumSprint, $this->_tableBase)
         );
-        $stmt->execute(
-            [
-                ':tableBase' => $this->_tableBase,
-            ]
-        );
+        $stmt->execute();
         $sumImages = $stmt->fetchColumn();
-        
+
         $rounds = floor($sumImages / $this->limit) + 1;
         $offset = 0;
 
+        $stmtSprint = 'SELECT '
+            . 'label, '
+            . 'AVG(`jpeg`) AS avg_jpeg, '
+            . 'MIN(`jpeg`) AS min_jpeg, '
+            . 'MAX(`jpeg`) AS max_jpeg '
+            . 'FROM %s '
+            . 'GROUP BY label '
+            . 'LIMIT %s '
+            . 'OFFSET %s ';
+
         for ($i = 0; $i < $rounds; $i++) {
-            $stmt = $pdoBase->prepare(
-                'SELECT '
-                    . '`label`, '
-                    . 'AVG(`jpeg`) AS avg_jpeg, '
-                    . 'MIN(`jpeg`) AS min_jpeg, '
-                    . 'MAX(`jpeg`) AS max_jpeg '
-                    . 'FROM `:tableBase` '
-                    . 'LIMIT :limit '
-                    . 'OFFSET :offset '
-                    . 'ORDER BY `date_created` DESC '
-                    . 'GROUP BY `label`'
+            $stmtSprint = sprintf(
+                $stmtSprint,
+                $this->_tableBase,
+                $this->limit,
+                $offset
             );
-            $stmt->bindParam(':tableBase', $this->_tableBase);
-            $stmt->bindParam(':limit', $this->limit);
-            $stmt->bindParam(':offset', $offset);
+            $stmt = $pdoBase->prepare(
+                $stmtSprint
+            );
 
             $stmt->execute();
             $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-            foreach ($results as $result) {
-                $stmt = $pdoEtl->prepare(
-                    'INSERT INTO `:tableEtl` '
-                        . '('
-                        . '`id`, '
-                        . '`label`, '
-                        . '`max`, '
-                        . '`min`, '
-                        . '`average`'
-                        . ')'
-                        . 'VALUES ('
-                        . ':uuid, '
-                        . ':label, '
-                        . ':max, '
-                        . ':min, '
-                        . ':average'
-                        . ')'
-                );
+            $stmtSprintInsert = 'INSERT INTO %s '
+                . '('
+                . '`id`, '
+                . '`label`, '
+                . '`max`, '
+                . '`min`, '
+                . '`average`'
+                . ')'
+                . 'VALUES ('
+                . ':uuid, '
+                . ':label, '
+                . ':max, '
+                . ':min, '
+                . ':average'
+                . ')';
 
-                $stmt->execute(
-                    [
-                        ':tableEtl' => $this->_tableEtl,
-                        ':uuid' => Uuid::uuid4(),
-                        ':label' => $result['label'],
-                        ':max' => $result['max_jpeg'],
-                        ':min' => $result['min_jpeg'],
-                        ':average' => $result['avg_jpeg'],
-                    ]
-                );
+            $stmtSprintInsert = sprintf($stmtSprintInsert, $this->_tableEtl);
+
+            try {
+                $pdoEtl->beginTransaction();
+                foreach ($results as $result) {
+                    $stmt = $pdoEtl->prepare(
+                        $stmtSprintInsert
+                    );
+
+                    $stmt->execute(
+                        [
+                            ':uuid' => Uuid::uuid4()->toString(),
+                            ':label' => $result['label'],
+                            ':max' => (int) $result['max_jpeg'],
+                            ':min' => (int) $result['min_jpeg'],
+                            ':average' => (float) $result['avg_jpeg'],
+                        ]
+                    );
+                }
+                $pdoEtl->commit();
+            } catch (\PDOException $e) {
+                $pdoEtl->rollBack();
             }
 
             $offset += $this->limit;
