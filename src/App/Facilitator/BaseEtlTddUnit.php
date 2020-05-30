@@ -34,7 +34,7 @@ class BaseEtlTddUnit extends TestCase
      */
     private $_container;
 
-    protected $rate = 1024;
+    protected $rate = 262144;
 
     protected $uuidFormat = '/\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/';
 
