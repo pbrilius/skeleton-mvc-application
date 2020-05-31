@@ -36,7 +36,7 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
 
 $container->add(
     PDO::class,
@@ -53,7 +53,7 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
 
 $container->add(
     PDO::class,
@@ -70,7 +70,7 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
 
 $container->add(
     PDO::class,
@@ -87,7 +87,7 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
 
 $container->add(
     PDO::class,
@@ -104,7 +104,7 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
 
 $container->add(
     PDO::class,
@@ -121,4 +121,4 @@ $container->add(
 
         return $pdo;
     }
-)->addTag('mysql.pdo');
+)->addTag('mysql.pdo')->setShared(true);
