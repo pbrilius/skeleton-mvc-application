@@ -60,6 +60,12 @@
         <testsuite name="C2C Models">
             <directory suffix="Test.php">tests/PBG/Model</directory>
         </testsuite>
+        <testsuite name="CLI Base">
+            <directory suffix="Test.php">tests/Command</directory>
+        </testsuite>
+        <testsuite name="CLI C2C">
+            <directory suffix="Test.php">tests/PBG/Command</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
