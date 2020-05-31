@@ -11,13 +11,14 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
+
 use League\Container\Container;
 
 /**
-  * Vector of priority
-  * 
-  * @var array $containerPriority Container Priority
-  */
+ * Vector of priority
+ * 
+ * @var array $containerPriority Container Priority
+ */
 global $containerPriority;
 
 $containerPriority = [
@@ -25,6 +26,10 @@ $containerPriority = [
     'logger',
     'models',
 ];
+
+if (PHP_SAPI === 'cli') {
+    $containerPriority[] = 'commands';
+}
 
 
 require_once __DIR__ . '/../vendor/autoload.php';

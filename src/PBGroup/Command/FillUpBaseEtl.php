@@ -31,6 +31,12 @@ class FillUpBaseEtl extends BaseCommand
      */
     public function execute(): void
     {
+        $input = $this->getInput();
+        $output = $this->getOutput();
+
+        $output->write('This is ETL machinery. ');
+        $output->write('So called aotonomous systems.');
+
         return;
     }
 }
