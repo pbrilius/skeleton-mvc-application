@@ -12,6 +12,7 @@
 namespace App\Command;
 
 use Laminas\Diactoros\Stream;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Base Command stack
@@ -29,10 +30,10 @@ abstract class BaseCommand implements BaseCommandInterface
     /**
      * Default constructor - CLI
      *
-     * @param Stream $input  Input
-     * @param Stream $output Output
+     * @param StreamInterface $input  Input
+     * @param StreamInterface $output Output
      */
-    public function __construct(Stream $input, Stream $output)
+    public function __construct(StreamInterface $input, StreamInterface $output)
     {
         $this->_input = $input;
         $this->_output = $output;
@@ -41,10 +42,10 @@ abstract class BaseCommand implements BaseCommandInterface
     /**
      * Execution
      *
-     * @param Stream $input  Input
-     * @param Stream $output Output
+     * @param StreamInterface $input  Input
+     * @param StreamInterface $output Output
      * 
      * @return void
      */
-    abstract public function execute(Stream $input, Stream $output): void;
+    abstract public function execute(StreamInterface $input, StreamInterface $output): void;
 }

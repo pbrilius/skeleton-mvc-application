@@ -11,7 +11,7 @@
  */
 namespace App\Command;
 
-use Laminas\Diactoros\Stream;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Base Command stack
@@ -27,23 +27,23 @@ trait BaseCommandTrait
     /**
      * Stream output
      *
-     * @var Stream
+     * @var StreamInterface
      */
     private $_output;
 
     /**
      * Input stream
      *
-     * @var Stream
+     * @var StreamInterface
      */
     private $_input;
 
     /**
      * Output getter
      *
-     * @return Stream
+     * @return StreamInterface
      */
-    public function getOutput(): Stream
+    public function getOutput(): StreamInterface
     {
         return $this->_output;
     }
@@ -51,9 +51,9 @@ trait BaseCommandTrait
     /**
      * Stream input getter
      *
-     * @return Stream
+     * @return StreamInterface
      */
-    public function getInput(): Stream
+    public function getInput(): StreamInterface
     {
         return $this->_input;
     }

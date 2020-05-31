@@ -11,7 +11,7 @@
  */
 namespace App\Command;
 
-use Laminas\Diactoros\Stream;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Base Command stack
@@ -27,11 +27,11 @@ interface BaseCommandInterface
     /**
      * CLI command execution
      *
-     * @param Stream $input  Input
-     * @param Stream $output Output
+     * @param StreamInterface $input  Input
+     * @param StreamInterface $output Output
      * 
      * @return void
      */
-    public function execute(Stream $input, Stream $output): void;
+    public function execute(StreamInterface $input, StreamInterface $output): void;
 
 }
