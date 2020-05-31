@@ -4,14 +4,12 @@
  * PHP version 7
  * 
  * @category Base
- * @package  CLI
+ * @package  Job
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace PBG\Command;
-
-use App\Command\BaseCommand;
+namespace App\Command;
 
 /**
  * Base Command stack
@@ -22,15 +20,17 @@ use App\Command\BaseCommand;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class FillUpBaseEtl extends BaseCommand
+trait LabelQR
 {
+    protected $label = 'Default command label';
+
     /**
-     * Execution
+     * Label getter
      *
-     * @return void
+     * @return string
      */
-    public function execute(): void
+    public function getLabel(): string
     {
-        return;
+        return $this->label;
     }
 }

@@ -27,11 +27,8 @@ interface BaseCommandInterface
     /**
      * CLI command execution
      *
-     * @param StreamInterface $input  Input
-     * @param StreamInterface $output Output
-     * 
      * @return void
      */
-    public function execute(StreamInterface $input, StreamInterface $output): void;
+    public function execute(): void;
 
 }

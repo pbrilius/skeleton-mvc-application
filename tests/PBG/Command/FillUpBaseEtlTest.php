@@ -43,18 +43,7 @@ class FillUpBaseEtlTest extends TestCase
             ->expects($this->once())
             ->method('execute');
 
-        $streamInput = $this
-            ->prophesize(StreamInterface::class)
-            ->reveal();
-        
-        $streamOutput = $this
-            ->prophesize(StreamInterface::class)
-            ->reveal();
-
-        $this->assertNull($fillUpEtl->execute(
-            $streamInput,
-            $streamOutput
-        ));
+        $this->assertNull($fillUpEtl->execute());
 
     }
 }
