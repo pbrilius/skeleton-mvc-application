@@ -67,7 +67,7 @@ class ImageModel extends BaseModel
         $rounds = floor($sumImages / $this->limit) + 1;
         $offset = 0;
 
-        $stmtSprint = 'SELECT '
+        $stmtSprintTemplate = 'SELECT '
             . 'label, '
             . 'AVG(`jpeg`) AS avg_jpeg, '
             . 'MIN(`jpeg`) AS min_jpeg, '
@@ -75,11 +75,11 @@ class ImageModel extends BaseModel
             . 'FROM %s '
             . 'GROUP BY label '
             . 'LIMIT %s '
-            . 'OFFSET %s ';
+            . 'OFFSET %s';
 
         for ($i = 0; $i < $rounds; $i++) {
             $stmtSprint = sprintf(
-                $stmtSprint,
+                $stmtSprintTemplate,
                 $this->_tableBase,
                 $this->limit,
                 $offset

@@ -67,7 +67,7 @@ class VoiceModel extends BaseModel
         $rounds = floor($sumVoiceMemos / $this->limit) + 1;
         $offset = 0;
 
-        $stmtSprint = 'SELECT '
+        $stmtSprintTemplate = 'SELECT '
             . 'note, '
             . 'AVG(`record`) AS avg_record, '
             . 'MIN(`record`) AS min_record, '
@@ -79,7 +79,7 @@ class VoiceModel extends BaseModel
 
         for ($i = 0; $i < $rounds; $i++) {
             $stmtSprint = sprintf(
-                $stmtSprint,
+                $stmtSprintTemplate,
                 $this->_tableBase,
                 $this->limit,
                 $offset
