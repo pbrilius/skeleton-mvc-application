@@ -57,6 +57,9 @@
         <testsuite name="CRM API Controllers">
             <directory suffix="Test.php">tests/CRM/Controller/API</directory>
         </testsuite>
+        <testsuite name="C2C Models">
+            <directory suffix="Test.php">tests/PBG/Model</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
