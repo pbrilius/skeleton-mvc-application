@@ -25,6 +25,8 @@ use Ramsey\Uuid\Uuid;
 trait HelperModelTrait
 {
     protected $baseLevel = 14*1024;
+
+    private $_tCorrection = 0.05;
     
     /**
      * Base source table up
@@ -47,7 +49,7 @@ trait HelperModelTrait
         $stmt->execute();
         $baseTotal = $stmt->fetchColumn();
 
-        if ($this->baseLevel - $this->baseLevel * 0.05 <= (int) $baseTotal) {
+        if ($this->baseLevel - $this->baseLevel * $this->_tCorrection <= (int) $baseTotal) {
             return;
         }
 

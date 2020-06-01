@@ -28,7 +28,7 @@ if ($_ENV['APPLICATION_MODE'] === 'development') {
 
             return $pdo;
         }
-    )->addTag('mysql.pdo.tdd');
+    )->addTag('mysql.pdo.tdd')->setShared();
 
     $container->add(
         PDO::class,
@@ -45,5 +45,5 @@ if ($_ENV['APPLICATION_MODE'] === 'development') {
 
             return $pdo;
         }
-    )->addTag('mysql.pdo.tdd');
+    )->addTag('mysql.pdo.tdd')->setShared();
 }

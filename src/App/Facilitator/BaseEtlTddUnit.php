@@ -36,6 +36,8 @@ class BaseEtlTddUnit extends TestCase
 
     protected $rate = 1024 * 24;
 
+    private $_tCorrection = 0.05;
+
     protected $uuidFormat = '/\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/';
 
     /**
@@ -110,7 +112,7 @@ class BaseEtlTddUnit extends TestCase
 
         $baseZero = false;
         foreach ($baseEtl as $etl) {
-            if ($etl >= $this->rate) {
+            if ($etl >= $this->rate - $this->rate * $this->_tCorrection) {
                 continue;
             }
 
