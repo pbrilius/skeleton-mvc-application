@@ -53,6 +53,6 @@ class AccountListTest extends BaseApiUnit
         );
 
         $this->assertIsArray($response);
-        $this->assertGreaterThanOrEqual(0, $response);list 
+        $this->assertGreaterThanOrEqual(0, $response);
     }
 }
