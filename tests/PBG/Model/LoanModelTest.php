@@ -36,7 +36,14 @@ class LoanModelTest extends TestCase
             ->getMockBuilder(Loan::class)
             ->disableOriginalConstructor()
             ->disableProxyingToOriginalMethods()
+            ->setMethods(['baseUp'])
             ->getMock();
+
+        $loan
+            ->expects($this->once())
+            ->method('baseUp');
+
+        $this->assertNull($loan->baseUp());
 
         $this->assertObjectHasAttribute('table', $loan);
         $this->assertClassHasAttribute('table', Loan::class);

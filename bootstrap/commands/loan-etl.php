@@ -12,9 +12,10 @@
  * @link     pbgroupeu.wordpress.com
  */
 
+use ETL\Model\LoanModel;
 use Laminas\Diactoros\Stream;
 use League\Container\Container;
-use PBG\Command\FillUpBaseEtl;
+use PBG\Command\LoanEtl;
 
 /**
  * Container
@@ -22,14 +23,15 @@ use PBG\Command\FillUpBaseEtl;
  * @var Container $container Container
  */
 $container->add(
-    FillUpBaseEtl::class,
-    function () {
-        $etlBase = new FillUpBaseEtl(
+    LoanEtl::class,
+    function () use ($container) {
+        $loanEtl = new LoanEtl(
             new Stream('php://input'),
             new Stream('php://output', 'w'),
-            'pbg:cli.fill-up-etl-base'
+            'pbg:cli.loan-etl',
+            $container->get(LoanModel::class)
         );
 
-        return $etlBase;
+        return $loanEtl;
     }
-)->addTag('app.command')->addTag('pbg:cli.fill-up-etl-base');
+)->addTag('app.command')->addTag('pbg:cli.loan-etl');

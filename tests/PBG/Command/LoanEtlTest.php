@@ -11,9 +11,8 @@
  */
 namespace Tests\PBG\Command;
 
-use PBG\Command\FillUpBaseEtl;
+use PBG\Command\LoanEtl;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Command ETL base
@@ -34,7 +33,7 @@ class FillUpBaseEtlTest extends TestCase
     public function testExecution(): void
     {
         $fillUpEtl = $this
-            ->getMockBuilder(FillUpBaseEtl::class)
+            ->getMockBuilder(LoanEtl::class)
             ->disableOriginalConstructor()
             ->disableProxyingToOriginalMethods()
             ->getMock();
