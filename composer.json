@@ -7,7 +7,8 @@
             "CMS\\": "src/CMS",
             "ERP\\": "src/ERP",
             "ERM\\": "src/ERM",
-            "CRM\\": "src/CRM"
+            "CRM\\": "src/CRM",
+            "C2C\\": "src/C2C"
         }
     },
     "require": {

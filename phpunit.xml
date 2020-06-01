@@ -66,6 +66,9 @@
         <testsuite name="CLI C2C">
             <directory suffix="Test.php">tests/PBG/Command</directory>
         </testsuite>
+        <testsuite name="C2C API">
+            <directory suffix="Test.php">tests/C2C/Controller/API</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
