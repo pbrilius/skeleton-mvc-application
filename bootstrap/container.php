@@ -31,6 +31,10 @@ if (PHP_SAPI === 'cli') {
     $containerPriority[] = 'commands';
 }
 
+if ($_ENV['MODULE_C2C']) {
+    $containerPriority[] = 'c2c';
+}
+
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env.php';
