@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-use CMS\Controller\API\Hashtag\HashtagPost;
+use CMS\Controller\API\Hashtag\HashtagUpdate;
 use CMS\Model\Hashtag;
 use League\Container\Container;
 
@@ -20,10 +20,10 @@ use League\Container\Container;
  * @var Container $container
  */
 $container->add(
-    HashtagPost::class,
+    HashtagUpdate::class,
     function () use ($container) {
-        $hashtagPost = new HashtagPost($container->get(Hashtag::class));
+        $hashtagUpdate = new HashtagUpdate($container->get(Hashtag::class));
 
-        return $hashtagPost;
+        return $hashtagUpdate;
     }
 );

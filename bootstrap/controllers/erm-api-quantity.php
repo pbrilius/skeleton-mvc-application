@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-use ERM\Controller\Quantity\Quantity;
+use ERM\Controller\API\Quantity\Quantity as QuantityQuantity;
 use ERM\Model\Quantity as ModelQuantity;
 use League\Container\Container;
 
@@ -20,9 +20,9 @@ use League\Container\Container;
  * @var Container $container
  */
 $container->add(
-    Quantity::class,
+    QuantityQuantity::class,
     function () use ($container) {
-        $quantity = new Quantity($container->get(ModelQuantity::class));
+        $quantity = new QuantityQuantity($container->get(ModelQuantity::class));
 
         return $quantity;
     }

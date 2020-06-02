@@ -22,7 +22,7 @@ use ERM\Controller\API\Quantity\QuantityDelete;
 use ERM\Controller\API\Quantity\QuantityList;
 use ERM\Controller\API\Quantity\QuantityPost;
 use ERM\Controller\API\Quantity\QuantityUpdate;
-use ERM\Controller\Quantity\Quantity;
+use ERM\Controller\API\Quantity\Quantity;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Router;

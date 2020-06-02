@@ -11,7 +11,7 @@
  */
 
 use League\Container\Container;
-use PBG\Controller\API\User\UserList;
+use PBG\Controller\API\User\UserPost;
 
 /**
  * Container
@@ -19,10 +19,10 @@ use PBG\Controller\API\User\UserList;
  * @var Container $container
  */
 $container->add(
-    UserList::class,
+    UserPost::class,
     function () use ($container) {
-        $userList = new UserList($container->get('mysql.pdo')[0]);
+        $userPost = new UserPost($container->get('mysql.pdo')[0]);
 
-        return $userList;
+        return $userPost;
     }
 );

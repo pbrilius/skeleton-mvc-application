@@ -10,7 +10,7 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-use ERP\Controller\API\Upperline\Upperline;
+use ERP\Model\Upperline;
 use League\Container\Container;
 
 /**
