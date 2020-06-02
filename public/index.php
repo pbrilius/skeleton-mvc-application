@@ -45,11 +45,13 @@ require_once __DIR__ . '/../bootstrap/erm-api.php';
  */
 require_once __DIR__ . '/../bootstrap/crm-api.php';
 
-if ($_ENV['MODULE_C2C']) {
-    /**
-     * C2C sites
-     */
-    include_once __DIR__ . '/../bootstrap/c2c-api.php';
+/**
+ * Modules engine
+ */
+global $modules;
+
+foreach ($modules as $module) {
+    include_once __DIR__ . '/../bootstrap/' . strtolower($module) . '-api.php';
 }
 
 /**

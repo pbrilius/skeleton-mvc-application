@@ -42,8 +42,18 @@ if ($_ENV['APPLICATION_MODE'] === 'development') {
     include __DIR__ . '/config-tdd.php';
 }
 
-if ($_ENV['MODULE_C2C']) {
-    $containerPriority[] = 'c2c';
+global $modules;
+
+foreach ($_ENV as $potentialModule => $switch) {
+    if (!strstr($potentialModule, strtoupper('module'))) {
+        continue;
+    }
+    $moduleExploder = explode('_', $potentialModule);
+    if ((bool) $switch) {
+        $containerPriority[] = strtolower($moduleExploder[1]);
+        $modules []= $moduleExploder[1];
+    }
+
 }
 
 foreach ($containerPriority as $initConsumption) {
