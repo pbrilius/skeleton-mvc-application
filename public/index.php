@@ -45,6 +45,13 @@ require_once __DIR__ . '/../bootstrap/erm-api.php';
  */
 require_once __DIR__ . '/../bootstrap/crm-api.php';
 
+if ($_ENV['MODULE_C2C']) {
+    /**
+     * CRM sites
+     */
+    include_once __DIR__ . '/../bootstrap/c2c-api.php';
+}
+
 /**
  * Application middlewares
  */
