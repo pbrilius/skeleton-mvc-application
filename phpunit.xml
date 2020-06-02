@@ -45,6 +45,9 @@
         <testsuite name="ERP Models">
             <directory suffix="Test.php">tests/ERP/Model</directory>
         </testsuite>
+        <testsuite name="ERP Commands">
+            <directory suffix="Test.php">tests/ERP/Command</directory>
+        </testsuite>
         <testsuite name="ERM Models">
             <directory suffix="Test.php">tests/ERM/Model</directory>
         </testsuite>
