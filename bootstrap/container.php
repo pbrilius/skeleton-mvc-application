@@ -31,11 +31,6 @@ if (PHP_SAPI === 'cli') {
     $containerPriority[] = 'commands';
 }
 
-if ($_ENV['MODULE_C2C']) {
-    $containerPriority[] = 'c2c';
-}
-
-
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
@@ -45,6 +40,10 @@ require __DIR__ . '/config.php';
 
 if ($_ENV['APPLICATION_MODE'] === 'development') {
     include __DIR__ . '/config-tdd.php';
+}
+
+if ($_ENV['MODULE_C2C']) {
+    $containerPriority[] = 'c2c';
 }
 
 foreach ($containerPriority as $initConsumption) {
