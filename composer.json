@@ -8,7 +8,9 @@
             "ERP\\": "src/ERP",
             "ERM\\": "src/ERM",
             "CRM\\": "src/CRM",
-            "C2C\\": "src/C2C"
+            "C2C\\": "src/C2C",
+            "B2C\\": "src/B2C",
+            "B2B\\": "src/B2B"
         }
     },
     "require": {
