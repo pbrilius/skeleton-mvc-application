@@ -47,7 +47,7 @@ require_once __DIR__ . '/../bootstrap/crm-api.php';
 
 if ($_ENV['MODULE_C2C']) {
     /**
-     * CRM sites
+     * C2C sites
      */
     include_once __DIR__ . '/../bootstrap/c2c-api.php';
 }
