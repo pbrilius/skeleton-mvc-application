@@ -13,6 +13,7 @@
 namespace Tests\B2B\Controller\API\Government;
 
 use App\Facilitator\BaseApiUnit;
+use B2B\Controller\API\Government\GovernmentUpdate as GovernmentGovernmentUpdate;
 
 /**
  * Government API stack
@@ -33,7 +34,7 @@ class GovernmentUpdate extends BaseApiUnit
     public function testInvocation(): void
     {
         $govUpdate = $this
-            ->getMockBuilder(GovernmentUpdate::class)
+            ->getMockBuilder(GovernmentGovernmentUpdate::class)
             ->disableOriginalConstructor()
             ->disableArgumentCloning()
             ->disableProxyingToOriginalMethods()

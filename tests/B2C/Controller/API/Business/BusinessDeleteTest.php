@@ -13,6 +13,7 @@
 namespace Tests\B2C\Controller\API\Business;
 
 use App\Facilitator\BaseApiUnit;
+use B2C\Controller\API\Business\BusinessDelete as BusinessBusinessDelete;
 
 /**
  * Business API stack
@@ -23,7 +24,7 @@ use App\Facilitator\BaseApiUnit;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class BusinessDelete extends BaseApiUnit
+class BusinessDeleteTest extends BaseApiUnit
 {
     /**
      * Invocation case
@@ -33,7 +34,7 @@ class BusinessDelete extends BaseApiUnit
     public function testInvocation(): void
     {
         $businessDelete = $this
-            ->getMockBuilder(BusinessDelete::class)
+            ->getMockBuilder(BusinessBusinessDelete::class)
             ->disableArgumentCloning()
             ->disableAutoReturnValueGeneration()
             ->disableOriginalConstructor()
