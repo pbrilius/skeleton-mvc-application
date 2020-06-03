@@ -22,7 +22,7 @@ use CMS\BaseController;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class BusinesDelete extends BaseController
+class BusinessDelete extends BaseController
 {
     /**
      * Invocation
