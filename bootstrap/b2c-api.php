@@ -14,13 +14,13 @@
 declare(strict_types=1);
 
 use B2C\Controller\API\Business\Business;
+use B2C\Controller\API\Business\BusinessDelete;
 use B2C\Controller\API\Business\BusinessList;
 use B2C\Controller\API\Business\BusinessPost;
 use B2C\Controller\API\Business\BusinessUpdate;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
 use League\Route\Strategy\JsonStrategy;
-use Tests\B2C\Controller\API\Business\BusinessDelete;
 
 $strategy = new JsonStrategy(new ResponseFactory());
 
