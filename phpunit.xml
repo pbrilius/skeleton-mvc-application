@@ -75,6 +75,9 @@
         <testsuite name="B2C API">
             <directory suffix="Test.php">tests/B2C/Controller/API</directory>
         </testsuite>
+        <testsuite name="B2B API">
+            <directory suffix="Test.php">tests/B2B/Controller/API</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
