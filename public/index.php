@@ -62,12 +62,16 @@ require_once __DIR__ . '/../bootstrap/erm-api.php';
 require_once __DIR__ . '/../bootstrap/crm-api.php';
 
 /**
- * Modules engine
+ * Modules engine; embedded SBPC
  */
 global $modules;
+global $embedded;
 
 foreach ($modules as $module) {
     include_once __DIR__ . '/../bootstrap/' . strtolower($module) . '-api.php';
+}
+foreach ($embedded as $component) {
+    include_once __DIR__ . '/../bootstrap/embedded/' . strtolower($component) . '-front.php';
 }
 
 /**

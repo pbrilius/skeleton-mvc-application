@@ -42,7 +42,14 @@ if ($_ENV['APPLICATION_MODE'] === 'development') {
     include __DIR__ . '/config-tdd.php';
 }
 
+/**
+ * OOP vector; procedural shift; H1;
+ */
 global $modules;
+global $embedded;
+
+$modules = [];
+$embedded = [];
 
 foreach ($_ENV as $potentialModule => $switch) {
     if (!strstr($potentialModule, strtoupper('module'))) {
@@ -52,6 +59,17 @@ foreach ($_ENV as $potentialModule => $switch) {
     if ((bool) $switch) {
         $containerPriority[] = strtolower($moduleExploder[1]);
         $modules []= $moduleExploder[1];
+    }
+
+}
+foreach ($_ENV as $potentialComponent => $switch) {
+    if (!strstr($potentialComponent, strtoupper('component'))) {
+        continue;
+    }
+    $componentExploder = explode('_', $potentialComponent);
+    if ((bool) $switch) {
+        $containerPriority[] = strtolower('embedded/' . $componentExploder[1]);
+        $embedded []= $componentExploder[1];
     }
 
 }
