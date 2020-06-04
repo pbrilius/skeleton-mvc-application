@@ -37,7 +37,6 @@ class ErrorExposeMiddleware implements MiddlewareInterface
     public function process(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Server\RequestHandlerInterface $handler): \Psr\Http\Message\ResponseInterface
     {
         try {
-
             /**
              * Response
              * 
@@ -52,9 +51,10 @@ class ErrorExposeMiddleware implements MiddlewareInterface
                 'code' => $e->getCode(),
             ];
             $encodedExcerpt = json_encode($json);
-            $stream = new Stream($encodedExcerpt);
+            $stream = new Stream('php://memory', 'w');
+            $stream->write($encodedExcerpt);
 
-            $response = $response->withBody($stream);
+            $response = new Response($stream, 500);
 
             return $response;
         }
