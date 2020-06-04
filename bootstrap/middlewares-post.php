@@ -6,15 +6,14 @@
  * PHP version 7
  * 
  * @category Framework
- * @package  Front_Routes
+ * @package  Front_Middlewares
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
+
 declare(strict_types=1);
 
-use Laminas\Diactoros\ResponseFactory;
-use League\Route\Strategy\ApplicationStrategy;
+use App\Middleware\ContentLengthMiddleware;
 
-$strategy = new ApplicationStrategy(new ResponseFactory);
-$router->setStrategy($strategy);
+$router->middleware(new ContentLengthMiddleware());

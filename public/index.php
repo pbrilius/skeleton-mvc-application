@@ -12,12 +12,28 @@
  * @link     https://pbgroupeu.wordpress.com
  */
 
+use League\Container\Container;
+use League\Route\Router;
+
 require_once __DIR__ . '/../bootstrap/container.php';
+
+/**
+ * Container
+ * 
+ * @var Container $container
+ */
+$router = $container->get(Router::class);
 
 /**
  * Application router sites
  */
 require_once __DIR__ . '/../bootstrap/routes.php';
+
+/**
+ * Pre-routing middlewares
+ */
+require_once __DIR__ . '/../bootstrap/middlewares-pre.php';
+
 require_once __DIR__ . '/../bootstrap/api.php';
 
 /**
@@ -55,9 +71,17 @@ foreach ($modules as $module) {
 }
 
 /**
- * Application middlewares
+ * Application middlewares - post routing
  */
-require_once __DIR__ . '/../bootstrap/middlewares.php';
+require_once __DIR__ . '/../bootstrap/middlewares-post.php';
+
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
 
 $response = $router->dispatch($request);
 
