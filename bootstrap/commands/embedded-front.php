@@ -29,7 +29,7 @@ $container->add(
         $embeddedFront = new EmbeddedFront(
             new Stream('php://input'),
             new Stream('php://output'),
-            'pbg:sli.embedded-front',
+            'pbg:cli.embedded-front',
             $embedded
         );
 
