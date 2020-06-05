@@ -31,7 +31,7 @@ class EngineTest extends TestCase
      *
      * @return void
      */
-    public function testPrerequisite(): void
+    public function testPrerequisites(): void
     {
         $engine = $this
             ->getMockBuilder(Engine::class)
