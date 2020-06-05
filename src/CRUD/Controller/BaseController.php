@@ -14,7 +14,6 @@ namespace CRUD\Controller;
 use CMS\BaseControllerTrait as CmsTrait;
 use CMS\BaseModelInterface;
 use CRUD\View\EngineInterface;
-use PBG\Controller\BaseControllerInterface;
 
 /**
  * Base controller for Embedded SBPC

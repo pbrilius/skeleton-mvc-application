@@ -24,6 +24,7 @@ global $containerPriority;
 $containerPriority = [
     'pdo',
     'logger',
+    'engine',
     'models',
 ];
 
