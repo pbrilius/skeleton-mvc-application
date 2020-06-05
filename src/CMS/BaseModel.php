@@ -49,11 +49,10 @@ class BaseModel implements BaseModelInterface
         $pdo = $this->_pdo;
 
         $stmt = $pdo->prepare(
-            'SELECT * FROM `:table` '
+            'SELECT * FROM ' . $this->table . ' '
                 . 'WHERE `id` = :id'
         );
 
-        $stmt->bindParam(':table', $this->table);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();
@@ -71,7 +70,7 @@ class BaseModel implements BaseModelInterface
         $pdo = $this->_pdo;
 
         $stmt = $pdo->prepare(
-            'SELECT * FROM `:table`'
+            'SELECT * FROM ' . $this->table
         );
 
         $stmt->bindParam(':table', $this->table);

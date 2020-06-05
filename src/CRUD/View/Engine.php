@@ -47,7 +47,7 @@ class Engine implements EngineInterface
         $templateTarget = new Template($variables);
         $this->template = $templateTarget;
 
-        $this->_load($template);
+        $this->_load($this->_templatesPath . '/' . $template);
         
         return $this->template->getInterpretation();
     }

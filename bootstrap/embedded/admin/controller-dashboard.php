@@ -23,9 +23,16 @@ use PBG\Model\Api;
 $container->add(
     Dashboard::class,
     function () use ($container) {
+        /**
+         * Engine
+         * 
+         * @var Engine $engine
+         */
+        $engine = $container->get(Engine::class);
+        $engine->setTemplatesPath($container->get('admin.config')['templates.path']);
         $dasboard = new Dashboard(
             $container->get(Api::class),
-            $container->get(Engine::class)
+            $engine
         );
 
         return $dasboard;

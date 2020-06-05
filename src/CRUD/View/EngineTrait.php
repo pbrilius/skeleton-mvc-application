@@ -30,4 +30,18 @@ trait EngineTrait
      * @var Template
      */
     protected $template;
+
+    /**
+     * Templates path setter
+     *
+     * @param string $_templatesPath Template path
+     * 
+     * @return self
+     */
+    public function setTemplatesPath(string $_templatesPath): self
+    {
+        $this->_templatesPath = $_templatesPath;
+
+        return $this;
+    }
 }
