@@ -78,6 +78,12 @@
         <testsuite name="B2B API">
             <directory suffix="Test.php">tests/B2B/Controller/API</directory>
         </testsuite>
+        <testsuite name="CRUD Base Controller">
+            <directory suffix="Test.php">tests/CRUD/Controller</directory>
+        </testsuite>
+        <testsuite name="CRUD Base View">
+            <directory suffix="Test.php">tests/CRUD/View</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
