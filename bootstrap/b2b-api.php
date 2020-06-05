@@ -20,9 +20,17 @@ use B2B\Controller\API\Government\GovernmentPost;
 use B2B\Controller\API\Government\GovernmentUpdate;
 use Laminas\Diactoros\ResponseFactory;
 use League\Route\RouteGroup;
+use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
 
 $strategy = new JsonStrategy(new ResponseFactory());
+
+/**
+ * Router
+ * 
+ * @var Router $router
+ */
+$router->setStrategy($strategy);
 
 $router->group(
     '/b2b-api',
