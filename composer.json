@@ -11,7 +11,9 @@
             "C2C\\": "src/C2C",
             "B2C\\": "src/B2C",
             "B2B\\": "src/B2B",
-            "CRUD\\": "src/CRUD"
+            "CRUD\\": "src/CRUD",
+            "Admin\\": "src/Admin",
+            "User\\": "src/User"
         }
     },
     "require": {
