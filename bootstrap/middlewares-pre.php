@@ -25,5 +25,5 @@ use League\Route\Router;
  * @var Router $router
  * @var Container $container
  */
-$router->middleware(new ErrorExposeMiddleware());
+$router->middleware($container->get(ErrorExposeMiddleware::class));
 $router->middleware($container->get(RequestLoggingMiddleware::class));

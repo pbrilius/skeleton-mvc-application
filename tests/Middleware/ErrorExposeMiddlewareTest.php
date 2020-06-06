@@ -38,6 +38,7 @@ class ErrorExposeMiddlewareTest extends TestCase
     {
         $middleware = $this
             ->getMockBuilder(ErrorExposeMiddleware::class)
+            ->disableOriginalConstructor()
             ->setMethods(['process'])
             ->getMock();
 

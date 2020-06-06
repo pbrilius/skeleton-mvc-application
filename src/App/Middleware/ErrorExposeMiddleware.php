@@ -9,10 +9,12 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
+
 namespace App\Middleware;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use Monolog\Logger;
 use Psr\Http\Server\MiddlewareInterface;
 
 /**
@@ -26,6 +28,25 @@ use Psr\Http\Server\MiddlewareInterface;
  */
 class ErrorExposeMiddleware implements MiddlewareInterface
 {
+    /**
+     * Logger
+     *
+     * @var Logger
+     */
+    private $_logger;
+
+    /**
+     * Base constructor
+     *
+     * @param Logger $_logger Logger
+     * 
+     * @return void
+     */
+    public function __construct(Logger $_logger)
+    {
+        $this->_logger = $_logger;
+    }
+
     /**
      * HTTP error response of JSON format
      *
@@ -43,7 +64,7 @@ class ErrorExposeMiddleware implements MiddlewareInterface
              * @var Response $response Response
              */
             $response = $handler->handle($request);
-            
+
             return $response;
         } catch (\Exception $e) {
             $json = [
@@ -55,6 +76,9 @@ class ErrorExposeMiddleware implements MiddlewareInterface
             $stream->write($encodedExcerpt);
 
             $response = new Response($stream, 500);
+
+            $_logger = $this->_logger;
+            $_logger->error($e->getMessage(), ['status_code' => $e->getCode()]);
 
             return $response;
         }
