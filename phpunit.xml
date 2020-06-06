@@ -84,6 +84,9 @@
         <testsuite name="CRUD Base View">
             <directory suffix="Test.php">tests/CRUD/View</directory>
         </testsuite>
+        <testsuite name="Admin CRUD">
+            <directory suffix="Test.php">tests/Admin/Controller</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
