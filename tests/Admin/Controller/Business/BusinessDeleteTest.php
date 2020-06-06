@@ -9,9 +9,9 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests\Admin\Controller\User;
+namespace Tests\Admin\Controller\Business;
 
-use Admin\Controller\User\UserUpdate;
+use Admin\Controller\Business\BusinessDelete;
 use App\Facilitator\BaseCrudUnit;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -20,12 +20,12 @@ use Psr\Http\Message\ResponseInterface;
  * Admin stack
  * 
  * @category Admin
- * @package  User
+ * @package  Business
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class UserUpdateTest extends BaseCrudUnit
+class BusinessDeleteTest extends BaseCrudUnit
 {
     /**
      * Invocation case
@@ -34,8 +34,8 @@ class UserUpdateTest extends BaseCrudUnit
      */
     public function testInvocation(): void
     {
-        $userUpdate = $this
-            ->getMockBuilder(UserUpdate::class)
+        $businessDelete = $this
+            ->getMockBuilder(BusinessDelete::class)
             ->disableOriginalConstructor()
             ->disableArgumentCloning()
             ->disableAutoReturnValueGeneration()
@@ -44,18 +44,16 @@ class UserUpdateTest extends BaseCrudUnit
             ->setMethods(['__invoke'])
             ->getMock();
 
-        $userUpdate
-            ->expects($this->atLeastOnce())
+        $businessDelete
+            ->expects($this->atLeast(1))
             ->method('__invoke')
             ->willReturn($this->prophesize(ResponseInterface::class)->reveal());
 
         $response = call_user_func(
-            $userUpdate,
+            $businessDelete,
             $this->requestMock,
             []
         );
-
-        $this->assertPreConditions();
 
         $this->assertNotEmpty($response);
         $this->assertNotNull($response);
@@ -63,13 +61,12 @@ class UserUpdateTest extends BaseCrudUnit
         $this->assertIsNotIterable($response);
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertNotInstanceOf(Response::class, $response);
-        
-        $this->assertObjectNotHasAttribute('_cmsModel', $userUpdate);
-        $this->assertObjectNotHasAttribute('_templateEngine', $response);
-        $this->assertIsCallable($userUpdate);
-        $this->assertClassNotHasAttribute('_cmsModel', UserUpdate::class);
-        $this->assertClassNotHasAttribute('_templateEngine', UserUpdate::class);
 
-        $this->assertPostConditions();
+        $this->assertObjectNotHasAttribute('_cmsModel', $businessDelete);
+        $this->assertObjectNotHasAttribute('_templateEngine', $businessDelete);
+        $this->assertIsCallable($businessDelete);
+        $this->assertClassNotHasAttribute('_cmsModel', BusinessDelete::class);
+        $this->assertClassNotHasAttribute('_templateEngine', BusinessDelete::class);
+
     }
 }

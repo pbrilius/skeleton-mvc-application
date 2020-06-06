@@ -45,7 +45,7 @@ class BaseEtlTddUnit extends TestCase
      *
      * @return void
      */
-    private function _up()
+    public function setUp(): void
     {
         $container = include __DIR__
             . '/..'
@@ -305,6 +305,8 @@ class BaseEtlTddUnit extends TestCase
         } catch (\PDOException $e) {
             $pdoAppTdd->rollBack();
         }
+
+        $this->assertPreConditions();
     }
 
     /**
@@ -312,27 +314,11 @@ class BaseEtlTddUnit extends TestCase
      *
      * @return void
      */
-    private function _down()
+    public function tearDown(): void
     {
         unset($this->_container);
-    }
 
-    /**
-     * Booting up constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->_up();
-    }
-
-    /**
-     * Chain reaction destructor
-     */
-    public function __destruct()
-    {
-        $this->_down();
+        $this->assertPostConditions();
     }
 
     /**

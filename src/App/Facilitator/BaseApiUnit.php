@@ -45,7 +45,7 @@ class BaseApiUnit extends TestCase
      *
      * @return void
      */
-    public function up(): void
+    public function setUp(): void
     {
         $id = Uuid::uuid1();
         $this->id = $id->toString();
@@ -54,6 +54,8 @@ class BaseApiUnit extends TestCase
             ->prophesize(ServerRequestInterface::class)
             ->reveal();
         $this->requestMock = $request;
+
+        $this->assertPreConditions();
     }
 
     /**
@@ -61,27 +63,11 @@ class BaseApiUnit extends TestCase
      *
      * @return void
      */
-    public function down(): void
+    public function tearDown(): void
     {
         unset($this->id);
         unset($this->requestMock);
-    }
 
-    /**
-     * Advanced constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->up();
-    }
-
-    /**
-     * Advanced destructor
-     */
-    public function __destruct()
-    {
-        $this->down();
+        $this->assertPostConditions();
     }
 }

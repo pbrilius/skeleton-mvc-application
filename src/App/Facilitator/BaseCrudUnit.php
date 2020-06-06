@@ -37,12 +37,14 @@ class BaseCrudUnit extends TestCase
      *
      * @return void
      */
-    public function up(): void
+    public function setUp(): void
     {
         $request = $this
             ->prophesize(ServerRequestInterface::class)
             ->reveal();
         $this->requestMock = $request;
+
+        $this->assertPreConditions();
     }
 
     /**
@@ -50,26 +52,10 @@ class BaseCrudUnit extends TestCase
      *
      * @return void
      */
-    public function down(): void
+    public function tearDown(): void
     {
         unset($this->requestMock);
-    }
 
-    /**
-     * Advanced constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->up();
-    }
-
-    /**
-     * Advanced destructor
-     */
-    public function __destruct()
-    {
-        $this->down();
+        $this->assertPostConditions();
     }
 }

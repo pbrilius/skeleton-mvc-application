@@ -9,9 +9,9 @@
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-namespace Tests\Admin\Controller\User;
+namespace Tests\Admin\Controller\Business;
 
-use Admin\Controller\User\UserUpdate;
+use Admin\Controller\Business\Businesses;
 use App\Facilitator\BaseCrudUnit;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -20,12 +20,12 @@ use Psr\Http\Message\ResponseInterface;
  * Admin stack
  * 
  * @category Admin
- * @package  User
+ * @package  Business
  * @author   Povilas Brilius <pbrilius@gmail.com>
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class UserUpdateTest extends BaseCrudUnit
+class BusinessesTest extends BaseCrudUnit
 {
     /**
      * Invocation case
@@ -34,8 +34,8 @@ class UserUpdateTest extends BaseCrudUnit
      */
     public function testInvocation(): void
     {
-        $userUpdate = $this
-            ->getMockBuilder(UserUpdate::class)
+        $businesses = $this
+            ->getMockBuilder(Businesses::class)
             ->disableOriginalConstructor()
             ->disableArgumentCloning()
             ->disableAutoReturnValueGeneration()
@@ -44,31 +44,31 @@ class UserUpdateTest extends BaseCrudUnit
             ->setMethods(['__invoke'])
             ->getMock();
 
-        $userUpdate
+        $businesses
             ->expects($this->atLeastOnce())
             ->method('__invoke')
             ->willReturn($this->prophesize(ResponseInterface::class)->reveal());
 
-        $response = call_user_func(
-            $userUpdate,
+        $reponse = call_user_func(
+            $businesses,
             $this->requestMock,
             []
         );
 
         $this->assertPreConditions();
 
-        $this->assertNotEmpty($response);
-        $this->assertNotNull($response);
-        $this->assertIsObject($response);
-        $this->assertIsNotIterable($response);
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotInstanceOf(Response::class, $response);
-        
-        $this->assertObjectNotHasAttribute('_cmsModel', $userUpdate);
-        $this->assertObjectNotHasAttribute('_templateEngine', $response);
-        $this->assertIsCallable($userUpdate);
-        $this->assertClassNotHasAttribute('_cmsModel', UserUpdate::class);
-        $this->assertClassNotHasAttribute('_templateEngine', UserUpdate::class);
+        $this->assertNotEmpty($reponse);
+        $this->assertNotNull($reponse);
+        $this->assertIsObject($reponse);
+        $this->assertIsNotIterable($reponse);
+        $this->assertInstanceOf(ResponseInterface::class, $reponse);
+        $this->assertNotInstanceOf(Response::class, $reponse);
+
+        $this->assertObjectNotHasAttribute('_cmsModel', $businesses);
+        $this->assertObjectNotHasAttribute('_templateEngine', $businesses);
+        $this->assertIsCallable($businesses);
+        $this->assertClassNotHasAttribute('_cmsModel', Businesses::class);
+        $this->assertClassNotHasAttribute('_templateEngine', Businesses::class);
 
         $this->assertPostConditions();
     }

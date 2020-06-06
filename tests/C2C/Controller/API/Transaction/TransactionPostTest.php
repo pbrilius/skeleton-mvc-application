@@ -49,7 +49,8 @@ class TransactionPostTest extends BaseApiUnit
 
         $response = call_user_func(
             $transactionPost,
-            $this->requestMock
+            $this->requestMock,
+            []
         );
 
         $this->assertIsArray($response);
