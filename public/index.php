@@ -111,7 +111,7 @@ try {
      */
     $logger = $container->get('logger')[0];
     $logger->emergency(
-        'HTTPD Index.php front error - caught directly by Directory Index',
+        'Directory Index exception',
         [
             'error-data' => $data,
             'headers' => $request->getHeaders(),
