@@ -78,7 +78,13 @@ class ErrorExposeMiddleware implements MiddlewareInterface
             $response = new Response($stream, 500);
 
             $_logger = $this->_logger;
-            $_logger->error($e->getMessage(), ['status_code' => $e->getCode()]);
+            $_logger->critical(
+                $e->getMessage(),
+                [
+                    'status_code' => $e->getCode(),
+                    'headers' => $request->getHeaders(),
+                ]
+            );
 
             return $response;
         }

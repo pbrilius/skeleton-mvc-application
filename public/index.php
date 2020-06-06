@@ -12,8 +12,12 @@
  * @link     https://pbgroupeu.wordpress.com
  */
 
+use Laminas\Diactoros\Response\JsonResponse;
+use Laminas\Diactoros\Stream;
 use League\Container\Container;
+use League\Route\Http\Exception;
 use League\Route\Router;
+use Monolog\Logger;
 
 require_once __DIR__ . '/../bootstrap/container.php';
 
@@ -87,6 +91,32 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$response = $router->dispatch($request);
+
+try {
+    $response = $router->dispatch($request);
+} catch (Exception $e) {
+    $data = [
+        'status_code' => $e->getCode(),
+        'message' => $e->getMessage()
+    ];
+    $response = new JsonResponse(
+        $data,
+        500
+    );
+    
+    /**
+     * Logger
+     * 
+     * @var Logger $logger Logger
+     */
+    $logger = $container->get('logger')[0];
+    $logger->emergency(
+        'HTTPD Index.php front error - caught directly by Directory Index',
+        [
+            'error-data' => $data,
+            'headers' => $request->getHeaders(),
+        ]
+    );
+}
 
 (new Laminas\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
