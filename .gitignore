@@ -16,3 +16,6 @@ cache/
 
 # PHP unit coverage
 /cov
+
+# Logs
+/logs/

@@ -10,7 +10,8 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-use PBG\Model\Transaction;
+use App\Middleware\RequestLoggingMiddleware;
+use League\Container\Container;
 
 /**
  * Container
@@ -18,12 +19,10 @@ use PBG\Model\Transaction;
  * @var Container $container
  */
 $container->add(
-    Transaction::class,
+    RequestLoggingMiddleware::class,
     function () use ($container) {
-        $transaction = new Transaction(
-            $container->get('mysql.pdo')[0]
-        );
+        $logging = new RequestLoggingMiddleware($container->get('logger')[0]);
 
-        return $transaction;
+        return $logging;
     }
 );

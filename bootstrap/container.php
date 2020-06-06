@@ -84,6 +84,7 @@ foreach ($containerPriority as $initConsumption) {
 
 $postLoad = [
     'controllers',
+    'middlewares',
     'router',
 ];
 

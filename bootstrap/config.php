@@ -11,18 +11,29 @@
  * @license  https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository gpl-3.0
  * @link     pbgroup.wordpress.com
  */
+
+use League\Container\Container;
+
 $definitions = [
     'app.root' => __DIR__ . '/..',
 ];
 $definitions['app.logs'] = $definitions['app.root'] . '/logs';
+$definitions['app.logs.max.files'] = 24;
 $definitions['app.cache'] = $definitions['app.root'] . '/cache';
 $definitions['app.templates'] = $definitions['app.root'] . '/templates';
 
 $container->add('app.root', $definitions['app.root']);
+$container->add('app.logs', $definitions['app.logs']);
+$container->add('app.logs.max.files', $definitions['app.logs.max.files']);
 $container->add('app.src', $definitions['app.root'] . '/src');
 $container->add('app.cache', $definitions['app.cache']);
 $container->add('app.templates', $definitions['app.templates']);
 
+/**
+ * Container
+ * 
+ * @var Container $container Container
+ */
 $container->add(
     'db.config',
     [
@@ -87,4 +98,9 @@ $container->add(
         'user' => $_ENV['DB_USER'],
         'password' => $_ENV['DB_PASSWORD'],
     ]
+);
+
+$container->add(
+    'app.label',
+    $_ENV['APPLICATION_NAME']
 );
