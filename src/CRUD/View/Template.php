@@ -45,8 +45,7 @@ class Template implements TemplateInterface
      */
     public function throttle(string $templateTarget): void
     {
-        
-        $prependable = readfile($templateTarget);
+        $prependable = file_get_contents($templateTarget);
         $replacementTemplate = '$%s = %s;';
         $_variables = $this->_variables;
         $parsedVariables = [];
@@ -55,20 +54,36 @@ class Template implements TemplateInterface
             if (is_string($variable)) {
                 $variable = '\'' . $variable . '\'';
             }
+            if (is_array($variable)) {
+                $variable = var_export($variable, true);
+            }
             $parsedVariables []= sprintf($replacementTemplate, $key, $variable);
         }
 
         $replacement = implode("\n", $parsedVariables);
-
-        preg_replace('/$\<\?php(\s+)/', $replacement, $prependable);
+        preg_match('/^\<\?php(\s+)/', $prependable, $matches);
+        $formattedInterpretation = preg_replace('/^(\<\?php)(\s+)/', '$1 ' . $replacement . '$2', $prependable);
+        
+        $tmpStream = new Stream('php://temp', 'w');
+        $tmpStream->write($formattedInterpretation);
+        $tmpStream->rewind();
+        $tmpFile = tempnam(dirname($templateTarget), 'temp_thr');
+        $handle = fopen($tmpFile, 'w');
+        fwrite($handle, $formattedInterpretation);
+        
+        ob_start();
+        include_once $tmpFile;
+        $html = ob_get_clean();
+        fclose($handle);
+        
+        unlink($tmpFile);
         
         $stream = new Stream('php://memory', 'w');
-        $stream->write(include_once $templateTarget);
-
+        $stream->write($html);
         $stream->rewind();
-
-        $this->_interpretation = $stream->read(strlen($prependable));
+        $this->_interpretation = $html;
         
+        $this->_interpretation = $stream->read(strlen($formattedInterpretation));
     }
 
 }
