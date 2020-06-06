@@ -39,8 +39,16 @@ class ErrorExposeMiddlewareTest extends TestCase
         $middleware = $this
             ->getMockBuilder(ErrorExposeMiddleware::class)
             ->disableOriginalConstructor()
+            ->disableArgumentCloning()
+            ->disableAutoReturnValueGeneration()
+            ->disableProxyingToOriginalMethods()
             ->setMethods(['process'])
             ->getMock();
+        
+        $middleware
+            ->expects($this->atLeastOnce())
+            ->method('process')
+            ->willReturn($this->prophesize(ResponseInterface::class)->reveal());
 
         $request = $this->prophesize(ServerRequestInterface::class);
         $handler = $this->prophesize(RequestHandlerInterface::class);

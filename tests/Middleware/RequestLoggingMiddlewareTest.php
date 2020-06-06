@@ -12,7 +12,6 @@
 namespace Tests\Middleware;
 
 use App\Middleware\RequestLoggingMiddleware;
-use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

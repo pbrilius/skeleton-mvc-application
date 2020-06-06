@@ -13,7 +13,6 @@
  */
 
 use Laminas\Diactoros\Response\JsonResponse;
-use Laminas\Diactoros\Stream;
 use League\Container\Container;
 use League\Route\Http\Exception;
 use League\Route\Router;
