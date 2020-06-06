@@ -56,8 +56,6 @@ class BusinessCreateTest extends BaseCrudUnit
             []
         );
 
-        $this->assertPreConditions();
-
         $this->assertNotEmpty($response);
         $this->assertNotNull($response);
         $this->assertIsObject($response);
@@ -70,7 +68,5 @@ class BusinessCreateTest extends BaseCrudUnit
         $this->assertIsCallable($businessCreate);
         $this->assertClassNotHasAttribute('_cmsModel', BusinessCreate::class);
         $this->assertClassNotHasAttribute('_templateEngine', BusinessCreate::class);
-
-        $this->assertPostConditions();
     }
 }

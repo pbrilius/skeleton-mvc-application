@@ -11,7 +11,7 @@
  */
 namespace Tests\Admin\Controller\Business;
 
-use Admin\Controller\Business\Businesses;
+use Admin\Controller\Business\BusinessUpdate;
 use App\Facilitator\BaseCrudUnit;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -25,7 +25,7 @@ use Psr\Http\Message\ResponseInterface;
  * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
  * @link     pbgroupeu.wordpress.com
  */
-class BusinessesTest extends BaseCrudUnit
+class BusinessUpdateTest extends BaseCrudUnit
 {
     /**
      * Invocation case
@@ -34,8 +34,8 @@ class BusinessesTest extends BaseCrudUnit
      */
     public function testInvocation(): void
     {
-        $businesses = $this
-            ->getMockBuilder(Businesses::class)
+        $businessUpdate = $this
+            ->getMockBuilder(BusinessUpdate::class)
             ->disableOriginalConstructor()
             ->disableArgumentCloning()
             ->disableAutoReturnValueGeneration()
@@ -44,28 +44,28 @@ class BusinessesTest extends BaseCrudUnit
             ->setMethods(['__invoke'])
             ->getMock();
 
-        $businesses
+        $businessUpdate
             ->expects($this->atLeastOnce())
             ->method('__invoke')
             ->willReturn($this->prophesize(ResponseInterface::class)->reveal());
 
-        $reponse = call_user_func(
-            $businesses,
+        $response = call_user_func(
+            $businessUpdate,
             $this->requestMock,
             []
         );
 
-        $this->assertNotEmpty($reponse);
-        $this->assertNotNull($reponse);
-        $this->assertIsObject($reponse);
-        $this->assertIsNotIterable($reponse);
-        $this->assertInstanceOf(ResponseInterface::class, $reponse);
-        $this->assertNotInstanceOf(Response::class, $reponse);
+        $this->assertNotEmpty($response);
+        $this->assertNotNull($response);
+        $this->assertIsObject($response);
+        $this->assertIsNotIterable($response);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotInstanceOf(Response::class, $response);
 
-        $this->assertObjectNotHasAttribute('_cmsModel', $businesses);
-        $this->assertObjectNotHasAttribute('_templateEngine', $businesses);
-        $this->assertIsCallable($businesses);
-        $this->assertClassNotHasAttribute('_cmsModel', Businesses::class);
-        $this->assertClassNotHasAttribute('_templateEngine', Businesses::class);
+        $this->assertObjectNotHasAttribute('_cmsModel', $businessUpdate);
+        $this->assertObjectNotHasAttribute('_templateEngine', $businessUpdate);
+        $this->assertIsCallable($businessUpdate);
+        $this->assertClassNotHasAttribute('_cmsModel', BusinessUpdate::class);
+        $this->assertClassNotHasAttribute('_templateEngine', BusinessUpdate::class);
     }
 }

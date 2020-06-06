@@ -55,8 +55,6 @@ class BusinessTest extends BaseCrudUnit
             []
         );
 
-        $this->assertPreConditions();
-
         $this->assertNotEmpty($response);
         $this->assertNotNull($response);
         $this->assertIsObject($response);
