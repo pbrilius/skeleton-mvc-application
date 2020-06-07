@@ -59,7 +59,7 @@ class TransactionUpdateTest extends BaseCrudUnit
         $this->assertNotNull($response);
         $this->assertIsObject($response);
         $this->assertNotEmpty($response);
-        $this->isInstanceOf(ResponseInterface::class, $response);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertNotInstanceOf(Response::class, $response);
 
         $this->assertObjectNotHasAttribute('_cmsModel', $transactionUpdate);
