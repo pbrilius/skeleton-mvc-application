@@ -18,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
 use User\Controller\Loan\Loans;
 
 /**
- * Admin stack
+ * User stack
  * 
  * @category Admin
  * @package  Loan
