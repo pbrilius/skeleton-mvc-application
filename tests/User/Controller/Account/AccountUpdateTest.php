@@ -39,7 +39,6 @@ class AccountUpdateTest extends BaseCrudUnit
             ->getMockBuilder(AccountUpdate::class)
             ->disableOriginalConstructor()
             ->disableProxyingToOriginalMethods()
-            ->disableAutoReturnValueGeneration()
             ->disableArgumentCloning()
             ->disallowMockingUnknownTypes()
             ->disableAutoReturnValueGeneration()

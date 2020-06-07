@@ -39,7 +39,6 @@ class AccountCreateTest extends BaseCrudUnit
             ->getMockBuilder(AccountCreate::class)
             ->disableOriginalConstructor()
             ->disableProxyingToOriginalMethods()
-            ->disableAutoReturnValueGeneration()
             ->disableArgumentCloning()
             ->disallowMockingUnknownTypes()
             ->disableAutoReturnValueGeneration()

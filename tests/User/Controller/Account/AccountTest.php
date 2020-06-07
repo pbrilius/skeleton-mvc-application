@@ -42,7 +42,6 @@ class AccountTest extends BaseCrudUnit
             ->disableAutoReturnValueGeneration()
             ->disableArgumentCloning()
             ->disallowMockingUnknownTypes()
-            ->disableAutoReturnValueGeneration()
             ->setMethods(['__invoke'])
             ->getMock();
 
