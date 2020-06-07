@@ -64,7 +64,7 @@ class LoansTest extends BaseCrudUnit
         $this->assertNotInstanceOf(Response::class, $response);
 
         $this->assertObjectNotHasAttribute('_cmsModel', $loans);
-        $this->assertObjectNotHasAttribute('_templateEnginel', $loans);
+        $this->assertObjectNotHasAttribute('_templateEngine', $loans);
         $this->assertIsCallable($loans);
         $this->assertClassNotHasAttribute('_cmsModel', Loans::class);
         $this->assertClassNotHasAttribute('_templateEngine', Loans::class);
