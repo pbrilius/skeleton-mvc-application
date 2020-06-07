@@ -10,11 +10,12 @@
  * @link     pbgroupeu.wordpress.com
  */
 
-namespace User\Controller\Loan;
+namespace Tests\User\Controller\Loan;
 
 use App\Facilitator\BaseCrudUnit;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
+use User\Controller\Loan\LoanCreate;
 
 /**
  * Admin stack
