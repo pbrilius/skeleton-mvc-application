@@ -1,0 +1,126 @@
+<?php
+/**
+ * SOLID silos area
+ * 
+ * PHP version 7
+ * 
+ * @category HTTP_SOLID
+ * @package  HTTP_HTML_Entity
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @version  GIT: be4380e61536a8299fb82cdf2af0f9094fc52048
+ * @link     pbgroup.wordpress.com
+ */
+namespace PBG\Entity;
+
+use ArrayObject;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
+
+/**
+ * Api
+ *
+ * @category SOLID_Entity
+ * @package  ORM
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @link     pbgroup.wordpress.com
+ */
+class Api extends ArrayObject
+{
+    /**
+     * UUID identifier
+     * 
+     * @var \Ramsey\Uuid\UuidInterface
+     */
+    private $_id;
+
+    /**
+     * Array copy return
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return [
+            'id' => $this->_id,
+            'version' => $this->_version,
+            'release' => $this->_release,
+        ];
+    }
+
+    /**
+     * ID getter
+     *
+     * @return UuidInterface
+     */
+    public function getId(): UuidInterface
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Version
+     * 
+     * @var string
+     */
+    private $_version;
+
+    /**
+     * Version getter
+     *
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->_version;
+    }
+
+    /**
+     * Version setter
+     *
+     * @param string $_version version
+     * 
+     * @return self
+     */
+    public function setVersion(string $_version): self
+    {
+        $this->_version = $_version;
+
+        return $this;
+    }
+
+    /**
+     * Release date
+     * 
+     * @var \DateTime
+     *
+     * @ORM\Column(name="release", type="datetime", nullable=false)
+     */
+    private $_release;
+
+    /**
+     * Release getter
+     *
+     * @return \DateTime
+     */
+    public function getRelease(): \DateTime
+    {
+        return $this->_release;
+    }
+
+    /**
+     * Release setter
+     *
+     * @param \DateTime $release Release date
+     * 
+     * @return self
+     */
+    public function setRelease(\DateTime $release): self
+    {
+        $this->_release = $release;
+
+        return $this;
+    }
+
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         executionOrder="depends,defects"
+         forceCoversAnnotation="true"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="SOLID">
+            <directory suffix="Test.php">tests/SOLID</directory>
+        </testsuite>
+        <testsuite name="API">
+            <directory suffix="Test.php">tests/Controller/API</directory>
+        </testsuite>
+        <testsuite name="Controllers ETL">
+            <directory suffix="Test.php">tests/Controller/ETL</directory>
+        </testsuite>
+        <testsuite name="Middleware">
+            <directory suffix="Test.php">tests/Middleware</directory>
+        </testsuite>
+        <testsuite name="ETL Base">
+            <directory suffix="Test.php">tests/ETL/Base</directory>
+        </testsuite>
+        <testsuite name="ETL Models">
+            <directory suffix="Test.php">tests/ETL/Model</directory>
+        </testsuite>
+        <testsuite name="ETL TDD">
+            <directory suffix="Test.php">tests/ETL/TDD</directory>
+        </testsuite>
+        <testsuite name="CMS Base">
+            <directory suffix="Test.php">tests/CMS/Base</directory>
+        </testsuite>
+        <testsuite name="CMS Models">
+            <directory suffix="Test.php">tests/CMS/Model</directory>
+        </testsuite>
+        <testsuite name="CMS Controllers API">
+            <directory suffix="Test.php">tests/CMS/Controller/API</directory>
+        </testsuite>
+        <testsuite name="ERP Controllers API">
+            <directory suffix="Test.php">tests/ERP/Controller/API</directory>
+        </testsuite>
+        <testsuite name="ERP Models">
+            <directory suffix="Test.php">tests/ERP/Model</directory>
+        </testsuite>
+        <testsuite name="ERP Commands">
+            <directory suffix="Test.php">tests/ERP/Command</directory>
+        </testsuite>
+        <testsuite name="ERM Models">
+            <directory suffix="Test.php">tests/ERM/Model</directory>
+        </testsuite>
+        <testsuite name="ERM Controllers API">
+            <directory suffix="Test.php">tests/ERM/Controller/API</directory>
+        </testsuite>
+        <testsuite name="CRM Models">
+            <directory suffix="Test.php">tests/CRM/Model</directory>
+        </testsuite>
+        <testsuite name="CRM API Controllers">
+            <directory suffix="Test.php">tests/CRM/Controller/API</directory>
+        </testsuite>
+        <testsuite name="C2C Models">
+            <directory suffix="Test.php">tests/PBG/Model</directory>
+        </testsuite>
+        <testsuite name="CLI Base">
+            <directory suffix="Test.php">tests/Command</directory>
+        </testsuite>
+        <testsuite name="CLI C2C">
+            <directory suffix="Test.php">tests/PBG/Command</directory>
+        </testsuite>
+        <testsuite name="C2C API">
+            <directory suffix="Test.php">tests/C2C/Controller/API</directory>
+        </testsuite>
+        <testsuite name="B2C API">
+            <directory suffix="Test.php">tests/B2C/Controller/API</directory>
+        </testsuite>
+        <testsuite name="B2B API">
+            <directory suffix="Test.php">tests/B2B/Controller/API</directory>
+        </testsuite>
+        <testsuite name="CRUD Base Controller">
+            <directory suffix="Test.php">tests/CRUD/Controller</directory>
+        </testsuite>
+        <testsuite name="CRUD Base View">
+            <directory suffix="Test.php">tests/CRUD/View</directory>
+        </testsuite>
+        <testsuite name="Admin CRUD">
+            <directory suffix="Test.php">tests/Admin/Controller</directory>
+        </testsuite>
+        <testsuite name="User CRUD">
+            <directory suffix="Test.php">tests/User/Controller</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

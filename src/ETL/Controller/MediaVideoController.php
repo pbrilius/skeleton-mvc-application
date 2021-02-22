@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * PHP version 7
+ * 
+ * @category Controller
+ * @package  Invokables
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @link     pbgroupeu.wordpress.com
+ */
+namespace ETL\Controller;
+
+use ETL\BaseController;
+
+/**
+ * Media stack
+ * 
+ * @category API
+ * @package  Video
+ * @author   Povilas Brilius <pbrilius@gmail.com>
+ * @license  eupl-1.1 https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository
+ * @link     pbgroupeu.wordpress.com
+ */
+class MediaVideoController extends BaseController
+{
+    /**
+     * Invocation
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request Request
+     * @param array                                    $args    Arguments
+     * 
+     * @return array
+     */
+    public function __invoke(\Psr\Http\Message\ServerRequestInterface $request, array $args): array
+    {
+        $etlModel = $this->getEtlModel();
+
+        return [];
+    }
+}

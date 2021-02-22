@@ -1,3 +1,21 @@
 #Vendor provision
 /vendor
 .vscode
+
+# Environment
+.env
+.env.dev
+.env.dev.local
+
+# Cache - proxies
+cache/
+.phpunit.result.cache
+
+# SQL Tools
+/*.sql
+
+# PHP unit coverage
+/cov
+
+# Logs
+/logs/

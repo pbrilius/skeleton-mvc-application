@@ -1,0 +1,23 @@
+<?php
+
+include_once __DIR__ . '/../header.phtml';
+?>
+
+<h1><?php echo $header ?></h1>
+<p>
+    Paragraph text <i>exclaimed</i>.
+</p>
+<p>
+    <strong>API</strong> info:
+    <?php foreach ($apis as $api): ?>
+    <dl>
+        <dt>Release: <?php echo $api['release'] ?></dt>
+        <dd>Version: <?php echo $api['version'] ?></dd>
+    </dl>
+    <?php endforeach; ?>
+</p>
+<?php
+
+include_once __DIR__ . '/../footer.phtml';
+
+?>
